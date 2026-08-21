@@ -148,37 +148,43 @@ The same session as a runnable file:
 
 ```python
 """Session 2 — embeddings and cosine similarity with Ollama."""
+sanjeev.rohilla@APAC-SANJEEV~/AI/session2  main % python3 -m venv myvenv-lc 
+sanjeev.rohilla@APAC-SANJEEV~/AI/session2  main % source myvenv-lc/bin/activate
+(myvenv-lc) sanjeev.rohilla@APAC-SANJEEV~/AI/session2  main % pip install langchain-ollama scikit-learn
 
-from langchain_ollama import OllamaEmbeddings
+(myvenv-lc) sanjeev.rohilla@APAC-SANJEEV~/AI/session2  main % python                                       
+Python 3.11.9 (main, Mar 28 2025, 18:17:42) [Clang 16.0.0 (clang-1600.0.26.6)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> from langchain_ollama import OllamaEmbeddings
 from sklearn.metrics.pairwise import cosine_similarity
+>>> from sklearn.metrics.pairwise import cosine_similarity
 
-MODEL = "all-minilm"
-
-docs = [
-    "Dogs are loyal and friendly domestic animals.",
-    "Cats are independent and curious creatures.",
-    "The Milky Way galaxy contains over 200 billion stars.",
-]
-query = "Which pet is known for loyalty?"
-
-
-def main() -> None:
-    embedder = OllamaEmbeddings(model=MODEL)
-
-    document_embeddings = embedder.embed_documents(docs)
-    query_embedding = embedder.embed_query(query)
-
-    print(f"Model: {MODEL}  |  dimensions: {len(query_embedding)}")
-    print(f"Query: {query}\n")
-
-    scores = cosine_similarity([query_embedding], document_embeddings)[0]
-
-    for score, doc in sorted(zip(scores, docs), reverse=True):
-        print(f"{score:>8.4f}  {doc}")
-
-
-if __name__ == "__main__":
-    main()
+>>> 
+>>> docs = [
+...     "Dogs are loyal and friendly domestic animals.",
+...     "Cats are independent and curious creatures.",
+...     "The Milky Way galaxy contains over 200 billion stars.",
+... ]
+>>> embedder = OllamaEmbeddings(model="all-minilm")
+>>> document_embeddings = embedder.embed_documents(docs)
+>>> query = "Which pet is known for loyalty?"
+>>> query_embedding = embedder.embed_query(query)
+>>> scores = cosine_similarity([query_embedding], document_embeddings)
+>>> scores
+array([[ 0.66347949,  0.45812654, -0.01676095]])
+>>> score_0 = cosine_similarity([query_embedding],[document_embeddings[0]])
+>>> score_0
+array([[0.66347949]])
+>>> score_1 = cosine_similarity([query_embedding],[document_embeddings[1]])
+>>> score_1
+array([[0.45812654]])
+>>> 
+>>> 
+>>> score_2 = cosine_similarity([query_embedding],[document_embeddings[2]])
+>>> score_2
+array([[-0.01676095]])
+>>> exit()
+(myvenv-lc) sanjeev.rohilla@APAC-SANJEEV~/AI/session2  main % deactivate 
 ```
 
 ---
