@@ -1,0 +1,7214 @@
+WEBVTT
+
+00:00:27.000 --> 00:00:30.000
+And where they are in overkill.
+
+00:00:30.000 --> 00:00:35.000
+Not everything should be used everywhere. Multi-agent system have their specific use.
+
+00:00:35.000 --> 00:00:40.000
+And there are some places where if you add a multi-agent system, you are just adding a lot of build to your.
+
+00:00:40.000 --> 00:00:43.000
+Cloud Coast like to your API cost.
+
+00:00:43.000 --> 00:00:48.000
+or you're bloating the system. So let's understand what a multi-agent system is.
+
+00:00:48.000 --> 00:00:50.000
+By revising what agents are.
+
+00:00:50.000 --> 00:00:55.000
+So we have… yesterday we learned about LandGraph, we learned about state, node, edges.
+
+00:00:55.000 --> 00:00:58.000
+We learned how a permutation and combination of
+
+00:00:58.000 --> 00:01:03.000
+This enables us to build multiple types of system.
+
+00:01:03.000 --> 00:01:07.000
+Land graph, I would say, is kind of a language of its own.
+
+00:01:07.000 --> 00:01:10.000
+So, just like you can have any language.
+
+00:01:10.000 --> 00:01:13.000
+You can write a for loop, you can write, uh…
+
+00:01:13.000 --> 00:01:16.000
+While loop you can write, you know, multiple.
+
+00:01:16.000 --> 00:01:18.000
+sub-programs and everything.
+
+00:01:18.000 --> 00:01:24.000
+You can do similar kind of things in LangGraph and build stateful systems.
+
+00:01:24.000 --> 00:01:26.000
+We also learned about human in the loop.
+
+00:01:26.000 --> 00:01:32.000
+How is it important and how to add it, how to implement it using LandGraph.
+
+00:01:32.000 --> 00:01:34.000
+And then we learned about subgraphs.
+
+00:01:34.000 --> 00:01:37.000
+So, how to take a complex workflow, how to break it down?
+
+00:01:37.000 --> 00:01:42.000
+into multiple subgraphs, how to connect them together by mapping states.
+
+00:01:42.000 --> 00:01:44.000
+And achieve the result.
+
+00:01:44.000 --> 00:01:48.000
+We also learned about AI agent, which is a program.
+
+00:01:48.000 --> 00:01:51.000
+that takes input, thinks about it,
+
+00:01:51.000 --> 00:01:53.000
+Acts to complete a task using tools.
+
+00:01:53.000 --> 00:01:55.000
+memory and knowledge.
+
+00:01:55.000 --> 00:02:00.000
+Can anybody tell me what particular loop it runs internally?
+
+00:02:00.000 --> 00:02:03.000
+By now, I think most of you should know about it.
+
+00:02:03.000 --> 00:02:05.000
+Yeah, the react loop.
+
+00:02:05.000 --> 00:02:09.000
+Okay, so it reasons and it takes actions using tools.
+
+00:02:09.000 --> 00:02:14.000
+It reasons using LLM, it acts using the tools that it has access to.
+
+00:02:14.000 --> 00:02:17.000
+So this is what an AI agent would look like.
+
+00:02:17.000 --> 00:02:26.000
+We will have an LLM, we will have tools, knowledge, memory, we'll provide the access of all of this to our LLM, and it will be able to execute tasks.
+
+00:02:26.000 --> 00:02:30.000
+In a multi-agent system, you multiply this architecture.
+
+00:02:30.000 --> 00:02:33.000
+And you create copies of these agents.
+
+00:02:33.000 --> 00:02:37.000
+Each one specializing to do some specific task.
+
+00:02:37.000 --> 00:02:48.000
+Can anybody give me an example of a multi-agent system?
+
+00:02:48.000 --> 00:02:50.000
+Exactly. So in Claude Code.
+
+00:02:50.000 --> 00:02:53.000
+You can run sub-agents, okay?
+
+00:02:53.000 --> 00:03:03.000
+You can give the task of developing a website, and inside, Claude can also automatically decide that it needs to spin up some subagents and assign tasks.
+
+00:03:03.000 --> 00:03:08.000
+And this helps in isolating context for a specific task.
+
+00:03:08.000 --> 00:03:12.000
+Remember this word, isolating context, this will come back later on.
+
+00:03:12.000 --> 00:03:14.000
+So…
+
+00:03:14.000 --> 00:03:18.000
+Dividing an agent into sub-agent can isolate context for
+
+00:03:18.000 --> 00:03:20.000
+Individual sub-agents.
+
+00:03:20.000 --> 00:03:27.000
+Reducing the cognitive overload of an AI model, which means that the model would not have to think a lot for doing.
+
+00:03:27.000 --> 00:03:29.000
+a smaller task, right? So…
+
+00:03:29.000 --> 00:03:33.000
+It follows the methodology of divide and conquer.
+
+00:03:33.000 --> 00:03:36.000
+And through multi-agent system, we observed
+
+00:03:36.000 --> 00:03:39.000
+that we are able to solve complex problems.
+
+00:03:39.000 --> 00:03:44.000
+That a single agent would not be able to solve.
+
+00:03:44.000 --> 00:03:48.000
+But why do we need multi-agent?
+
+00:03:48.000 --> 00:03:51.000
+Why do we need multi-agent systems?
+
+00:03:51.000 --> 00:03:54.000
+The first and foremost reason for it is.
+
+00:03:54.000 --> 00:03:56.000
+To scale S-Time compute.
+
+00:03:56.000 --> 00:04:02.000
+How many of you have heard this term or read it on Twitter, read it on LinkedIn, Reddit.
+
+00:04:02.000 --> 00:04:04.000
+Somewhere on news that
+
+00:04:04.000 --> 00:04:09.000
+Engineers are trying to scale test-time compute of LLMs.
+
+00:04:09.000 --> 00:04:11.000
+Anyone who knows this?
+
+00:04:11.000 --> 00:04:16.000
+This became very popular when DeepSeek was launched.
+
+00:04:16.000 --> 00:04:19.000
+So test and compute simply means that you do not
+
+00:04:19.000 --> 00:04:23.000
+Spend a lot of money during training of the model.
+
+00:04:23.000 --> 00:04:25.000
+I mean, you spend, but…
+
+00:04:25.000 --> 00:04:29.000
+During training of the model, you train it to follow generic tasks.
+
+00:04:29.000 --> 00:04:31.000
+But while testing,
+
+00:04:31.000 --> 00:04:39.000
+You apply methods that do inferencing in such a way that model retrieves context in such a way.
+
+00:04:39.000 --> 00:04:44.000
+That model is able to perform difficult wrong, long-running tasks.
+
+00:04:44.000 --> 00:04:46.000
+Okay. So,
+
+00:04:46.000 --> 00:04:50.000
+Scaling test time compute can be done using multi-agent system.
+
+00:04:50.000 --> 00:04:53.000
+Because you can take a complex problem.
+
+00:04:53.000 --> 00:04:58.000
+You can use multiple instances of the LLMs.
+
+00:04:58.000 --> 00:05:02.000
+And during test time, like, during inferencing itself,
+
+00:05:02.000 --> 00:05:06.000
+You can generate a lot more data through the LLM in those multi…
+
+00:05:06.000 --> 00:05:08.000
+Multiple systems parallel.
+
+00:05:08.000 --> 00:05:10.000
+To solve a complex problem.
+
+00:05:10.000 --> 00:05:16.000
+Then you can get specialized agent to do specialized task.
+
+00:05:16.000 --> 00:05:22.000
+Yesterday, you built different subgraphs, you build different kind of.
+
+00:05:22.000 --> 00:05:30.000
+LangGraph workflows. Can you give me some example where you can have specialized agent or a team of specialized?
+
+00:05:30.000 --> 00:05:36.000
+Agent to do any kind of task.
+
+00:05:36.000 --> 00:05:39.000
+In the chat, folks, anybody would like to give example.
+
+00:05:39.000 --> 00:05:44.000
+Of some workflow, yeah, research agent and summarize agent, exactly.
+
+00:05:44.000 --> 00:05:48.000
+Booking agent is a great example. So, in Booking Agent,
+
+00:05:48.000 --> 00:05:51.000
+You can build multiple sub-agents that can
+
+00:05:51.000 --> 00:05:54.000
+Create your itinerary that can search.
+
+00:05:54.000 --> 00:05:58.000
+affordable prices for you for hotels or planes.
+
+00:05:58.000 --> 00:06:02.000
+Another agent that can book things for you, another agent that can update things for you.
+
+00:06:02.000 --> 00:06:04.000
+All of those things, ok.
+
+00:06:04.000 --> 00:06:09.000
+So, we can have specialized agent in a multi-agent system.
+
+00:06:09.000 --> 00:06:14.000
+And we can also run agents parallel if we have multiple agents.
+
+00:06:14.000 --> 00:06:19.000
+A good example of this is research agent. When we have a research agent.
+
+00:06:19.000 --> 00:06:21.000
+We need to research on
+
+00:06:21.000 --> 00:06:24.000
+a topic from multiple different sources.
+
+00:06:24.000 --> 00:06:27.000
+Okay? And the greater our search.
+
+00:06:27.000 --> 00:06:31.000
+Of spaces, the better the result is.
+
+00:06:31.000 --> 00:06:37.000
+So we have to increase our search space, because of which we can run multiple different specialized sub-agents.
+
+00:06:37.000 --> 00:06:42.000
+Let's say one is searching on YFinance, one is searching only on Google, one is searching only on
+
+00:06:42.000 --> 00:06:46.000
+Some other website like Money Control, whatever.
+
+00:06:46.000 --> 00:06:52.000
+And all of these agents then consolidate information, bring it in for, bring a consolidated information.
+
+00:06:52.000 --> 00:06:56.000
+for the supervisor agent, that it can use
+
+00:06:56.000 --> 00:06:59.000
+To later generate a
+
+00:06:59.000 --> 00:07:02.000
+Thorough response. So parallelization is
+
+00:07:02.000 --> 00:07:05.000
+possible when you have multiple agents.
+
+00:07:05.000 --> 00:07:08.000
+Okay, these are all the benefits.
+
+00:07:08.000 --> 00:07:14.000
+Can you guys list any other benefits that you may think of? Just think about it. Think about implementing it in your own system.
+
+00:07:14.000 --> 00:07:20.000
+And let me know if you can think of any other benefits here, okay? Those who are watching the recording, you also.
+
+00:07:20.000 --> 00:07:23.000
+Take a notepad and just write whatever I'm asking you to do.
+
+00:07:23.000 --> 00:07:26.000
+Yeah, it can save time, not really, because
+
+00:07:26.000 --> 00:07:31.000
+When you have a multi-agent system, it takes a lot of time.
+
+00:07:31.000 --> 00:07:36.000
+So, let me talk about when to use a multi-agent system.
+
+00:07:36.000 --> 00:07:40.000
+And when not to use a multi-agent system, ok, this is going to be important.
+
+00:07:40.000 --> 00:07:43.000
+This is, you can take a screenshot of this slide later on.
+
+00:07:43.000 --> 00:07:46.000
+This will help you design architecture.
+
+00:07:46.000 --> 00:07:49.000
+Based on all of these criteria that we are talking about.
+
+00:07:49.000 --> 00:07:53.000
+Okay, let us look at what the first criteria is.
+
+00:07:53.000 --> 00:07:57.000
+When the task is straightforward, you should choose a single agent system.
+
+00:07:57.000 --> 00:08:00.000
+Okay, because a multi-agent system.
+
+00:08:00.000 --> 00:08:03.000
+Will be an overkill. But when the task is complex.
+
+00:08:03.000 --> 00:08:08.000
+When you want to decompose a larger task into multiple smaller tasks.
+
+00:08:08.000 --> 00:08:14.000
+At that time, building a multi-agent system makes a lot of sense.
+
+00:08:14.000 --> 00:08:19.000
+Then we also need to care about speed and latency.
+
+00:08:19.000 --> 00:08:21.000
+In single agent system.
+
+00:08:21.000 --> 00:08:24.000
+Usually the execution time is low.
+
+00:08:24.000 --> 00:08:30.000
+Because we have one LLM, we can, we have simple set of tools, they can run fast, there is no
+
+00:08:30.000 --> 00:08:36.000
+So, try to understand every time you are handing off some tasks, every time a coordinator agent.
+
+00:08:36.000 --> 00:08:39.000
+is handing off some task to a sub-agent.
+
+00:08:39.000 --> 00:08:42.000
+At that particular time.
+
+00:08:42.000 --> 00:08:44.000
+There is some token expense.
+
+00:08:44.000 --> 00:08:47.000
+It also takes some time to delegate the task.
+
+00:08:47.000 --> 00:08:49.000
+And that back and forth conversation.
+
+00:08:49.000 --> 00:08:52.000
+consumes time and tokens.
+
+00:08:52.000 --> 00:08:54.000
+We have to realize this.
+
+00:08:54.000 --> 00:08:56.000
+Okay, so…
+
+00:08:56.000 --> 00:08:59.000
+If you want faster execution,
+
+00:08:59.000 --> 00:09:01.000
+Go for a single agent system.
+
+00:09:01.000 --> 00:09:04.000
+If speed and latency is not a priority for you.
+
+00:09:04.000 --> 00:09:07.000
+And if a single agent can hit context limit.
+
+00:09:07.000 --> 00:09:10.000
+Then go for a multi-agent system.
+
+00:09:10.000 --> 00:09:13.000
+Okay. When…
+
+00:09:13.000 --> 00:09:17.000
+Cost is more important to you than performance. Go for a single agent system.
+
+00:09:17.000 --> 00:09:19.000
+When accuracy is more important,
+
+00:09:19.000 --> 00:09:23.000
+Then cost, go for a multi-agent system.
+
+00:09:23.000 --> 00:09:25.000
+Okay. But remember,
+
+00:09:25.000 --> 00:09:29.000
+Always, always start with a single agent system.
+
+00:09:29.000 --> 00:09:33.000
+Okay, start with a single agent system.
+
+00:09:33.000 --> 00:09:35.000
+Identify the limitations of it.
+
+00:09:35.000 --> 00:09:38.000
+And then decide whether or not you need to.
+
+00:09:38.000 --> 00:09:41.000
+Pivot to multi-agent system.
+
+00:09:41.000 --> 00:09:46.000
+Okay, so take a screenshot of this. This slide is going to be really important for you.
+
+00:09:46.000 --> 00:09:51.000
+To choose which kind of architecture you need to implement.
+
+00:09:51.000 --> 00:09:54.000
+But remember, every time you start with a single agent system.
+
+00:09:54.000 --> 00:09:56.000
+Scale it to a multi-agent system.
+
+00:09:56.000 --> 00:09:58.000
+Based on all of these.
+
+00:09:58.000 --> 00:10:02.000
+Thanks. I will answer one question from Sanmuk.
+
+00:10:02.000 --> 00:10:10.000
+While using multi-agents, the accuracy of output increases because we dedicate specific work for agent, correct.
+
+00:10:10.000 --> 00:10:14.000
+Okay, there was no question.
+
+00:10:14.000 --> 00:10:18.000
+Alright, let's move on.
+
+00:10:18.000 --> 00:10:21.000
+I'm going to talk briefly about
+
+00:10:21.000 --> 00:10:23.000
+Different kinds of multi-agent architecture.
+
+00:10:23.000 --> 00:10:25.000
+Now, I'm going to tell you one thing.
+
+00:10:25.000 --> 00:10:29.000
+You can always create a custom architecture for yourself.
+
+00:10:29.000 --> 00:10:32.000
+These are just the basic architectures that
+
+00:10:32.000 --> 00:10:35.000
+Early AI engineers have come up with.
+
+00:10:35.000 --> 00:10:37.000
+And I'm sharing to you because
+
+00:10:37.000 --> 00:10:41.000
+Mostly, you will be using either of these architectures.
+
+00:10:41.000 --> 00:10:46.000
+The simplest architecture is a sequential pattern.
+
+00:10:46.000 --> 00:10:50.000
+In a sequential pattern, the sequential pattern is something that you implemented yesterday as well.
+
+00:10:50.000 --> 00:10:53.000
+Okay. In a sequential pattern,
+
+00:10:53.000 --> 00:10:56.000
+You have an agent that then you have
+
+00:10:56.000 --> 00:10:58.000
+Ah.
+
+00:10:58.000 --> 00:11:03.000
+Another agent that runs based on the output that the previous agent gives.
+
+00:11:03.000 --> 00:11:06.000
+This agent will produce some output, give it to the
+
+00:11:06.000 --> 00:11:11.000
+to another agent, and all of these executions, they happen one by one.
+
+00:11:11.000 --> 00:11:14.000
+After everything has executed,
+
+00:11:14.000 --> 00:11:18.000
+The sub-agent will give back the response to main agent.
+
+00:11:18.000 --> 00:11:20.000
+And it will respond to the user.
+
+00:11:20.000 --> 00:11:22.000
+An example of this is
+
+00:11:22.000 --> 00:11:26.000
+the research agent that we saw.
+
+00:11:26.000 --> 00:11:28.000
+So you have a research agent.
+
+00:11:28.000 --> 00:11:30.000
+A research agent will generate a draft.
+
+00:11:30.000 --> 00:11:32.000
+A review agent will review it.
+
+00:11:32.000 --> 00:11:35.000
+A finalizer agent will finalize it and
+
+00:11:35.000 --> 00:11:39.000
+Give you that graph. I'm going to take the same example.
+
+00:11:39.000 --> 00:11:42.000
+and explain it in various different architectures as well.
+
+00:11:42.000 --> 00:11:46.000
+Now, I'll stop for a while, I'll answer some questions. Meanwhile,
+
+00:11:46.000 --> 00:11:50.000
+Can you guys tell me any other place where sequential agent would be useful?
+
+00:11:50.000 --> 00:11:52.000
+And it's the right choice to make.
+
+00:11:52.000 --> 00:11:54.000
+Because this agent is…
+
+00:11:54.000 --> 00:12:00.000
+The agent in multi-agent systems that consumes least amount of resources.
+
+00:12:00.000 --> 00:12:03.000
+And least amount of tokens.
+
+00:12:03.000 --> 00:12:05.000
+Okay.
+
+00:12:05.000 --> 00:12:10.000
+For similar use case, if you would design a hierarchical agent or some other kind of agent.
+
+00:12:10.000 --> 00:12:16.000
+The delegation part will take a lot of… will consume a lot of tokens, back and forth. So it…
+
+00:12:16.000 --> 00:12:21.000
+reduces that. Can you think of any application where this can be used?
+
+00:12:21.000 --> 00:12:24.000
+I will take a question from Sanjeev.
+
+00:12:24.000 --> 00:12:39.000
+Any scenario from you where you will choose single or multi-agent systems. Sanjeev, we will talk about it in the end, okay? By that time, I think you will come up with a few examples yourself.
+
+00:12:39.000 --> 00:12:46.000
+Invoice processing and data extraction.
+
+00:12:46.000 --> 00:12:52.000
+Plan a vacation, rack, code review. Yeah, code review agent can work like this.
+
+00:12:52.000 --> 00:13:01.000
+Document reading, no, stock trading, no. Yeah, email generation agent can work like this, Nitesh.
+
+00:13:01.000 --> 00:13:04.000
+Find a ticket, book ticket… yeah.
+
+00:13:04.000 --> 00:13:09.000
+Trip multi-agent can work like this. Syed, yes.
+
+00:13:09.000 --> 00:13:15.000
+Sai Shridam, production error no production error monitoring agent.
+
+00:13:15.000 --> 00:13:22.000
+I don't think this is the right approach for production monitoring agent.
+
+00:13:22.000 --> 00:13:28.000
+Okay, I see most of you understand this. I think ticket, ticket agent and email agent.
+
+00:13:28.000 --> 00:13:30.000
+And, uh…
+
+00:13:30.000 --> 00:13:33.000
+I think vacation planning agent, these all make sense.
+
+00:13:33.000 --> 00:13:39.000
+Okay. Can you guys guess the next architecture?
+
+00:13:39.000 --> 00:13:44.000
+It is a very famous one.
+
+00:13:44.000 --> 00:13:48.000
+Parallel is there, parallel is there, but another one is coordinator region.
+
+00:13:48.000 --> 00:13:51.000
+Okay? Coordinator agent.
+
+00:13:51.000 --> 00:13:55.000
+So, in Coordinator agent, you have a boss agent.
+
+00:13:55.000 --> 00:13:58.000
+Alright, and this boss agent will have
+
+00:13:58.000 --> 00:14:01.000
+Multiple different subagents.
+
+00:14:01.000 --> 00:14:07.000
+So, sub-agent A and subagent B will report to this coordinator agent.
+
+00:14:07.000 --> 00:14:09.000
+Both of them will report to this coordinator agent.
+
+00:14:09.000 --> 00:14:12.000
+Coordinator agent will dynamically choose.
+
+00:14:12.000 --> 00:14:14.000
+Which agent to delegate the job to?
+
+00:14:14.000 --> 00:14:20.000
+Okay, so this, like, this, yeah, master-slave pattern, exactly. So, this looks like
+
+00:14:20.000 --> 00:14:23.000
+small team where there is a team lead,
+
+00:14:23.000 --> 00:14:25.000
+And under the team lead, there are
+
+00:14:25.000 --> 00:14:28.000
+Different workers and each worker
+
+00:14:28.000 --> 00:14:30.000
+will specialize into something.
+
+00:14:30.000 --> 00:14:33.000
+The team leader will assign the task.
+
+00:14:33.000 --> 00:14:35.000
+Assess the output, modify it if needed.
+
+00:14:35.000 --> 00:14:39.000
+And then delegate it to some other team.
+
+00:14:39.000 --> 00:14:42.000
+So, coordinator agent.
+
+00:14:42.000 --> 00:14:45.000
+is also a very popular pattern.
+
+00:14:45.000 --> 00:14:51.000
+And, uh, both of them, like, will keep sending intermediate output to coordinator agent, ok.
+
+00:14:51.000 --> 00:14:57.000
+Coordinator agent will keep asking, tell me, if you've done this, they will keep sharing with the coordinator agent.
+
+00:14:57.000 --> 00:15:00.000
+They will not communicate with each other.
+
+00:15:00.000 --> 00:15:04.000
+The coordinator will communicate with each of them.
+
+00:15:04.000 --> 00:15:10.000
+All right, they will not communicate with each other, coordinator will communicate with each of them.
+
+00:15:10.000 --> 00:15:15.000
+Yeah, each individual sub-agent that you see will be a React agent.
+
+00:15:15.000 --> 00:15:18.000
+Okay, a React loop is running in each of these.
+
+00:15:18.000 --> 00:15:23.000
+Square brackets, like square blocks that you see.
+
+00:15:23.000 --> 00:15:27.000
+Alright, yeah, this is also known as orchestrator pattern because
+
+00:15:27.000 --> 00:15:31.000
+The coordinator agent is orchestrating the workflow.
+
+00:15:31.000 --> 00:15:33.000
+By delegating tasks to
+
+00:15:33.000 --> 00:15:36.000
+Subagent 1 or subagent 2.
+
+00:15:36.000 --> 00:15:40.000
+They can run in parallel if you have designed them to run in parallel.
+
+00:15:40.000 --> 00:15:43.000
+But usually, they do not run in parallel because
+
+00:15:43.000 --> 00:15:46.000
+The output of one agent may depend on the output of other.
+
+00:15:46.000 --> 00:15:48.000
+In cases where
+
+00:15:48.000 --> 00:15:57.000
+The output of one agent does not depend on the other. You can choose to run them parallel.
+
+00:15:57.000 --> 00:16:01.000
+All right, so we can have a supervisor agent.
+
+00:16:01.000 --> 00:16:04.000
+Which can delegate tasks to research researcher agent.
+
+00:16:04.000 --> 00:16:08.000
+The researcher agent can ask information regarding a specific task.
+
+00:16:08.000 --> 00:16:11.000
+like, specific topic to supervisor agent.
+
+00:16:11.000 --> 00:16:13.000
+To write about it.
+
+00:16:13.000 --> 00:16:18.000
+Supervisor agent can then delegate it to researcher agent. This can go on for a while.
+
+00:16:18.000 --> 00:16:25.000
+Until they have finished and provided a result.
+
+00:16:25.000 --> 00:16:29.000
+Okay, so this is coordinator pattern.
+
+00:16:29.000 --> 00:16:31.000
+Now, when you scale this coordinator pattern,
+
+00:16:31.000 --> 00:16:34.000
+Into multiple hierarchies.
+
+00:16:34.000 --> 00:16:44.000
+Just like a real team, in a real team, there are multiple hierarchies, right?
+
+00:16:44.000 --> 00:16:47.000
+So, you can have a coordinator agent.
+
+00:16:47.000 --> 00:16:51.000
+We can head a sub, you can have a sub agent.
+
+00:16:51.000 --> 00:16:54.000
+Each sub-agent can be coordinator of
+
+00:16:54.000 --> 00:16:57.000
+Other subagents.
+
+00:16:57.000 --> 00:17:03.000
+So, there is multiple level of hierarchy and agency among each of these.
+
+00:17:03.000 --> 00:17:06.000
+This is the most expensive.
+
+00:17:06.000 --> 00:17:08.000
+Architecture to build.
+
+00:17:08.000 --> 00:17:13.000
+Because there is a lot of conversation going on between agents.
+
+00:17:13.000 --> 00:17:15.000
+Can you guys give me…
+
+00:17:15.000 --> 00:17:20.000
+An example of this kind of an agent.
+
+00:17:20.000 --> 00:17:23.000
+It was very popular.
+
+00:17:23.000 --> 00:17:28.000
+Recently.
+
+00:17:28.000 --> 00:17:37.000
+And see, it was such a hype that almost everybody has forgotten about it.
+
+00:17:37.000 --> 00:17:41.000
+Yeah, Anurak is on point, okay?
+
+00:17:41.000 --> 00:17:47.000
+OpenClaw was one such agent. You can spin up like multiple sub-agents which can.
+
+00:17:47.000 --> 00:17:49.000
+execute their own subagent.
+
+00:17:49.000 --> 00:17:52.000
+Yeah, Claude workspaces can also do this, yes.
+
+00:17:52.000 --> 00:18:11.000
+So open clock. And any example where this kind of workflow can make sense.
+
+00:18:11.000 --> 00:18:13.000
+Marketing, yes, marketing.
+
+00:18:13.000 --> 00:18:16.000
+So, anywhere,
+
+00:18:16.000 --> 00:18:18.000
+Any system where you are trying to
+
+00:18:18.000 --> 00:18:20.000
+Create.
+
+00:18:20.000 --> 00:18:23.000
+Uh, digital twin of our company.
+
+00:18:23.000 --> 00:18:27.000
+So let's say you want to build a marketing agent, you want to build a
+
+00:18:27.000 --> 00:18:31.000
+A content creator agent, right.
+
+00:18:31.000 --> 00:18:35.000
+In all of those cases, you can have
+
+00:18:35.000 --> 00:18:37.000
+Agents like this.
+
+00:18:37.000 --> 00:18:45.000
+And just give me one second, I will do one thing.
+
+00:18:45.000 --> 00:18:47.000
+All right.
+
+00:18:47.000 --> 00:18:50.000
+Yeah. Bug solver agent.
+
+00:18:50.000 --> 00:18:55.000
+I think bug solver agent works well in a coordinator pattern.
+
+00:18:55.000 --> 00:18:59.000
+But depending on what kind of application you have, you can use.
+
+00:18:59.000 --> 00:19:01.000
+I had people.
+
+00:19:01.000 --> 00:19:03.000
+Okay, so…
+
+00:19:03.000 --> 00:19:07.000
+Here, you decompose tasks, like, at multiple layers.
+
+00:19:07.000 --> 00:19:09.000
+And, uh…
+
+00:19:09.000 --> 00:19:15.000
+Similarly, here you can have a supervisor agent, you can have a research agent, you can have a writer agent.
+
+00:19:15.000 --> 00:19:18.000
+The research agent can have multiple agents depending on the platform.
+
+00:19:18.000 --> 00:19:24.000
+You can have a Google research agent, you can have a money control research agent, you can have a
+
+00:19:24.000 --> 00:19:30.000
+Why Finance Research Agent and all of them, so folks, there is no problem where you cannot.
+
+00:19:30.000 --> 00:19:32.000
+Use either of these architectures.
+
+00:19:32.000 --> 00:19:36.000
+Only thing is, where are they most suitable?
+
+00:19:36.000 --> 00:19:43.000
+For example, I can build it like this, but do you think this is actually needed? I have overcomplicated this example.
+
+00:19:43.000 --> 00:19:46.000
+Just to showcase to you. Okay, just to show you how
+
+00:19:46.000 --> 00:19:50.000
+One simple use case can be
+
+00:19:50.000 --> 00:19:52.000
+Turned into multiple architectures.
+
+00:19:52.000 --> 00:20:01.000
+But tell me, do you give me a thumbs up if you think this is the appropriate architecture. Give me a thumbs down if you think this is an overkill.
+
+00:20:01.000 --> 00:20:07.000
+Let's see. If you are able to make that judgment.
+
+00:20:07.000 --> 00:20:10.000
+Yeah, I see thumbs down by Pawan.
+
+00:20:10.000 --> 00:20:14.000
+Right? So, exactly, this is an overkill.
+
+00:20:14.000 --> 00:20:20.000
+Yeah, I can have a coordinator pattern, simple coordinator pattern would work.
+
+00:20:20.000 --> 00:20:25.000
+I don't even need a coordinator pattern, to be honest. A simple sequential pattern can work well for this.
+
+00:20:25.000 --> 00:20:28.000
+So…
+
+00:20:28.000 --> 00:20:32.000
+Makes sense if tasks are complex enough to be decomposed. Yeah, for example.
+
+00:20:32.000 --> 00:20:34.000
+If I'm doing a simple research task,
+
+00:20:34.000 --> 00:20:37.000
+This is not making sense.
+
+00:20:37.000 --> 00:20:40.000
+But if I'm doing a frontier research,
+
+00:20:40.000 --> 00:20:43.000
+For example, if I'm trying to research how to
+
+00:20:43.000 --> 00:20:47.000
+Build new LLM architectures, or if I'm researching something on math,
+
+00:20:47.000 --> 00:20:52.000
+I'm trying to solve a 100-year-old problem on math that nobody has been able to solve yet.
+
+00:20:52.000 --> 00:20:55.000
+Then this kind of an architecture makes sense.
+
+00:20:55.000 --> 00:20:57.000
+Okay?
+
+00:20:57.000 --> 00:21:01.000
+Yeah, so always be mindful of the kind of architecture.
+
+00:21:01.000 --> 00:21:07.000
+That you choose while building a multi-agent systems.
+
+00:21:07.000 --> 00:21:10.000
+So…
+
+00:21:10.000 --> 00:21:16.000
+Let's compare all of these patterns.
+
+00:21:16.000 --> 00:21:19.000
+When should we use sequential? When should we use supervisor?
+
+00:21:19.000 --> 00:21:21.000
+And when should we use hierarchical?
+
+00:21:21.000 --> 00:21:24.000
+So…
+
+00:21:24.000 --> 00:21:28.000
+Whenever the steps are always going to be
+
+00:21:28.000 --> 00:21:30.000
+in the same order.
+
+00:21:30.000 --> 00:21:33.000
+Whenever there is no
+
+00:21:33.000 --> 00:21:36.000
+Dynamic execution that needs to happen.
+
+00:21:36.000 --> 00:21:44.000
+In any workflow. At that time, you will choose the sequential pattern.
+
+00:21:44.000 --> 00:21:46.000
+Whenever…
+
+00:21:46.000 --> 00:21:50.000
+The right next step depends on the task and may loop or skip.
+
+00:21:50.000 --> 00:21:52.000
+Which means that whenever
+
+00:21:52.000 --> 00:21:55.000
+The next step that you need to do.
+
+00:21:55.000 --> 00:21:57.000
+Depends on…
+
+00:21:57.000 --> 00:22:00.000
+Some task, that is.
+
+00:22:00.000 --> 00:22:04.000
+that somebody else is doing, somebody direct is doing.
+
+00:22:04.000 --> 00:22:07.000
+And you need to communicate with them. At that time, supervisor makes sense.
+
+00:22:07.000 --> 00:22:12.000
+But when you have multiple distinct domains.
+
+00:22:12.000 --> 00:22:15.000
+Let's say you want to create a digital company.
+
+00:22:15.000 --> 00:22:17.000
+Some people used to do that, right?
+
+00:22:17.000 --> 00:22:19.000
+How many of you have heard of Crew AI?
+
+00:22:19.000 --> 00:22:22.000
+CREW Trio AI.
+
+00:22:22.000 --> 00:22:26.000
+I'm writing it in the chat.
+
+00:22:26.000 --> 00:22:29.000
+Yeah, clearly, it became very popular because
+
+00:22:29.000 --> 00:22:32.000
+People were able to at least.
+
+00:22:32.000 --> 00:22:34.000
+Uh, seemingly.
+
+00:22:34.000 --> 00:22:37.000
+They could create multiple sub-teams.
+
+00:22:37.000 --> 00:22:41.000
+So, in those kind of things, CrewAI follows a hierarchical structure.
+
+00:22:41.000 --> 00:22:49.000
+Uh, by default. So, in those kind of tasks, hierarchical structures make sense.
+
+00:22:49.000 --> 00:22:52.000
+And number of workers is
+
+00:22:52.000 --> 00:22:56.000
+few and fixed and here you can have, like,
+
+00:22:56.000 --> 00:23:00.000
+At max, it is not 2. 2 is like the minimum amount.
+
+00:23:00.000 --> 00:23:03.000
+But you can have 3 to 6
+
+00:23:03.000 --> 00:23:06.000
+Different agents and supervisor, that is the typical average.
+
+00:23:06.000 --> 00:23:08.000
+number of agents that they have.
+
+00:23:08.000 --> 00:23:11.000
+In hierarchical, you can have many.
+
+00:23:11.000 --> 00:23:15.000
+Okay, you can have many such subagents.
+
+00:23:15.000 --> 00:23:18.000
+Sequential is the most predictable one.
+
+00:23:18.000 --> 00:23:21.000
+It is less probabilistic in nature.
+
+00:23:21.000 --> 00:23:24.000
+Supervisor has lower…
+
+00:23:24.000 --> 00:23:28.000
+Predictability, but it is still better than hierarchical, ok.
+
+00:23:28.000 --> 00:23:31.000
+Hierarchical has lowest amount of predictability.
+
+00:23:31.000 --> 00:23:35.000
+Do you know why? Why hierarchical has lowest amount of credibility?
+
+00:23:35.000 --> 00:23:37.000
+How many of you have played that game?
+
+00:23:37.000 --> 00:23:40.000
+in your childhood, where you sit on a circle.
+
+00:23:40.000 --> 00:23:43.000
+There is one person who whispers some word.
+
+00:23:43.000 --> 00:23:46.000
+In the ears of the person next to him.
+
+00:23:46.000 --> 00:23:53.000
+or her and that word passes through the circle. By the time it reaches to the first person.
+
+00:23:53.000 --> 00:23:56.000
+The meaning totally changes, yeah? Chinese whispers.
+
+00:23:56.000 --> 00:24:01.000
+That's what happens in hierarchical agentic pattern mostly, ok.
+
+00:24:01.000 --> 00:24:03.000
+So, yeah.
+
+00:24:03.000 --> 00:24:07.000
+Yeah, people are remembering their childhood, I see.
+
+00:24:07.000 --> 00:24:11.000
+Okay. So, hierarchical architecture is
+
+00:24:11.000 --> 00:24:14.000
+least predictable because of this reason.
+
+00:24:14.000 --> 00:24:16.000
+If there is a simple amount of
+
+00:24:16.000 --> 00:24:19.000
+context poisoning that happens in between the execution.
+
+00:24:19.000 --> 00:24:24.000
+It can change the whole track of where the agent was going towards.
+
+00:24:24.000 --> 00:24:30.000
+So it can even change your goal. So you have to be very careful. It has to be engineered really well.
+
+00:24:30.000 --> 00:24:34.000
+If you're building a hierarchical agentic system, it has to be engineered really well.
+
+00:24:34.000 --> 00:24:39.000
+And you need to apply, like, really thorough context engineering, something which we are going to learn.
+
+00:24:39.000 --> 00:24:42.000
+later on. We are going to learn about context engineering later on.
+
+00:24:42.000 --> 00:24:46.000
+But it becomes really important in case of hierarchical agent.
+
+00:24:46.000 --> 00:24:51.000
+Okay, then cost and latency, I think I would ask to predict.
+
+00:24:51.000 --> 00:24:59.000
+Tell me, which one will take highest amount of cost?
+
+00:24:59.000 --> 00:25:04.000
+Yeah, so here as well we see the same pattern.
+
+00:25:04.000 --> 00:25:07.000
+Sequential is usually like most budget friendly.
+
+00:25:07.000 --> 00:25:11.000
+Supervisor is a bit expensive.
+
+00:25:11.000 --> 00:25:14.000
+And, but I would say it's okay to use Supervisor if you are
+
+00:25:14.000 --> 00:25:18.000
+Opting for higher accuracy for very complex task.
+
+00:25:18.000 --> 00:25:20.000
+But choose hierarchical.
+
+00:25:20.000 --> 00:25:22.000
+Like…
+
+00:25:22.000 --> 00:25:25.000
+Be extra careful while choosing hierarchical architectures, ok, because
+
+00:25:25.000 --> 00:25:30.000
+They are less predictable and they are very expensive.
+
+00:25:30.000 --> 00:25:36.000
+It is easiest to debug sequential. It is a bit difficult to debug supervisor just because
+
+00:25:36.000 --> 00:25:39.000
+You need to keep a track of the conversations, right?
+
+00:25:39.000 --> 00:25:41.000
+It is hard to identify.
+
+00:25:41.000 --> 00:25:45.000
+What is the cause of the error? It is hard to identify the point of failure.
+
+00:25:45.000 --> 00:25:51.000
+In supervisor and the point of failure grows exponentially in
+
+00:25:51.000 --> 00:25:54.000
+hierarchical agents.
+
+00:25:54.000 --> 00:25:59.000
+Okay, it's okay, Sanjee, if you can take a snapshot while watching the recording.
+
+00:25:59.000 --> 00:26:03.000
+So this is again comparing all the architecture.
+
+00:26:03.000 --> 00:26:06.000
+If you want to take a screenshot, take a screenshot here.
+
+00:26:06.000 --> 00:26:10.000
+All right. So, this is it. By the way, in the
+
+00:26:10.000 --> 00:26:13.000
+Ashish may ensure that in the
+
+00:26:13.000 --> 00:26:15.000
+Summary that we give to all of them.
+
+00:26:15.000 --> 00:26:20.000
+We can we can include a screenshot of these two slides.
+
+00:26:20.000 --> 00:26:22.000
+Alright, so…
+
+00:26:22.000 --> 00:26:26.000
+This is a comparison between all of three patterns.
+
+00:26:26.000 --> 00:26:29.000
+We are going to build our agent now.
+
+00:26:29.000 --> 00:26:31.000
+I would…
+
+00:26:31.000 --> 00:26:35.000
+Ask you all to first do a bit of setup.
+
+00:26:35.000 --> 00:26:37.000
+Before doing it, but…
+
+00:26:37.000 --> 00:26:39.000
+I'm telling you this is going to be.
+
+00:26:39.000 --> 00:26:42.000
+A bit long, the class is going to be a bit long.
+
+00:26:42.000 --> 00:26:46.000
+So before hands-on, I will take some Q&As. After taking some Q&As.
+
+00:26:46.000 --> 00:26:49.000
+We can take a 10-minute break.
+
+00:26:49.000 --> 00:26:51.000
+Okay. After that 10-minute break,
+
+00:26:51.000 --> 00:27:15.000
+We can get back and do the hands-on.
+
+00:27:15.000 --> 00:27:17.000
+Sandeep, they are not talking to each other.
+
+00:27:17.000 --> 00:27:22.000
+They're not talking to each other. So Sandeep has asked how Chinese whispers
+
+00:27:22.000 --> 00:27:27.000
+Example fits into hierarchical sub-agent, they talking to each other. That's called managers mess.
+
+00:27:27.000 --> 00:27:29.000
+Yeah, but…
+
+00:27:29.000 --> 00:27:32.000
+I'm telling that if there are multiple agents.
+
+00:27:32.000 --> 00:27:35.000
+If one of the agent gets poisoned, context poisoned,
+
+00:27:35.000 --> 00:27:39.000
+And it shares some irrelevant response.
+
+00:27:39.000 --> 00:27:44.000
+To the manager agent, and you have not engineered it well.
+
+00:27:44.000 --> 00:27:47.000
+That message can live in the history.
+
+00:27:47.000 --> 00:27:50.000
+of the manager agent.
+
+00:27:50.000 --> 00:27:54.000
+And it can tickle down into multiple sub-agents as well.
+
+00:27:54.000 --> 00:27:57.000
+Okay, so…
+
+00:27:57.000 --> 00:28:00.000
+That's how a simple…
+
+00:28:00.000 --> 00:28:03.000
+Miscommunication between agents can
+
+00:28:03.000 --> 00:28:09.000
+Go into, like, multiple ones.
+
+00:28:09.000 --> 00:28:15.000
+It's supposed to have low latency since final results arrive after final route runs.
+
+00:28:15.000 --> 00:28:20.000
+Wherein hierarchical, it is a pattern.
+
+00:28:20.000 --> 00:28:23.000
+Saranganathan, yes, in hierarchical.
+
+00:28:23.000 --> 00:28:27.000
+It all depends on the supervisor note when it is satisfied.
+
+00:28:27.000 --> 00:28:30.000
+by response of all of these subagents.
+
+00:28:30.000 --> 00:28:35.000
+And it takes time and compute, I said, right? It takes time and compute to communicate.
+
+00:28:35.000 --> 00:28:39.000
+Everything between supervisor and all of these.
+
+00:28:39.000 --> 00:28:43.000
+Sub-agents. So, that is why it is like most expensive and
+
+00:28:43.000 --> 00:28:46.000
+It is also, uh,
+
+00:28:46.000 --> 00:28:48.000
+It runs for a longer duration.
+
+00:28:48.000 --> 00:28:54.000
+than the others.
+
+00:28:54.000 --> 00:29:00.000
+Right, any other questions, anybody?
+
+00:29:00.000 --> 00:29:04.000
+Supervisor and hierarchical can involve
+
+00:29:04.000 --> 00:29:08.000
+Agents running in parallel, but it is totally up to you.
+
+00:29:08.000 --> 00:29:11.000
+Okay, Amit, it is totally up to you.
+
+00:29:11.000 --> 00:29:15.000
+You can choose whether or not to make them run in parallel.
+
+00:29:15.000 --> 00:29:19.000
+Is it possible for an agent to lock in infinite loop?
+
+00:29:19.000 --> 00:29:23.000
+It is very possible just a few weeks ago.
+
+00:29:23.000 --> 00:29:28.000
+I was building something because of a simple mistake that I did.
+
+00:29:28.000 --> 00:29:31.000
+While defining the middlewares.
+
+00:29:31.000 --> 00:29:33.000
+My agent was stuck in an infinite loop.
+
+00:29:33.000 --> 00:29:37.000
+So, it ran for around 16 minutes.
+
+00:29:37.000 --> 00:29:40.000
+And I was using three Grok API, ok.
+
+00:29:40.000 --> 00:29:42.000
+It was running for around 16 minutes.
+
+00:29:42.000 --> 00:29:45.000
+Then I knew that something is fishy.
+
+00:29:45.000 --> 00:29:48.000
+When I rechecked, I had to fix that middleware bug.
+
+00:29:48.000 --> 00:29:51.000
+And then it was able to run properly.
+
+00:29:51.000 --> 00:29:55.000
+So, agent can go in infinite loop, that is why you need to
+
+00:29:55.000 --> 00:30:01.000
+Do all of these evaluations. You need to do cost evaluation, you need to do latency evaluation.
+
+00:30:01.000 --> 00:30:12.000
+And then there are multiple accuracy valuations that you can make.
+
+00:30:12.000 --> 00:30:17.000
+Can we get better results with lower models, but using hierarchical task decomposition architecture?
+
+00:30:17.000 --> 00:30:20.000
+That was the whole idea behind it.
+
+00:30:20.000 --> 00:30:23.000
+that we can have multiple sub-agents.
+
+00:30:23.000 --> 00:30:26.000
+that use, uh…
+
+00:30:26.000 --> 00:30:31.000
+cheaper model and a supervisor agent that uses a moderate model.
+
+00:30:31.000 --> 00:30:34.000
+And together, they can perform really complex task.
+
+00:30:34.000 --> 00:30:37.000
+At a lower cost. That was…
+
+00:30:37.000 --> 00:30:39.000
+The idea behind it.
+
+00:30:39.000 --> 00:30:41.000
+And most of the time it works.
+
+00:30:41.000 --> 00:30:45.000
+Only thing is we need to engineer it really well. You need to ensure.
+
+00:30:45.000 --> 00:30:49.000
+That context that is shared among all of these.
+
+00:30:49.000 --> 00:30:54.000
+Different nodes in a multi-hierarchical system.
+
+00:30:54.000 --> 00:31:00.000
+Is really well defined.
+
+00:31:00.000 --> 00:31:02.000
+Can end be assigned to more than
+
+00:31:02.000 --> 00:31:04.000
+One agent? Uh…
+
+00:31:04.000 --> 00:31:07.000
+It really depends, like…
+
+00:31:07.000 --> 00:31:12.000
+There are also architectures where you build a web of different agents.
+
+00:31:12.000 --> 00:31:15.000
+Where each agent is able to communicate with the other.
+
+00:31:15.000 --> 00:31:20.000
+Okay. And that kind of web like in that kind of architecture.
+
+00:31:20.000 --> 00:31:25.000
+It is a, like, it is possible that multiple subagents can communicate with others. I told you, these are like
+
+00:31:25.000 --> 00:31:31.000
+The most basic architectures, you can read about them more. Google has a really good blog around it.
+
+00:31:31.000 --> 00:31:37.000
+I can share the link of that blog in Discord. That will be really useful to you.
+
+00:31:37.000 --> 00:31:40.000
+In any architecture parallel.
+
+00:31:40.000 --> 00:31:43.000
+Parallelism will be right because time.
+
+00:31:43.000 --> 00:31:50.000
+Sai Krishna, parallelism can be good in supervisor and hierarchical depending on the task that you are performing.
+
+00:31:50.000 --> 00:31:54.000
+But understand, it all depends on the business use case.
+
+00:31:54.000 --> 00:31:57.000
+Okay, but in sequential.
+
+00:31:57.000 --> 00:32:01.000
+In sequential, you are taking sequential architecture.
+
+00:32:01.000 --> 00:32:03.000
+You're choosing it because you are assuming.
+
+00:32:03.000 --> 00:32:11.000
+that the output of one agent is required by the other agent to start working.
+
+00:32:11.000 --> 00:32:13.000
+Okay.
+
+00:32:13.000 --> 00:32:19.000
+So in sequential, there is no scope of parallelization in my opinion.
+
+00:32:19.000 --> 00:32:24.000
+Uh, you can have, you, you may have multiple sequential pipelines running in parallel.
+
+00:32:24.000 --> 00:32:28.000
+But in that individual sequential pipeline,
+
+00:32:28.000 --> 00:32:32.000
+You cannot have parallelism between different agents that are present because
+
+00:32:32.000 --> 00:32:39.000
+One agent is expecting the output of other agent to start working.
+
+00:32:39.000 --> 00:32:44.000
+How to know if the pattern you choose is correct or not? You know it based on
+
+00:32:44.000 --> 00:32:48.000
+Comparison, experimentation, and evaluation.
+
+00:32:48.000 --> 00:32:52.000
+So, that's why I said, always, in this case as well,
+
+00:32:52.000 --> 00:32:55.000
+Always start with.
+
+00:32:55.000 --> 00:32:57.000
+The simplest approach.
+
+00:32:57.000 --> 00:33:01.000
+If they evaluate it, if the simplest approach is not
+
+00:33:01.000 --> 00:33:07.000
+Uh, you know, performing as per your expectations in the evaluation.
+
+00:33:07.000 --> 00:33:12.000
+Then move on to a complex architecture, ok. Gradually move on to the most complex one.
+
+00:33:12.000 --> 00:33:15.000
+Don't start with the most complex one and then
+
+00:33:15.000 --> 00:33:17.000
+decompose it to be…
+
+00:33:17.000 --> 00:33:26.000
+You know, simpler.
+
+00:33:26.000 --> 00:33:28.000
+What was the mistake? Just curious?
+
+00:33:28.000 --> 00:33:32.000
+I was trying to minimize context propagation.
+
+00:33:32.000 --> 00:33:34.000
+In my agentic loop.
+
+00:33:34.000 --> 00:33:38.000
+And, uh, what I did was…
+
+00:33:38.000 --> 00:33:41.000
+I used a summarizer agent.
+
+00:33:41.000 --> 00:33:43.000
+Uh, but…
+
+00:33:43.000 --> 00:33:45.000
+Like rather than summarizing, it was…
+
+00:33:45.000 --> 00:33:49.000
+trimming most of the part of the output.
+
+00:33:49.000 --> 00:33:51.000
+So because it was trimmed,
+
+00:33:51.000 --> 00:33:53.000
+The main content.
+
+00:33:53.000 --> 00:33:55.000
+that, like, the meat of…
+
+00:33:55.000 --> 00:33:57.000
+The meat of the execution that came out.
+
+00:33:57.000 --> 00:33:59.000
+Was being trimmed out.
+
+00:33:59.000 --> 00:34:10.000
+Because it was trimmed out, the agent was thinking that the tool execution did not work out, so it was running again and again.
+
+00:34:10.000 --> 00:34:18.000
+Renganathan is, I think, asking about the mistake that I made, so that's what I explained.
+
+00:34:18.000 --> 00:34:20.000
+Loops in multi-agent system.
+
+00:34:20.000 --> 00:34:22.000
+I'll tell you.
+
+00:34:22.000 --> 00:34:25.000
+So when we write the code, no, you will understand.
+
+00:34:25.000 --> 00:34:28.000
+See, each agent already is running in a loop.
+
+00:34:28.000 --> 00:34:32.000
+Where an LLM is calling tools, it's observing them.
+
+00:34:32.000 --> 00:34:36.000
+Pre-executing, ok, that is what is happening in the room.
+
+00:34:36.000 --> 00:34:40.000
+When you scale it to multiple loops running in a mega loop,
+
+00:34:40.000 --> 00:34:51.000
+You have a multi-agent system.
+
+00:34:51.000 --> 00:34:56.000
+So, RK has asked a really interesting question. How do we decide which agent runs
+
+00:34:56.000 --> 00:35:01.000
+After which one do we decide it using Landgraph and our use case?
+
+00:35:01.000 --> 00:35:05.000
+So, based on whatever you have learned yesterday about building workflows,
+
+00:35:05.000 --> 00:35:08.000
+Can you… can anybody answer Argy's question?
+
+00:35:08.000 --> 00:35:21.000
+In the chat.
+
+00:35:21.000 --> 00:35:26.000
+Yeah, conditional edges.
+
+00:35:26.000 --> 00:35:29.000
+Exactly, conditional edges can help you route.
+
+00:35:29.000 --> 00:35:35.000
+But through edges, you can decide the workflows. So each agent will be a node.
+
+00:35:35.000 --> 00:35:39.000
+And the edges will decide which agent to execute after.
+
+00:35:39.000 --> 00:35:41.000
+The previous agent?
+
+00:35:41.000 --> 00:35:48.000
+And when you add it in a graph, you have an agentic workflow, ok, this is what we call an agentic workflow.
+
+00:35:48.000 --> 00:35:51.000
+Where the main program is a workflow.
+
+00:35:51.000 --> 00:35:57.000
+But internally, some nodes can be agentic in nature.
+
+00:35:57.000 --> 00:36:14.000
+All right, so overall it is a workflow, but there are some parts where you are providing agency to the system.
+
+00:36:14.000 --> 00:36:17.000
+In your experience, what supervisor agent you have used?
+
+00:36:17.000 --> 00:36:24.000
+So in one of the companies that I worked for, we were building an agent that could solve
+
+00:36:24.000 --> 00:36:26.000
+Uh, production box.
+
+00:36:26.000 --> 00:36:29.000
+From traces.
+
+00:36:29.000 --> 00:36:32.000
+In the initial architecture, we used a supervisor agent.
+
+00:36:32.000 --> 00:36:37.000
+That, and we had multiple sub-agents, like, because we had multiple.
+
+00:36:37.000 --> 00:36:40.000
+Observability platforms. So, one platform.
+
+00:36:40.000 --> 00:36:45.000
+was for observing the system metrics. One platform was for observing logs.
+
+00:36:45.000 --> 00:36:49.000
+And what one platform was for observing APM.
+
+00:36:49.000 --> 00:36:54.000
+Okay, so for each of these we had individual agents that will
+
+00:36:54.000 --> 00:36:57.000
+Isolate the cause of the problem.
+
+00:36:57.000 --> 00:36:59.000
+And, uh.
+
+00:36:59.000 --> 00:37:01.000
+Research about it and bring their research.
+
+00:37:01.000 --> 00:37:08.000
+to the main agent. Main agent will try to identify the connection between all of the individual results.
+
+00:37:08.000 --> 00:37:11.000
+And then prepare a plan for solution.
+
+00:37:11.000 --> 00:37:15.000
+That solution will go to another agent which was a GitHub agent.
+
+00:37:15.000 --> 00:37:18.000
+That GitHub agent would
+
+00:37:18.000 --> 00:37:23.000
+Identify the root cause, like the exact line of root cause, because
+
+00:37:23.000 --> 00:37:27.000
+You know, right, in stack trace, you get the exact line where the program failed.
+
+00:37:27.000 --> 00:37:31.000
+So it will fetch the code from GitHub, it will fix it and publish it.
+
+00:37:31.000 --> 00:37:35.000
+So this was a multi-agent system that we built.
+
+00:37:35.000 --> 00:37:38.000
+And it was using supervisor pattern.
+
+00:37:38.000 --> 00:37:42.000
+So actually, I would say it was using hierarchical pattern because
+
+00:37:42.000 --> 00:37:48.000
+This supervisor was reporting to another one, the core one, the research supervisor.
+
+00:37:48.000 --> 00:37:50.000
+And we had like multiple systems.
+
+00:37:50.000 --> 00:37:59.000
+There was a research agent that would research all of these platforms to find out root cause. So it did RCA, it is called
+
+00:37:59.000 --> 00:38:01.000
+root cause analysis agent.
+
+00:38:01.000 --> 00:38:03.000
+And RC agent will then
+
+00:38:03.000 --> 00:38:06.000
+Report back to supervisor, which will
+
+00:38:06.000 --> 00:38:11.000
+The system architect will design a plan, it will go to the agent that will
+
+00:38:11.000 --> 00:38:13.000
+Implement it on GitHub.
+
+00:38:13.000 --> 00:38:16.000
+So I worked on a very initial part of this.
+
+00:38:16.000 --> 00:38:20.000
+Uh, I think it was launched few months ago.
+
+00:38:20.000 --> 00:38:24.000
+Not humans, I think it has been 8 months, some 8, 9 months now.
+
+00:38:24.000 --> 00:38:28.000
+It was launched, it was, I think, top 3 in Product Hunt.
+
+00:38:28.000 --> 00:38:34.000
+that particular feature.
+
+00:38:34.000 --> 00:38:39.000
+What was the real scenario where an agent was creating an agent by itself?
+
+00:38:39.000 --> 00:38:42.000
+Part of a real scenario is Claude code.
+
+00:38:42.000 --> 00:38:47.000
+Claude code, open claw, all of these things, they have system Hermes agent.
+
+00:38:47.000 --> 00:38:51.000
+All of these systems, they use this process of
+
+00:38:51.000 --> 00:38:56.000
+Creating subagents and some agents.
+
+00:38:56.000 --> 00:38:59.000
+Alright folks, I think I've answered most of your questions.
+
+00:38:59.000 --> 00:39:01.000
+Let's take a 10-minute break.
+
+00:39:01.000 --> 00:39:04.000
+After that, we will start the hands-on.
+
+00:39:04.000 --> 00:39:07.000
+Uh, ensure that you are logged into your
+
+00:39:07.000 --> 00:39:09.000
+GitHub. Okay.
+
+00:39:09.000 --> 00:39:15.000
+Ensuring that you have a GitHub ID and you are logged into your GitHub.
+
+00:39:15.000 --> 00:39:17.000
+And create any public.
+
+00:39:17.000 --> 00:39:22.000
+Any public repository with any boilerplate code, just
+
+00:39:22.000 --> 00:39:26.000
+have these things ready. I'm giving you a to-do. Do this in the break.
+
+00:39:26.000 --> 00:39:56.000
+Okay. I am giving a to-do. Please do not write any anything in chat.
+
+00:40:52.000 --> 00:40:55.000
+Okay, so folks, I've sent you a to-do. It is a very simple to-do.
+
+00:40:55.000 --> 00:40:59.000
+Ashish, why can you share the PDF in the chat?
+
+00:40:59.000 --> 00:41:01.000
+So, create a GitHub account,
+
+00:41:01.000 --> 00:41:04.000
+Log into that account if you already have an account.
+
+00:41:04.000 --> 00:41:06.000
+You don't need to create it.
+
+00:41:06.000 --> 00:41:08.000
+Then create a dummy repository.
+
+00:41:08.000 --> 00:41:11.000
+with few dummy files.
+
+00:41:11.000 --> 00:41:13.000
+You can choose to vibe code a simple project.
+
+00:41:13.000 --> 00:41:16.000
+And push it on your GitHub repository.
+
+00:41:16.000 --> 00:41:22.000
+And go through the pre-read ones. I think you will need more time to do this, so let me give you a 15-minute break.
+
+00:41:22.000 --> 00:41:24.000
+Take a 15-minute break, do this,
+
+00:41:24.000 --> 00:41:29.000
+And then we will come back, ok. Ashish Bhair shared.
+
+00:41:29.000 --> 00:41:34.000
+This give me a tick mark in this message, to-do message.
+
+00:41:34.000 --> 00:41:36.000
+Once you are done, okay? If you're done with it,
+
+00:41:36.000 --> 00:41:38.000
+Give me a tick mark, I will see that.
+
+00:41:38.000 --> 00:41:41.000
+I want to ensure all of you have done this.
+
+00:41:41.000 --> 00:41:44.000
+If you're, if you have completed these steps, then only you can follow.
+
+00:41:44.000 --> 00:41:47.000
+Whatever the hands-on is.
+
+00:41:47.000 --> 00:41:53.000
+Alright, Ashishmay, please start a timer for 15 minutes for break.
+
+00:41:53.000 --> 00:41:59.000
+Renganathan, the GitHub agent setup steps is the pre-read.
+
+00:41:59.000 --> 00:42:09.000
+Okay.
+
+00:42:09.000 --> 00:42:14.000
+For folks, it's okay if you're done. You can utilize this break for…
+
+00:42:14.000 --> 00:42:21.000
+uh, drinking water, whatever.
+
+00:42:21.000 --> 00:42:24.000
+The main break that we will have will be smaller.
+
+00:42:24.000 --> 00:42:26.000
+So, utilize this break.
+
+00:42:26.000 --> 00:42:28.000
+Okay, those of you who have not.
+
+00:42:28.000 --> 00:42:58.000
+Just take this.
+
+00:47:05.000 --> 00:47:08.000
+Okay, uh, Bharat?
+
+00:47:08.000 --> 00:47:10.000
+Whitenstone in Theos.
+
+00:47:10.000 --> 00:47:15.000
+Thumbs down. Are you guys not done yet?
+
+00:47:15.000 --> 00:47:18.000
+Okay, if you're stuck at step 2, it's totally fine.
+
+00:47:18.000 --> 00:47:21.000
+Okay, only complete step 1.
+
+00:47:21.000 --> 00:47:25.000
+Alright folks, so…
+
+00:47:25.000 --> 00:47:28.000
+Let me share my screen.
+
+00:47:28.000 --> 00:47:32.000
+The problem statement that we are going to solve today is very special.
+
+00:47:32.000 --> 00:47:35.000
+We are going to create something similar to
+
+00:47:35.000 --> 00:47:40.000
+This particular website you might have come across. How many of you know this? Code Rabbit?
+
+00:47:40.000 --> 00:47:44.000
+This was the inspiration for creating.
+
+00:47:44.000 --> 00:47:47.000
+This particular project.
+
+00:47:47.000 --> 00:47:53.000
+Anybody have seen this?
+
+00:47:53.000 --> 00:47:58.000
+Okay, so Code Rabbit is an agentic
+
+00:47:58.000 --> 00:48:01.000
+platform, which integrates to your GitHub repository.
+
+00:48:01.000 --> 00:48:07.000
+And can make code changes, review PRs, do all of those things automatically.
+
+00:48:07.000 --> 00:48:10.000
+All right, this existed long before Claude Code or anything and, uh,
+
+00:48:10.000 --> 00:48:15.000
+is now used by a lot of, like, different teams. So this was a tool that was inspiration.
+
+00:48:15.000 --> 00:48:18.000
+For the project that we are going to create.
+
+00:48:18.000 --> 00:48:21.000
+For this, we are going to use GitHub Toolkit.
+
+00:48:21.000 --> 00:48:26.000
+Now, if you notice, GitHub Toolkit is from LangChain community.
+
+00:48:26.000 --> 00:48:29.000
+And LangChain community is deprecated.
+
+00:48:29.000 --> 00:48:33.000
+Right? But we are going to use GitHub toolkit to develop this.
+
+00:48:33.000 --> 00:48:36.000
+The rationale behind it is, I want to show you.
+
+00:48:36.000 --> 00:48:41.000
+Migration as well. I'll show you how we can migrate this project.
+
+00:48:41.000 --> 00:48:44.000
+Even after LangChain communities deprecated, so here.
+
+00:48:44.000 --> 00:48:47.000
+In today's lecture, we are going to use Langchain community.
+
+00:48:47.000 --> 00:48:49.000
+But in the coming lectures.
+
+00:48:49.000 --> 00:48:51.000
+Let's say after the MCP lecture.
+
+00:48:51.000 --> 00:48:56.000
+I'll show you how you can migrate this particular project.
+
+00:48:56.000 --> 00:49:01.000
+To the latest specification that LangChain has provided for migrating from LangChain community.
+
+00:49:01.000 --> 00:49:08.000
+Okay, so we are going to learn that as well. This is an essential skill because you will face this a lot.
+
+00:49:08.000 --> 00:49:11.000
+Everybody's trying to find out the best way to build AI.
+
+00:49:11.000 --> 00:49:17.000
+And if we are able to do that, if you are able to do migrations, it is a great skill to have.
+
+00:49:17.000 --> 00:49:21.000
+So you can go to this particular.
+
+00:49:21.000 --> 00:49:34.000
+URL and you can clone this repository for the time being.
+
+00:49:34.000 --> 00:49:36.000
+clone this particular repository.
+
+00:49:36.000 --> 00:49:40.000
+Do not open it right now, but just keep it tuned somewhere.
+
+00:49:40.000 --> 00:49:49.000
+Okay. Langchain community is a package by Langchain that was created to provide all these kind of integrations.
+
+00:49:49.000 --> 00:49:51.000
+But now, recently.
+
+00:49:51.000 --> 00:49:54.000
+If you go to
+
+00:49:54.000 --> 00:50:08.000
+LangChain.
+
+00:50:08.000 --> 00:50:13.000
+If you see this particular issue in LangChain Community Github, you will see that.
+
+00:50:13.000 --> 00:50:18.000
+They have archived this repository, which means that they will not develop anything.
+
+00:50:18.000 --> 00:50:21.000
+And, uh, this will be sunset.
+
+00:50:21.000 --> 00:50:31.000
+Okay.
+
+00:50:31.000 --> 00:50:33.000
+No, clone, I mean.
+
+00:50:33.000 --> 00:50:38.000
+You can either just download the zip file, or you can copy this.
+
+00:50:38.000 --> 00:50:40.000
+You can copy this URL,
+
+00:50:40.000 --> 00:50:44.000
+Open a terminal.
+
+00:50:44.000 --> 00:50:48.000
+And write the following command.
+
+00:50:48.000 --> 00:50:50.000
+Git.
+
+00:50:50.000 --> 00:50:53.000
+Clone, paste the URL, okay?
+
+00:50:53.000 --> 00:50:57.000
+Run this command.
+
+00:50:57.000 --> 00:51:04.000
+Is it visible to all?
+
+00:51:04.000 --> 00:51:07.000
+Yeah, just do this.
+
+00:51:07.000 --> 00:51:14.000
+Give me a thumbs up once you have cloned it.
+
+00:51:14.000 --> 00:51:17.000
+Great. Cool.
+
+00:51:17.000 --> 00:51:22.000
+Now, let me show you. For this, we need to build a GitHub application.
+
+00:51:22.000 --> 00:51:27.000
+Okay, because our agent is going to interact through this GitHub application.
+
+00:51:27.000 --> 00:51:31.000
+You can consider the backend as, like, the
+
+00:51:31.000 --> 00:51:36.000
+that our agent that we're going to build is the backend of this GitHub application that we are creating.
+
+00:51:36.000 --> 00:51:38.000
+So, go to Settings.
+
+00:51:38.000 --> 00:51:41.000
+You can click on your profile pic.
+
+00:51:41.000 --> 00:51:44.000
+Go to Settings. Let me zoom out.
+
+00:51:44.000 --> 00:51:49.000
+A little bit. Alright, so this is my profile. I went to settings.
+
+00:51:49.000 --> 00:51:51.000
+In the settings,
+
+00:51:51.000 --> 00:51:54.000
+You need to go to
+
+00:51:54.000 --> 00:51:56.000
+Developer settings, ok.
+
+00:51:56.000 --> 00:52:04.000
+Click on this developer setting.
+
+00:52:04.000 --> 00:52:07.000
+Yeah, if you are able to follow until here, give me a thumbs up.
+
+00:52:07.000 --> 00:52:12.000
+I just want to ensure that everybody is following it.
+
+00:52:12.000 --> 00:52:15.000
+So Danbai go a little bit slow, maybe
+
+00:52:15.000 --> 00:52:18.000
+All right. Bharat.
+
+00:52:18.000 --> 00:52:28.000
+Pujan, you just need to click on my profile, like, click on your profile pic in GitHub, just go to GitHub.
+
+00:52:28.000 --> 00:52:33.000
+Yes, I mean, you can, you can clone this repository in any working directory that you have.
+
+00:52:33.000 --> 00:52:35.000
+Any directory.
+
+00:52:35.000 --> 00:52:43.000
+Okay, we are going to build our application in that repository.
+
+00:52:43.000 --> 00:52:48.000
+Cloning is not related to this, cloning is just to save the code in your system.
+
+00:52:48.000 --> 00:52:50.000
+Go to github.com.
+
+00:52:50.000 --> 00:52:53.000
+Go to github.com, click on your
+
+00:52:53.000 --> 00:52:57.000
+Face icon. Just click on your profile.
+
+00:52:57.000 --> 00:52:59.000
+You will find the settings.
+
+00:52:59.000 --> 00:53:01.000
+Go to Settings.
+
+00:53:01.000 --> 00:53:06.000
+Okay, and after going to settings.
+
+00:53:06.000 --> 00:53:10.000
+Scroll down, you will find this Developer Settings. Go here.
+
+00:53:10.000 --> 00:53:12.000
+Okay, yeah, a better way is
+
+00:53:12.000 --> 00:53:14.000
+Thank you, Rakesh, for doing this.
+
+00:53:14.000 --> 00:53:17.000
+A better way is just click on this URL.
+
+00:53:17.000 --> 00:53:20.000
+In Zoom, just click on this URL.
+
+00:53:20.000 --> 00:53:23.000
+Okay, you all should see something like this.
+
+00:53:23.000 --> 00:53:30.000
+You may not see an application skill, uh, application screen like this.
+
+00:53:30.000 --> 00:53:33.000
+Give me a thumbs up once you are here.
+
+00:53:33.000 --> 00:53:35.000
+Putin, Bharat,
+
+00:53:35.000 --> 00:53:38.000
+Yeah, you should not have any apps.
+
+00:53:38.000 --> 00:53:40.000
+Okay, you should not have any apps.
+
+00:53:40.000 --> 00:53:43.000
+This is something I had created earlier.
+
+00:53:43.000 --> 00:53:46.000
+Alright, I see everybody's here.
+
+00:53:46.000 --> 00:53:48.000
+Okay, cool.
+
+00:53:48.000 --> 00:53:53.000
+Now, we can click on this new GitHub app.
+
+00:53:53.000 --> 00:53:55.000
+Let's click on this new GitHub app.
+
+00:53:55.000 --> 00:53:57.000
+Okay, once we are here.
+
+00:53:57.000 --> 00:54:00.000
+You can open up this PDF.
+
+00:54:00.000 --> 00:54:02.000
+You have this PDF with you, right?
+
+00:54:02.000 --> 00:54:06.000
+Ashish, by just share this PDF with you.
+
+00:54:06.000 --> 00:54:10.000
+You open up the PDF, you will see what all things you need to do.
+
+00:54:10.000 --> 00:54:14.000
+Each and every step is mentioned here in this PDF, ok.
+
+00:54:14.000 --> 00:54:17.000
+We are going to follow these steps together.
+
+00:54:17.000 --> 00:54:20.000
+This is a housekeeping job that we are doing.
+
+00:54:20.000 --> 00:54:24.000
+For setting up our GitHub application.
+
+00:54:24.000 --> 00:54:27.000
+We will build agents after this particular setup is done.
+
+00:54:27.000 --> 00:54:30.000
+Everybody with me?
+
+00:54:30.000 --> 00:54:33.000
+We all know what to do.
+
+00:54:33.000 --> 00:54:36.000
+Yeah? Cool. Great.
+
+00:54:36.000 --> 00:54:41.000
+So, I'm going to name my application.
+
+00:54:41.000 --> 00:54:44.000
+Multi-agent.
+
+00:54:44.000 --> 00:54:46.000
+app.
+
+00:54:46.000 --> 00:54:49.000
+And the homepage URL.
+
+00:54:49.000 --> 00:54:52.000
+Could be my GitHub profile, so.
+
+00:54:52.000 --> 00:54:54.000
+GitHub.
+
+00:54:54.000 --> 00:54:56.000
+my GitHub URL.
+
+00:54:56.000 --> 00:55:00.000
+I'm going to paste my GitHub profile URL in my
+
+00:55:00.000 --> 00:55:03.000
+Home page URL.
+
+00:55:03.000 --> 00:55:06.000
+Okay?
+
+00:55:06.000 --> 00:55:09.000
+Once this is done,
+
+00:55:09.000 --> 00:55:12.000
+I can scroll down.
+
+00:55:12.000 --> 00:55:14.000
+Webhook is active here.
+
+00:55:14.000 --> 00:55:20.000
+Okay, you will see that webhook is active. You need to uncheck this.
+
+00:55:20.000 --> 00:55:22.000
+Once you inject this, this requirement will be gone.
+
+00:55:22.000 --> 00:55:25.000
+We are not creating any webhooks.
+
+00:55:25.000 --> 00:55:37.000
+This is done.
+
+00:55:37.000 --> 00:55:42.000
+Okay. I can select this as well. I don't need to expire anything.
+
+00:55:42.000 --> 00:55:44.000
+So just unselect this.
+
+00:55:44.000 --> 00:55:47.000
+And then we can go to
+
+00:55:47.000 --> 00:55:49.000
+Repository permissions.
+
+00:55:49.000 --> 00:55:51.000
+So let's go to repository permissions.
+
+00:55:51.000 --> 00:55:55.000
+Those of you who have done this, just it's okay, just look at it.
+
+00:55:55.000 --> 00:56:03.000
+Okay. And in repository permissions, I will find out a few things. I will find out.
+
+00:56:03.000 --> 00:56:06.000
+Contents, so you can see contents.
+
+00:56:06.000 --> 00:56:09.000
+In content, I will write.
+
+00:56:09.000 --> 00:56:11.000
+Read and write access. Do you know why?
+
+00:56:11.000 --> 00:56:14.000
+Why do we need to provide read and
+
+00:56:14.000 --> 00:56:19.000
+right access. I want to make this session really interactive, okay? Just tell me.
+
+00:56:19.000 --> 00:56:23.000
+Anybody who knows why are we making it read and write?
+
+00:56:23.000 --> 00:56:35.000
+Content is everything in your repository, the files that you push, all of those things.
+
+00:56:35.000 --> 00:56:38.000
+Okay? Yasmin, I'm going slow. You can…
+
+00:56:38.000 --> 00:56:42.000
+See this PDF okay you can just
+
+00:56:42.000 --> 00:56:45.000
+go through this PDF one by one.
+
+00:56:45.000 --> 00:56:50.000
+Alright, I'm with you guys, I'm waiting for you guys, don't worry, I'll not, I'll not rush.
+
+00:56:50.000 --> 00:56:53.000
+I'll only move forward when you are
+
+00:56:53.000 --> 00:57:02.000
+Giving me a thumbs up, acknowledging that you have completed the step, ok, don't worry.
+
+00:57:02.000 --> 00:57:05.000
+So, in contents,
+
+00:57:05.000 --> 00:57:07.000
+Again, I will repeat myself.
+
+00:57:07.000 --> 00:57:10.000
+Go to permissions.
+
+00:57:10.000 --> 00:57:13.000
+Click here.
+
+00:57:13.000 --> 00:57:17.000
+You will see this scroll down.
+
+00:57:17.000 --> 00:57:19.000
+Just go to Content,
+
+00:57:19.000 --> 00:57:22.000
+And in content, you select read and write.
+
+00:57:22.000 --> 00:57:25.000
+We are providing read and write access of our repository.
+
+00:57:25.000 --> 00:57:29.000
+to our agent, because we want the agent.
+
+00:57:29.000 --> 00:57:35.000
+To be able to change files that are present in my repository, that is how the agent will be able to contribute.
+
+00:57:35.000 --> 00:57:37.000
+Okay, so.
+
+00:57:37.000 --> 00:57:41.000
+We provided read and write permission to our agent.
+
+00:57:41.000 --> 00:57:45.000
+And then I want you to find issues.
+
+00:57:45.000 --> 00:57:48.000
+Because we want the agent to read issues, to solve issues.
+
+00:57:48.000 --> 00:57:51.000
+We want the agent to…
+
+00:57:51.000 --> 00:57:53.000
+Update issues, triage issues.
+
+00:57:53.000 --> 00:57:56.000
+So, here as well, I'm going to provide it.
+
+00:57:56.000 --> 00:57:59.000
+Read and write access.
+
+00:57:59.000 --> 00:58:05.000
+Alright, so this application can, can interact with the content, it can also interact with the issues.
+
+00:58:05.000 --> 00:58:08.000
+It can read and write issues.
+
+00:58:08.000 --> 00:58:10.000
+Next thing that we can do is
+
+00:58:10.000 --> 00:58:16.000
+pull request, okay? Go to pull request, just scroll down, you will find pull request.
+
+00:58:16.000 --> 00:58:21.000
+In pull request as well, let's see what is mentioned in our file. In our file.
+
+00:58:21.000 --> 00:58:25.000
+We are saying the agent should be able to
+
+00:58:25.000 --> 00:58:32.000
+Read and write the pull request, right? I'm following this, this document, folks. I'm following this document, so
+
+00:58:32.000 --> 00:58:35.000
+Read and write.
+
+00:58:35.000 --> 00:58:38.000
+pull request, okay? I can do all of this out of the memory.
+
+00:58:38.000 --> 00:58:46.000
+But we have provided this, I'm asking you to follow this step by step. Everything is mentioned here.
+
+00:58:46.000 --> 00:58:54.000
+The URL I added is my profile. Supreet, you can add your GitHub profile as the URL.
+
+00:58:54.000 --> 00:58:56.000
+Okay?
+
+00:58:56.000 --> 00:58:59.000
+Then metadata, we need to
+
+00:58:59.000 --> 00:59:09.000
+Set as read-only, it is, it is something pre-built, okay, so if I go to metadata, I won't be able to edit it, you see? Yeah, it is mandatory, it is read-only.
+
+00:59:09.000 --> 00:59:13.000
+Just ensure all of these things are done, so.
+
+00:59:13.000 --> 00:59:15.000
+Can you list what all things we changed?
+
+00:59:15.000 --> 00:59:18.000
+We changed content.
+
+00:59:18.000 --> 00:59:20.000
+Read and write we changed.
+
+00:59:20.000 --> 00:59:23.000
+issues, read and write.
+
+00:59:23.000 --> 00:59:26.000
+We chased pull request to
+
+00:59:26.000 --> 00:59:29.000
+Read and write. All right, this is what we
+
+00:59:29.000 --> 00:59:34.000
+need to do after doing this, our agent will be able to access all of this.
+
+00:59:34.000 --> 00:59:37.000
+And it will be able to run it.
+
+00:59:37.000 --> 00:59:40.000
+So now I can create my GitHub app.
+
+00:59:40.000 --> 00:59:45.000
+Just click on this Create GitHub app. After scrolling down, you will find this option, just
+
+00:59:45.000 --> 00:59:50.000
+Create GitHub app, ok.
+
+00:59:50.000 --> 00:59:57.000
+You can see my name is already taken, so you need to come up with a unique name.
+
+00:59:57.000 --> 01:00:01.000
+Alright, you can see my app has been created.
+
+01:00:01.000 --> 01:00:06.000
+And I also have this app ID. You can see this app ID, everyone.
+
+01:00:06.000 --> 01:00:08.000
+You need to copy this app ID.
+
+01:00:08.000 --> 01:00:24.000
+Okay, all of you need to copy this app ID.
+
+01:00:24.000 --> 01:00:26.000
+For those of you asking step 6,
+
+01:00:26.000 --> 01:00:29.000
+Let me complete step 3, 4, 5.
+
+01:00:29.000 --> 01:00:33.000
+Yeah, let me complete 3, 4, 5.
+
+01:00:33.000 --> 01:00:36.000
+Why are you so excited? I know everybody wants to build a GitHub agent.
+
+01:00:36.000 --> 01:00:39.000
+Here, we see a new toy, we get excited.
+
+01:00:39.000 --> 01:00:42.000
+Just have patience. We are going to do it.
+
+01:00:42.000 --> 01:00:47.000
+Okay.
+
+01:00:47.000 --> 01:00:56.000
+0.6 in step 2, let's see what it is.
+
+01:00:56.000 --> 01:01:01.000
+Yeah, we are going to do this. Just wait, have patience, have patience.
+
+01:01:01.000 --> 01:01:03.000
+If you are, if you are, if you are
+
+01:01:03.000 --> 01:01:08.000
+Receiving this error saying name is resolved, it means that you have to come up with a unique name.
+
+01:01:08.000 --> 01:01:11.000
+So folks, all of these
+
+01:01:11.000 --> 01:01:13.000
+App names are like Instagram IDs.
+
+01:01:13.000 --> 01:01:15.000
+You cannot have same Instagram IDs, right?
+
+01:01:15.000 --> 01:01:18.000
+So, you have to come up with a new Instagram id.
+
+01:01:18.000 --> 01:01:21.000
+That's why, that's how.
+
+01:01:21.000 --> 01:01:30.000
+Yeah?
+
+01:01:30.000 --> 01:01:33.000
+All right, folks.
+
+01:01:33.000 --> 01:01:38.000
+Let me know once you have done this, once you have created the application, you should see a screen like this.
+
+01:01:38.000 --> 01:01:42.000
+I'm reducing it because it's too big for my eyes.
+
+01:01:42.000 --> 01:01:44.000
+You need to copy the app ID, ok.
+
+01:01:44.000 --> 01:01:48.000
+Copy it and…
+
+01:01:48.000 --> 01:01:50.000
+We also need to…
+
+01:01:50.000 --> 01:01:53.000
+Generate a new private key.
+
+01:01:53.000 --> 01:01:56.000
+So, we can generate a new private key, just
+
+01:01:56.000 --> 01:01:58.000
+Give me a second.
+
+01:01:58.000 --> 01:02:02.000
+Click on Generate New Private Key, it will download this private key.
+
+01:02:02.000 --> 01:02:05.000
+In your repository, ok.
+
+01:02:05.000 --> 01:02:07.000
+Uh, in your downloads folder.
+
+01:02:07.000 --> 01:02:09.000
+We need to copy it to our repository.
+
+01:02:09.000 --> 01:02:12.000
+The staff patients, this is done.
+
+01:02:12.000 --> 01:02:14.000
+You can…
+
+01:02:14.000 --> 01:02:16.000
+Now…
+
+01:02:16.000 --> 01:02:19.000
+Let's look what all things are also there.
+
+01:02:19.000 --> 01:02:23.000
+After creating the GitHub, after creating the private key.
+
+01:02:23.000 --> 01:02:25.000
+We are all ready.
+
+01:02:25.000 --> 01:02:31.000
+Now we can do the select repository thing. So, now we can go to install app.
+
+01:02:31.000 --> 01:02:34.000
+Okay, go to install app.
+
+01:02:34.000 --> 01:02:36.000
+Click on this install app.
+
+01:02:36.000 --> 01:02:39.000
+And here, instead of all repositories.
+
+01:02:39.000 --> 01:02:48.000
+Click on only select repositories. I think there was some issue with the document. It should not be in the step 2. It should be in this particular step.
+
+01:02:48.000 --> 01:02:53.000
+So, install, only click on select repositories.
+
+01:02:53.000 --> 01:02:56.000
+It should be all repositories by default.
+
+01:02:56.000 --> 01:02:58.000
+Click on only select repositories.
+
+01:02:58.000 --> 01:03:02.000
+And let me see which repository I can choose.
+
+01:03:02.000 --> 01:03:04.000
+You can choose anyone, by the way.
+
+01:03:04.000 --> 01:03:09.000
+I'm going to choose…
+
+01:03:09.000 --> 01:03:17.000
+Let's say I'm going to choose this…
+
+01:03:17.000 --> 01:03:20.000
+Okay, I created this once for…
+
+01:03:20.000 --> 01:03:29.000
+Teaching people get?
+
+01:03:29.000 --> 01:03:37.000
+Okay, now you can click on install. After you have selected repository, I have selected one get practice repository. You can click on install.
+
+01:03:37.000 --> 01:03:41.000
+Okay, so let's click on install. This will install it.
+
+01:03:41.000 --> 01:03:46.000
+Here. So, folks, those of you who could not follow, go to developer settings.
+
+01:03:46.000 --> 01:03:51.000
+Go to app that you just created, so I created this multi-agent app, Sid.
+
+01:03:51.000 --> 01:03:54.000
+You will see this option here, install app.
+
+01:03:54.000 --> 01:03:57.000
+Okay, click on this install app, you will see your ID.
+
+01:03:57.000 --> 01:04:01.000
+Just install that app there.
+
+01:04:01.000 --> 01:04:04.000
+Install that app there.
+
+01:04:04.000 --> 01:04:07.000
+Once you install the app, you will see this.
+
+01:04:07.000 --> 01:04:10.000
+All repositories, only select repositories.
+
+01:04:10.000 --> 01:04:13.000
+Okay, you need to click on this only select repository radio button.
+
+01:04:13.000 --> 01:04:17.000
+Once you click on this, only select repository radio button.
+
+01:04:17.000 --> 01:04:23.000
+You will see this option of select repositories. When you click, you will see the repositories that you can select.
+
+01:04:23.000 --> 01:04:26.000
+If you do not have any repository in your GitHub account,
+
+01:04:26.000 --> 01:04:28.000
+You won't see any repositories.
+
+01:04:28.000 --> 01:04:34.000
+Okay, if you, that's why I said, that's why I gave the 15 minute break.
+
+01:04:34.000 --> 01:04:36.000
+That go create a
+
+01:04:36.000 --> 01:04:38.000
+Some demo repository.
+
+01:04:38.000 --> 01:04:43.000
+Okay. When you click here, you should see that demo repository here. Just
+
+01:04:43.000 --> 01:04:48.000
+Select that demo repository that I asked you to create in the break.
+
+01:04:48.000 --> 01:04:50.000
+Okay, give me a thumbs up once you are done.
+
+01:04:50.000 --> 01:04:53.000
+Sanjeev, Ankit,
+
+01:04:53.000 --> 01:04:55.000
+Aditya, Abhishek.
+
+01:04:55.000 --> 01:05:01.000
+Give me a thumbs up if you're done.
+
+01:05:01.000 --> 01:05:03.000
+Alright? Okay.
+
+01:05:03.000 --> 01:05:12.000
+All of you have downloaded the private key as well, the .pem file got downloaded. Check your download folder if .pem file got downloaded.
+
+01:05:12.000 --> 01:05:14.000
+Can you guys check?
+
+01:05:14.000 --> 01:05:18.000
+got downloaded for everybody.
+
+01:05:18.000 --> 01:05:26.000
+Yeah, danger zone will always be there, ok. See, I am also getting danger zone.
+
+01:05:26.000 --> 01:05:31.000
+It only means that you can uninstall or suspend this application.
+
+01:05:31.000 --> 01:05:34.000
+Don't worry about it.
+
+01:05:34.000 --> 01:05:36.000
+Okay.
+
+01:05:36.000 --> 01:05:42.000
+Alright folks, so all the setup that we had to make on GitHub is completed successfully.
+
+01:05:42.000 --> 01:05:44.000
+Anybody who has not
+
+01:05:44.000 --> 01:05:47.000
+Who was not able to do this?
+
+01:05:47.000 --> 01:05:49.000
+Write in the text.
+
+01:05:49.000 --> 01:05:52.000
+Krishna or Ashish Pai will try to guide you.
+
+01:05:52.000 --> 01:05:54.000
+Okay?
+
+01:05:54.000 --> 01:05:59.000
+Yeah, danger zone is a default… see, danger zone simply means that
+
+01:05:59.000 --> 01:06:02.000
+Be careful while using these options.
+
+01:06:02.000 --> 01:06:06.000
+Okay? Because these options can…
+
+01:06:06.000 --> 01:06:08.000
+Uh, delete or suspend your…
+
+01:06:08.000 --> 01:06:14.000
+Code. So some of you did not download
+
+01:06:14.000 --> 01:06:17.000
+Let me go back.
+
+01:06:17.000 --> 01:06:20.000
+Go to General, go to General.
+
+01:06:20.000 --> 01:06:22.000
+Scroll down…
+
+01:06:22.000 --> 01:06:24.000
+When you scroll down,
+
+01:06:24.000 --> 01:06:27.000
+You will see this private keys option.
+
+01:06:27.000 --> 01:06:32.000
+Okay, give me a thumbs up once you reach here, once you see this private keys option.
+
+01:06:32.000 --> 01:06:36.000
+Give me a thumbs up.
+
+01:06:36.000 --> 01:06:39.000
+Fujian, anybody who has
+
+01:06:39.000 --> 01:06:41.000
+Yeah?
+
+01:06:41.000 --> 01:06:45.000
+Just click on this Generate Private Key option.
+
+01:06:45.000 --> 01:06:47.000
+You will see that some private key.
+
+01:06:47.000 --> 01:06:50.000
+will get downloaded in some folder.
+
+01:06:50.000 --> 01:06:53.000
+Alright, private keys downloaded.
+
+01:06:53.000 --> 01:06:58.000
+We should be ready now. I'm stopping to share my screen because I need to add the private key.
+
+01:06:58.000 --> 01:07:02.000
+It is a secret. So, let me add those things.
+
+01:07:02.000 --> 01:07:05.000
+In a while, you also add them in the folder.
+
+01:07:05.000 --> 01:07:07.000
+Follow the, ah.
+
+01:07:07.000 --> 01:07:12.000
+Directions here, ok, here it is written in which folder you need to add it.
+
+01:07:12.000 --> 01:07:14.000
+Just add it in.
+
+01:07:14.000 --> 01:07:17.000
+In that folder, ok.
+
+01:07:17.000 --> 01:07:19.000
+So, let me start.
+
+01:07:19.000 --> 01:07:25.000
+Stop sharing the screen, so whatever repository I asked you to download, right, I asked you to clone a repository, right?
+
+01:07:25.000 --> 01:07:29.000
+Just open that repository in anti-gravity.
+
+01:07:29.000 --> 01:07:38.000
+Or VS Code, or any other code editor that you have, just open that repository.
+
+01:07:38.000 --> 01:07:40.000
+Akotam, no issues.
+
+01:07:40.000 --> 01:07:42.000
+Uh, you still have the file.
+
+01:07:42.000 --> 01:07:45.000
+You can just watch for the time being, Gautam.
+
+01:07:45.000 --> 01:07:47.000
+And, uh…
+
+01:07:47.000 --> 01:07:50.000
+Like…
+
+01:07:50.000 --> 01:07:55.000
+Try to set it up, it is not very difficult. I've explained each of the steps. Watch the recording and do it.
+
+01:07:55.000 --> 01:08:00.000
+in hands-on, okay? If you face any issues, just reach out on Discord.
+
+01:08:00.000 --> 01:08:03.000
+Alright folks, I'm stopping to share my screen. Please open up.
+
+01:08:03.000 --> 01:08:05.000
+The repository that you cloned.
+
+01:08:05.000 --> 01:08:10.000
+Not the one that you created, but the one that I sent you, ok.
+
+01:08:10.000 --> 01:08:12.000
+Let me send that link again.
+
+01:08:12.000 --> 01:08:15.000
+So…
+
+01:08:15.000 --> 01:08:17.000
+GitHub.
+
+01:08:17.000 --> 01:08:21.000
+GitHub agent.
+
+01:08:21.000 --> 01:08:23.000
+Just this repository.
+
+01:08:23.000 --> 01:08:26.000
+Open it.
+
+01:08:26.000 --> 01:08:30.000
+In your…
+
+01:08:30.000 --> 01:08:34.000
+Yeah, open, open this, open this repository.
+
+01:08:34.000 --> 01:08:37.000
+In your ID.
+
+01:08:37.000 --> 01:09:00.000
+Okay.
+
+01:09:00.000 --> 01:09:02.000
+I'm just doing some…
+
+01:09:02.000 --> 01:09:09.000
+Like, I'm just copying the private key that I downloaded.
+
+01:09:09.000 --> 01:09:32.000
+Give me a second to just copy-paste it.
+
+01:09:32.000 --> 01:09:36.000
+Okay, my private key is loaded.
+
+01:09:36.000 --> 01:09:38.000
+I think all my…
+
+01:09:38.000 --> 01:09:40.000
+Environment files are ready.
+
+01:09:40.000 --> 01:09:42.000
+I just need to
+
+01:09:42.000 --> 01:09:45.000
+So, whatever…
+
+01:09:45.000 --> 01:09:47.000
+app ID that you got,
+
+01:09:47.000 --> 01:09:50.000
+You need to copy paste that app ID as well.
+
+01:09:50.000 --> 01:09:53.000
+In your GitHub env file.
+
+01:09:53.000 --> 01:10:00.000
+Okay, if any of you ask, ask me what, like, give me your .env file, I'll just get very angry, ok, so don't ask me.
+
+01:10:00.000 --> 01:10:02.000
+Uh…
+
+01:10:02.000 --> 01:10:07.000
+Let's add this.
+
+01:10:07.000 --> 01:10:12.000
+Right? I've seen people, they asked me my .env file.
+
+01:10:12.000 --> 01:10:15.000
+So, yeah.
+
+01:10:15.000 --> 01:10:22.000
+All right.
+
+01:10:22.000 --> 01:10:25.000
+Okay, so everybody has opened up their
+
+01:10:25.000 --> 01:10:31.000
+ENV file.
+
+01:10:31.000 --> 01:10:33.000
+Yeah?
+
+01:10:33.000 --> 01:10:37.000
+Alright, let me share my screen and get started.
+
+01:10:37.000 --> 01:10:40.000
+with code explanation.
+
+01:10:40.000 --> 01:10:47.000
+Alright folks, so I think somebody was really excited to work on IDE. I don't remember the name, I think it was Vinod, Vivek, something.
+
+01:10:47.000 --> 01:10:49.000
+Who was very excited.
+
+01:10:49.000 --> 01:10:51.000
+To work on ID.
+
+01:10:51.000 --> 01:10:54.000
+I saw a question every day.
+
+01:10:54.000 --> 01:11:02.000
+All right.
+
+01:11:02.000 --> 01:11:09.000
+All right. So see, I have shared this sample.env file with all of you.
+
+01:11:09.000 --> 01:11:15.000
+Take this, copy it in a .env file. You need to create it using this icon.
+
+01:11:15.000 --> 01:11:20.000
+Okay, if you are in VS Code, if you are in anti-gravity, you can use the side icon to create this .env.
+
+01:11:20.000 --> 01:11:24.000
+File, just copy paste all of these things.
+
+01:11:24.000 --> 01:11:27.000
+Here you need to paste the app ID.
+
+01:11:27.000 --> 01:11:30.000
+Okay, what is the app ID?
+
+01:11:30.000 --> 01:11:37.000
+When you open up Github, you will see this app ID here.
+
+01:11:37.000 --> 01:11:41.000
+Alright, do you see this app ID here?
+
+01:11:41.000 --> 01:11:44.000
+Just paste, copy and paste this app ID.
+
+01:11:44.000 --> 01:11:50.000
+In your .env, okay? I'm just… I'm showing it to you in sample.env, but you need to paste it in .env.
+
+01:11:50.000 --> 01:11:52.000
+In this .env.
+
+01:11:52.000 --> 01:11:56.000
+Paste it here. GitHub app private.
+
+01:11:56.000 --> 01:12:00.000
+You do not need to paste the content of private key here, but
+
+01:12:00.000 --> 01:12:06.000
+You need to copy-paste the private key in this resource folder. You need to create a resource folder.
+
+01:12:06.000 --> 01:12:08.000
+or any folder here.
+
+01:12:08.000 --> 01:12:11.000
+And then you click on…
+
+01:12:11.000 --> 01:12:16.000
+Copy relative path, okay? Copy relative path, whatever path is present.
+
+01:12:16.000 --> 01:12:19.000
+You need to paste that path here.
+
+01:12:19.000 --> 01:12:21.000
+So the name of my
+
+01:12:21.000 --> 01:12:23.000
+file PEM file.
+
+01:12:23.000 --> 01:12:26.000
+is my github key.m.
+
+01:12:26.000 --> 01:12:30.000
+And it is in the resources folder of my agent.
+
+01:12:30.000 --> 01:12:39.000
+Uh, working directory, so just paste that here.
+
+01:12:39.000 --> 01:12:45.000
+Oh, Ringanathan, you guys are re-baiting me now.
+
+01:12:45.000 --> 01:12:48.000
+Alright, I'm very calm, okay, I wouldn't get angry.
+
+01:12:48.000 --> 01:12:57.000
+So yeah, Pradeep, you won't see .env file in the repo, you need to create your own .env file. So just click on this icon.
+
+01:12:57.000 --> 01:13:07.000
+Okay, click on this icon and create .env file.
+
+01:13:07.000 --> 01:13:10.000
+I'm sorry, which repo link we need to give?
+
+01:13:10.000 --> 01:13:12.000
+Is it the one we created?
+
+01:13:12.000 --> 01:13:15.000
+It's not the one you created, it's the one that I shared.
+
+01:13:15.000 --> 01:13:37.000
+I shared it in the link.
+
+01:13:37.000 --> 01:13:40.000
+Can… can anybody please help Umesh?
+
+01:13:40.000 --> 01:13:43.000
+Umesh, you can share the screenshot of where you're stuck.
+
+01:13:43.000 --> 01:13:45.000
+Uh, people will try to help you out.
+
+01:13:45.000 --> 01:13:48.000
+Okay, don't worry, Umesh. It's okay, you can.
+
+01:13:48.000 --> 01:13:50.000
+Continue by watching the recording as well.
+
+01:13:50.000 --> 01:13:53.000
+Just follow these steps here.
+
+01:13:53.000 --> 01:13:55.000
+Okay, so everybody.
+
+01:13:55.000 --> 01:14:02.000
+paste the .pem file in a new resource folder that you create. You can create a new folder by clicking here.
+
+01:14:02.000 --> 01:14:05.000
+Paste the PM file here and copy the path of it here.
+
+01:14:05.000 --> 01:14:08.000
+Paste the GitHub ID, I have the Github ID.
+
+01:14:08.000 --> 01:14:12.000
+So I just pasted the GitHub ID, right?
+
+01:14:12.000 --> 01:14:19.000
+Just paste the GitHub ID in your .env.
+
+01:14:19.000 --> 01:14:22.000
+And then add your Grok API key as well.
+
+01:14:22.000 --> 01:14:27.000
+Your .env should look like this with the Grok API key.
+
+01:14:27.000 --> 01:14:36.000
+Give me a thumbs up once all of you are done until here.
+
+01:14:36.000 --> 01:14:46.000
+All right. Great. Okay, Venkat is doing.
+
+01:14:46.000 --> 01:14:52.000
+I want to see some spirit of collaboration, folks. Just help out people who are not able to do it themselves.
+
+01:14:52.000 --> 01:14:55.000
+Uh, folks, whoever is stuck, ask in the chat.
+
+01:14:55.000 --> 01:14:59.000
+Everybody who is ahead of them, try to help them out, ok.
+
+01:14:59.000 --> 01:15:05.000
+Because now the setup is done. Now I'm just going to explain code.
+
+01:15:05.000 --> 01:15:08.000
+Yeah, don't worry, Bharat, no issues.
+
+01:15:08.000 --> 01:15:13.000
+Ashish Bhayakrishnai, please try to help them out. You can share the screenshot of wherever you are stuck at.
+
+01:15:13.000 --> 01:15:17.000
+They'll try to help you out.
+
+01:15:17.000 --> 01:15:21.000
+Okay, let, let me give a
+
+01:15:21.000 --> 01:15:24.000
+Yeah, let me give a 5-minute timer for everybody.
+
+01:15:24.000 --> 01:15:26.000
+To get on the same page.
+
+01:15:26.000 --> 01:15:31.000
+If you are done until here, then we can focus on the code part, okay? Setup is complete once.
+
+01:15:31.000 --> 01:15:36.000
+We are done with filling up the environment variable and you are, you have set up the API key.
+
+01:15:36.000 --> 01:15:41.000
+I see many people are still struggling, so let me give you all 5 minutes to do that.
+
+01:15:41.000 --> 01:15:45.000
+Ashish Vai, can you please start a timer for 5 minutes?
+
+01:15:45.000 --> 01:15:57.000
+Yeah, and everybody else, please try to help them out.
+
+01:15:57.000 --> 01:15:59.000
+Yeah, no need of resource folder.
+
+01:15:59.000 --> 01:16:01.000
+I created the resource folder because
+
+01:16:01.000 --> 01:16:06.000
+I follow, like, I try to follow good practices.
+
+01:16:06.000 --> 01:16:11.000
+Having a specific folder for all of these kind of resources is a good practice.
+
+01:16:11.000 --> 01:16:14.000
+Okay, you don't have to worry about searching where everything is.
+
+01:16:14.000 --> 01:16:18.000
+If you, you can keep it as it is in anywhere in the repo.
+
+01:16:18.000 --> 01:16:24.000
+But it won't look tidy, okay? I like to keep things tidy. That's why I created a resource folder.
+
+01:16:24.000 --> 01:16:28.000
+I like to teach it to others as well, that please keep your report ID as if
+
+01:16:28.000 --> 01:16:32.000
+The next person who is going to develop on that code is a psychopathic serial killer.
+
+01:16:32.000 --> 01:16:35.000
+Okay, you should have this in mind, that
+
+01:16:35.000 --> 01:16:37.000
+Whichever application you develop.
+
+01:16:37.000 --> 01:16:40.000
+Whoever is going to inherit that code from you.
+
+01:16:40.000 --> 01:16:42.000
+Is a psychopathic serial killer.
+
+01:16:42.000 --> 01:16:48.000
+And they will come for you if you have made any mistakes there, okay? That's how you should keep your repositories.
+
+01:16:48.000 --> 01:16:59.000
+Keep it very clean and tidy.
+
+01:16:59.000 --> 01:17:05.000
+Ashishbhai, can we start our 5-minute timer, please?
+
+01:17:05.000 --> 01:17:11.000
+Yes, just give me a minute.
+
+01:17:11.000 --> 01:17:27.000
+folks get on the same page.
+
+01:17:27.000 --> 01:17:41.000
+Okay, 4 minute timers, Ashish Bhai.
+
+01:17:41.000 --> 01:17:45.000
+Uh, no, this should be the repo that you created. For me, it is.
+
+01:17:45.000 --> 01:17:49.000
+Uh, so, the GitHub repository in the environment variable.
+
+01:17:49.000 --> 01:17:56.000
+Should be the repository that you created, the repository that you selected. Let me update it in my code as well.
+
+01:17:56.000 --> 01:18:00.000
+Okay, it should be the repository that you have selected.
+
+01:18:00.000 --> 01:18:02.000
+While installing the application.
+
+01:18:02.000 --> 01:18:05.000
+Wherever you have installed the application, only that repo you can.
+
+01:18:05.000 --> 01:18:07.000
+All right.
+
+01:18:07.000 --> 01:18:11.000
+So, I have selected the git practice one.
+
+01:18:11.000 --> 01:18:31.000
+I'm adding that.
+
+01:18:31.000 --> 01:18:37.000
+Okay, folks, whichever repository you have created, you need to add that in your
+
+01:18:37.000 --> 01:18:41.000
+Get practice. Let me send you, uh…
+
+01:18:41.000 --> 01:18:44.000
+Template for your .env.
+
+01:18:44.000 --> 01:19:14.000
+So that…
+
+01:19:35.000 --> 01:19:38.000
+Okay, folks, see, I have mentioned in the chat.
+
+01:19:38.000 --> 01:19:42.000
+In GitHub app ID, just put your GitHub app ID.
+
+01:19:42.000 --> 01:19:51.000
+As GitHub app private key, put the path of your dot PEM file wherever you have downloaded that PEM file.
+
+01:19:51.000 --> 01:19:53.000
+Add the path of that PM file.
+
+01:19:53.000 --> 01:19:59.000
+In your GitHub repository, you can add the repository that you selected to install.
+
+01:19:59.000 --> 01:20:03.000
+Okay, whichever repository you selected to install, just select that.
+
+01:20:03.000 --> 01:20:05.000
+Azure Grok API key.
+
+01:20:05.000 --> 01:20:11.000
+Just select your Grok API key.
+
+01:20:11.000 --> 01:20:17.000
+Okay, everybody clear? Give me a thumbs up if most of you who get stuck are dumped.
+
+01:20:17.000 --> 01:20:21.000
+People who are already done do not give a thumbs up. Those people who were stuck.
+
+01:20:21.000 --> 01:20:26.000
+And they are done, just give me a thumbs up.
+
+01:20:26.000 --> 01:20:28.000
+And folks, it, uh…
+
+01:20:28.000 --> 01:20:30.000
+I'm sorry if others are…
+
+01:20:30.000 --> 01:20:33.000
+Waiting because of other people.
+
+01:20:33.000 --> 01:20:38.000
+Let's be collaborative, let's ensure that everybody is able to follow everybody. All of our classmates are.
+
+01:20:38.000 --> 01:20:46.000
+Doing well, okay?
+
+01:20:46.000 --> 01:20:54.000
+Done, I see most people are done.
+
+01:20:54.000 --> 01:20:59.000
+Yeah, Ringanathan, I said, right, in the Github repo, just
+
+01:20:59.000 --> 01:21:02.000
+Let me…
+
+01:21:02.000 --> 01:21:32.000
+Whatever repo you selected while installing, whatever new repo you have created, add that.
+
+01:21:34.000 --> 01:21:55.000
+Alright, I see that most people are done.
+
+01:21:55.000 --> 01:22:01.000
+Okay, Bharat, your app is installed. You don't need to do anything there.
+
+01:22:01.000 --> 01:22:09.000
+Bharat.
+
+01:22:09.000 --> 01:22:12.000
+Your app is installed already, you have saved it.
+
+01:22:12.000 --> 01:22:23.000
+Okay, it seems that you have already saved it.
+
+01:22:23.000 --> 01:22:26.000
+So, in the .env file.
+
+01:22:26.000 --> 01:22:30.000
+Bharat, you can add this Bharat Vamsi 14 slash
+
+01:22:30.000 --> 01:22:33.000
+Multi-agent. This is what you can add in your
+
+01:22:33.000 --> 01:22:37.000
+.env file, ok, in Github repository.
+
+01:22:37.000 --> 01:22:40.000
+Keep.
+
+01:22:40.000 --> 01:22:43.000
+Bharat, are you done?
+
+01:22:43.000 --> 01:22:46.000
+All right, Vamsi.
+
+01:22:46.000 --> 01:22:50.000
+Yeah, just ignore the danger zone.
+
+01:22:50.000 --> 01:22:52.000
+Awesome, awesome, everybody's done.
+
+01:22:52.000 --> 01:22:54.000
+We can start now.
+
+01:22:54.000 --> 01:23:00.000
+Alright, our .env file is ready. Now let's look at the code.
+
+01:23:00.000 --> 01:23:02.000
+Okay, folks, excited?
+
+01:23:02.000 --> 01:23:06.000
+We are going to build our GitHub agent now.
+
+01:23:06.000 --> 01:23:14.000
+And Asher, you can stop sharing your screen.
+
+01:23:14.000 --> 01:23:17.000
+I am opening up my anti-gravity.
+
+01:23:17.000 --> 01:23:22.000
+So, this is the repository that I asked you to clone.
+
+01:23:22.000 --> 01:23:24.000
+This is the first.
+
+01:23:24.000 --> 01:23:30.000
+I think in IDE application that we are building, so we are building this application in IDE.
+
+01:23:30.000 --> 01:23:34.000
+Because this cannot be done on Google collab.
+
+01:23:34.000 --> 01:23:37.000
+Can be done, but it's better to work on IDE.
+
+01:23:37.000 --> 01:23:40.000
+Let me walk you through the code here.
+
+01:23:40.000 --> 01:23:43.000
+So, this typical project
+
+01:23:43.000 --> 01:23:45.000
+structure that you see.
+
+01:23:45.000 --> 01:23:48.000
+is the structure of a UV project.
+
+01:23:48.000 --> 01:23:51.000
+Okay, whenever you do UV init, you will get
+
+01:23:51.000 --> 01:23:56.000
+All of these files, you will get this TOML file, you will get this uvlock file.
+
+01:23:56.000 --> 01:24:03.000
+You will have a main.py, you will have a Python version, a gitignore, and a .venv.
+
+01:24:03.000 --> 01:24:10.000
+I have installed many packages here, so we have LangChain, we have Langchain community, we have LangChain Core, we have LangChain Grok.
+
+01:24:10.000 --> 01:24:13.000
+Landgraph, PyGitHub, and tick token.
+
+01:24:13.000 --> 01:24:17.000
+Why buy GitHub? PyGitHub because
+
+01:24:17.000 --> 01:24:19.000
+Lansing Community.
+
+01:24:19.000 --> 01:24:23.000
+uses this GitHub integration with the help of PyGithub.
+
+01:24:23.000 --> 01:24:27.000
+package. So we have PyGitHub.
+
+01:24:27.000 --> 01:24:30.000
+And this is the TOML file. This toml file.
+
+01:24:30.000 --> 01:24:35.000
+Tells our Python environment what all files we need to install.
+
+01:24:35.000 --> 01:24:37.000
+Okay, so all of you.
+
+01:24:37.000 --> 01:24:40.000
+can click on Control.
+
+01:24:40.000 --> 01:24:42.000
+And tilde sign.
+
+01:24:42.000 --> 01:24:45.000
+How many of you know tilde? It is the wave icon.
+
+01:24:45.000 --> 01:24:49.000
+At the… it is closer to 1, okay? Just click on that.
+
+01:24:49.000 --> 01:24:53.000
+You will see that a terminal gets opened up.
+
+01:24:53.000 --> 01:24:56.000
+Here, open your, open up your terminal.
+
+01:24:56.000 --> 01:25:00.000
+Here you can run this command called
+
+01:25:00.000 --> 01:25:02.000
+U V.
+
+01:25:02.000 --> 01:25:06.000
+SYNC Sync.
+
+01:25:06.000 --> 01:25:10.000
+Okay, to run this uv sync command.
+
+01:25:10.000 --> 01:25:12.000
+Once you do this,
+
+01:25:12.000 --> 01:25:15.000
+All your packages will be installed.
+
+01:25:15.000 --> 01:25:19.000
+And you will see a dot venv file created.
+
+01:25:19.000 --> 01:25:22.000
+And a UV.log file created.
+
+01:25:22.000 --> 01:25:29.000
+Okay. Give me a thumbs up once you are done with this.
+
+01:25:29.000 --> 01:25:36.000
+UV is not recognized, ok, so you have not installed UV. If you have not installed UV,
+
+01:25:36.000 --> 01:25:39.000
+For those of you who have not installed UV.
+
+01:25:39.000 --> 01:25:41.000
+Just go to
+
+01:25:41.000 --> 01:25:43.000
+Google.
+
+01:25:43.000 --> 01:25:45.000
+UV.
+
+01:25:45.000 --> 01:25:50.000
+Install which OS do you use? I use Windows so
+
+01:25:50.000 --> 01:25:55.000
+Windows. Just search for this. You will see this UV installation doc.
+
+01:25:55.000 --> 01:25:59.000
+Go here, choose your OS, and install it.
+
+01:25:59.000 --> 01:26:03.000
+Okay, uh, Syed, I would recommend not to use pip install UV.
+
+01:26:03.000 --> 01:26:08.000
+Because then the UV environment is associated with your tip environment, I would rather use it.
+
+01:26:08.000 --> 01:26:10.000
+Independently.
+
+01:26:10.000 --> 01:26:13.000
+So that it is not associated with…
+
+01:26:13.000 --> 01:26:15.000
+Any Python version or any specific
+
+01:26:15.000 --> 01:26:18.000
+Uh, pip file that I have.
+
+01:26:18.000 --> 01:26:21.000
+So those of you who have not installed UV.
+
+01:26:21.000 --> 01:26:24.000
+Just install it.
+
+01:26:24.000 --> 01:26:27.000
+It is a package manager. UV is a package manager.
+
+01:26:27.000 --> 01:26:30.000
+So UV is just like
+
+01:26:30.000 --> 01:26:33.000
+Maven, just like Gradle, just like NPM.
+
+01:26:33.000 --> 01:26:37.000
+Okay, either of those, whichever is familiar to you.
+
+01:26:37.000 --> 01:26:40.000
+So download UV package manager. Give me a thumbs up once you're done.
+
+01:26:40.000 --> 01:26:46.000
+With syncing your repository.
+
+01:26:46.000 --> 01:26:59.000
+Uh, you can use Renganathan, you can use PIP if you are comfortable with PIP.
+
+01:26:59.000 --> 01:27:05.000
+Kavi Kavi, you need to check if you are…
+
+01:27:05.000 --> 01:27:09.000
+You need to check the path if you are in the correct path, ok.
+
+01:27:09.000 --> 01:27:20.000
+GitHub.agent contains a pyproject.toml.
+
+01:27:20.000 --> 01:27:22.000
+Si vasis, you as well.
+
+01:27:22.000 --> 01:27:37.000
+Check if you are in pyproject.toml.
+
+01:27:37.000 --> 01:27:42.000
+Yeah, you need to open this GitHub agent repo, folks, this cloned repo.
+
+01:27:42.000 --> 01:27:44.000
+The link that I shared.
+
+01:27:44.000 --> 01:27:46.000
+Ran UV.
+
+01:27:46.000 --> 01:27:54.000
+sync there, okay? All right. I see most of you are done. Those of you who are not done, you will get help from your peers in the chat.
+
+01:27:54.000 --> 01:27:56.000
+Or you can watch the recording later on.
+
+01:27:56.000 --> 01:28:03.000
+So, once we have done this, you will see .venv.uv.log.
+
+01:28:03.000 --> 01:28:07.000
+Just select, just open up the command line again.
+
+01:28:07.000 --> 01:28:12.000
+Type dot Venv.
+
+01:28:12.000 --> 01:28:15.000
+Script tab.
+
+01:28:15.000 --> 01:28:19.000
+Activate tab.
+
+01:28:19.000 --> 01:28:21.000
+If you are in Windows, you should see this.
+
+01:28:21.000 --> 01:28:26.000
+Those who are not in Windows, you can use the source command. So, right, source.
+
+01:28:26.000 --> 01:28:29.000
+And then this, this particular path.
+
+01:28:29.000 --> 01:28:32.000
+And then press enter. Okay.
+
+01:28:32.000 --> 01:28:40.000
+Once you do this, something has changed. Can anybody recognize what has changed?
+
+01:28:40.000 --> 01:28:43.000
+Anybody? Can you recognize what has changed?
+
+01:28:43.000 --> 01:28:46.000
+Yeah, virtual environment is activated, ok.
+
+01:28:46.000 --> 01:28:50.000
+So you can see this particular line here, my virtual environment is activated.
+
+01:28:50.000 --> 01:28:54.000
+I can clear this up. Now my repository is ready.
+
+01:28:54.000 --> 01:29:00.000
+For work. So I can close my terminal again by clicking on control tilde.
+
+01:29:00.000 --> 01:29:04.000
+Terminal is closed. Let me walk you through the project structure.
+
+01:29:04.000 --> 01:29:15.000
+So, all the code in my project lives in this SRC.
+
+01:29:15.000 --> 01:29:18.000
+Nitesh, can you just Google?
+
+01:29:18.000 --> 01:29:23.000
+Activate virtual environment? Yeah, can you just Google? Guys, whoever is in Linux, macOS,
+
+01:29:23.000 --> 01:29:27.000
+Just Google, activate virtual environment.
+
+01:29:27.000 --> 01:29:30.000
+In Mac, in Ubuntu, whatever you was.
+
+01:29:30.000 --> 01:29:36.000
+Yeah, yeah, I think source main activate is the one.
+
+01:29:36.000 --> 01:29:40.000
+Okay, so go to SRC.
+
+01:29:40.000 --> 01:29:44.000
+In SRC, I have implemented two different packages.
+
+01:29:44.000 --> 01:29:48.000
+One package is where I have implemented my agent.
+
+01:29:48.000 --> 01:29:51.000
+There is another package where I've implemented my workflow.
+
+01:29:51.000 --> 01:29:55.000
+I'm not going to run the workflow, just going to show it to you.
+
+01:29:55.000 --> 01:29:58.000
+And then we will see how we have implemented the
+
+01:29:58.000 --> 01:30:06.000
+Agent package. Okay, so let me open up main.py. You do not need to write any code here. I've implemented everything for you.
+
+01:30:06.000 --> 01:30:11.000
+But you need to have an in-depth understanding of this code, ok.
+
+01:30:11.000 --> 01:30:15.000
+Sai Shridan, thank you so much for doing this.
+
+01:30:15.000 --> 01:30:19.000
+Okay, I see great community spirit today. I'm really happy.
+
+01:30:19.000 --> 01:30:21.000
+Thank you for doing this.
+
+01:30:21.000 --> 01:30:26.000
+You can find all the commands relevant to whatever terminal you're using.
+
+01:30:26.000 --> 01:30:29.000
+Okay?
+
+01:30:29.000 --> 01:30:32.000
+All right, everybody with me?
+
+01:30:32.000 --> 01:30:34.000
+Everybody has all the setup now.
+
+01:30:34.000 --> 01:30:38.000
+Can you follow the code? Can we begin?
+
+01:30:38.000 --> 01:30:43.000
+Awesome. I see only 3?
+
+01:30:43.000 --> 01:30:45.000
+Alright, awesome.
+
+01:30:45.000 --> 01:30:47.000
+Great. Let's…
+
+01:30:47.000 --> 01:30:50.000
+Understand the whole code.
+
+01:30:50.000 --> 01:30:52.000
+Soul.
+
+01:30:52.000 --> 01:30:57.000
+What is the first thing that I need to create for my workflow?
+
+01:30:57.000 --> 01:30:59.000
+I'm creating a stateful workflow.
+
+01:30:59.000 --> 01:31:02.000
+What is the first thing that I need to do?
+
+01:31:02.000 --> 01:31:05.000
+Note state exactly.
+
+01:31:05.000 --> 01:31:08.000
+I need to define the state.
+
+01:31:08.000 --> 01:31:10.000
+On which the workflow will
+
+01:31:10.000 --> 01:31:13.000
+Process. So
+
+01:31:13.000 --> 01:31:17.000
+I am creating a simple release note generator here, ok.
+
+01:31:17.000 --> 01:31:21.000
+Release node generation should not require any agents.
+
+01:31:21.000 --> 01:31:24.000
+As long as the project is not very complicated.
+
+01:31:24.000 --> 01:31:31.000
+It can be a simple workflow which checks what all commits happened before, after the previous release.
+
+01:31:31.000 --> 01:31:34.000
+and create a release note for all of those.
+
+01:31:34.000 --> 01:31:37.000
+New features that were added in those commits.
+
+01:31:37.000 --> 01:31:39.000
+Okay, that is all.
+
+01:31:39.000 --> 01:31:42.000
+That happens when you write a release note, right?
+
+01:31:42.000 --> 01:31:45.000
+So, to automate that process.
+
+01:31:45.000 --> 01:31:49.000
+We create a state where we write release info.
+
+01:31:49.000 --> 01:31:53.000
+We have a state for PRN commit, which is a list of string.
+
+01:31:53.000 --> 01:31:56.000
+And we add a state parameter called
+
+01:31:56.000 --> 01:31:59.000
+release notes, which is a string.
+
+01:31:59.000 --> 01:32:03.000
+So, this is what my workflow will try to populate.
+
+01:32:03.000 --> 01:32:07.000
+Then, I need to do a few housekeeping things.
+
+01:32:07.000 --> 01:32:10.000
+I need to instantiate my LLM.
+
+01:32:10.000 --> 01:32:15.000
+which is Chad Grok. I need to create this GitHub API wrapper, okay?
+
+01:32:15.000 --> 01:32:17.000
+How, how do you know this? How?
+
+01:32:17.000 --> 01:32:21.000
+Do you know what to do? Go to the documentation, this is what you need to do.
+
+01:32:21.000 --> 01:32:23.000
+Okay, in the documentation you will see.
+
+01:32:23.000 --> 01:32:28.000
+You need to create this GitHub API wrapper, then you need to create this toolkit.
+
+01:32:28.000 --> 01:32:32.000
+Okay, just follow whatever is present inside the documentation.
+
+01:32:32.000 --> 01:32:35.000
+I've done the same, I have instantiated a
+
+01:32:35.000 --> 01:32:40.000
+GitHub API wrapper. Now, using the instance of this GitHub API wrapper.
+
+01:32:40.000 --> 01:32:44.000
+I've taken it, I have given it to this.
+
+01:32:44.000 --> 01:32:46.000
+From the GitHub API wrapper.
+
+01:32:46.000 --> 01:32:48.000
+Method of this GitHub
+
+01:32:48.000 --> 01:32:50.000
+Toolkit.
+
+01:32:50.000 --> 01:32:54.000
+This will provide me access to all the tools.
+
+01:32:54.000 --> 01:32:57.000
+That can be used to interact with GitHub.
+
+01:32:57.000 --> 01:33:01.000
+You remember, right, agent can perform real-world actions.
+
+01:33:01.000 --> 01:33:04.000
+So, changing anything on GitHub is a real-world action.
+
+01:33:04.000 --> 01:33:08.000
+For that, for performing real-world action, what do we need?
+
+01:33:08.000 --> 01:33:10.000
+Anybody in the chat? What do we need?
+
+01:33:10.000 --> 01:33:14.000
+perform real-world action.
+
+01:33:14.000 --> 01:33:16.000
+Tools, exactly, right.
+
+01:33:16.000 --> 01:33:18.000
+So?
+
+01:33:18.000 --> 01:33:24.000
+This tool is nothing but a wrapper around the GitHub API.
+
+01:33:24.000 --> 01:33:26.000
+GitHub provides a developer API.
+
+01:33:26.000 --> 01:33:29.000
+LangChain folks took that developer API.
+
+01:33:29.000 --> 01:33:32.000
+And wrapped it in a function.
+
+01:33:32.000 --> 01:33:36.000
+Annotated it with other tools provided.
+
+01:33:36.000 --> 01:33:38.000
+this to you as an integration.
+
+01:33:38.000 --> 01:33:40.000
+Okay, so.
+
+01:33:40.000 --> 01:33:43.000
+We get access to all of these tools.
+
+01:33:43.000 --> 01:33:45.000
+And then.
+
+01:33:45.000 --> 01:33:48.000
+I am creating a map of
+
+01:33:48.000 --> 01:33:51.000
+tools. How am I creating a map of tools?
+
+01:33:51.000 --> 01:33:54.000
+The map is a simple dictionary.
+
+01:33:54.000 --> 01:33:57.000
+Where the tool name is the key.
+
+01:33:57.000 --> 01:33:59.000
+And the tool itself is the value.
+
+01:33:59.000 --> 01:34:02.000
+Okay, that is what I have done in this particular line.
+
+01:34:02.000 --> 01:34:04.000
+And…
+
+01:34:04.000 --> 01:34:11.000
+Then I have created all of these nodes. You can see what these are.
+
+01:34:11.000 --> 01:34:13.000
+These are simple Python functions.
+
+01:34:13.000 --> 01:34:18.000
+Yeah, these are simple Python functions.
+
+01:34:18.000 --> 01:34:22.000
+So I have created a Python function that can collect all PRN commits.
+
+01:34:22.000 --> 01:34:25.000
+Using the list pull request tool.
+
+01:34:25.000 --> 01:34:28.000
+Okay, it is just running the GitHub running.
+
+01:34:28.000 --> 01:34:32.000
+By taking GitHub repo as a parameter.
+
+01:34:32.000 --> 01:34:35.000
+So, it is collecting all the PRN commits then.
+
+01:34:35.000 --> 01:34:39.000
+It is getting all the previous releases, it is just to check.
+
+01:34:39.000 --> 01:34:42.000
+Which release was the last release?
+
+01:34:42.000 --> 01:34:47.000
+Which release is the release for which I will be writing some.
+
+01:34:47.000 --> 01:34:49.000
+Uh, release notes.
+
+01:34:49.000 --> 01:34:56.000
+And then I can take all of these Python functions. How do I convert these Python functions into my
+
+01:34:56.000 --> 01:35:01.000
+Nodes. Anybody in the chat? Yesterday you learned it, right? And Srinha taught it really well.
+
+01:35:01.000 --> 01:35:05.000
+So how can we convert these Python functions into
+
+01:35:05.000 --> 01:35:10.000
+Notes, my graph nodes.
+
+01:35:10.000 --> 01:35:16.000
+Exactly, add node, right? So I create a graph instance where I will pass in my state.
+
+01:35:16.000 --> 01:35:20.000
+So this is the state that will be transferred between all my nodes.
+
+01:35:20.000 --> 01:35:25.000
+I add it here, I instantiate my graph.
+
+01:35:25.000 --> 01:35:29.000
+And in the graph, I use the add node method.
+
+01:35:29.000 --> 01:35:33.000
+To give a name of my node and the actual executor of that node, ok.
+
+01:35:33.000 --> 01:35:36.000
+So function is the executor of that node.
+
+01:35:36.000 --> 01:35:41.000
+Whatever operation will be executed in that node should be written in this function.
+
+01:35:41.000 --> 01:35:48.000
+So I have provided this. This function will release a state that will go to the next node, next node, next node, and so on.
+
+01:35:48.000 --> 01:35:55.000
+Now, tell me, we have added all of these three nodes. Are these nodes connected with each other right now?
+
+01:35:55.000 --> 01:36:01.000
+Give me a thumbs up if you think it is connected, give me a thumbs down if it is not, not yet, yeah, I see.
+
+01:36:01.000 --> 01:36:04.000
+Yes, so how can we connect it?
+
+01:36:04.000 --> 01:36:09.000
+We can, we need edges, exactly, right, so.
+
+01:36:09.000 --> 01:36:11.000
+Graph.addH.
+
+01:36:11.000 --> 01:36:15.000
+We always start with the start node, ok.
+
+01:36:15.000 --> 01:36:17.000
+This is a default node that is provided by
+
+01:36:17.000 --> 01:36:21.000
+We always start with the start node.
+
+01:36:21.000 --> 01:36:25.000
+Then, whatever first node that needs to be executed will come here.
+
+01:36:25.000 --> 01:36:31.000
+After that, where should we go from this node to this node? So, this is a sequential graph.
+
+01:36:31.000 --> 01:36:38.000
+Okay, how many of you think this is a sequential graph?
+
+01:36:38.000 --> 01:36:40.000
+Yeah, everybody? Great.
+
+01:36:40.000 --> 01:36:43.000
+I'm really happy to see that all of you are able to follow up.
+
+01:36:43.000 --> 01:36:46.000
+So this is a sequential graph where
+
+01:36:46.000 --> 01:36:51.000
+Each node will be getting called one after the other.
+
+01:36:51.000 --> 01:36:56.000
+Exactly, if there are no conditional edges, then it means that it is a sequential graph.
+
+01:36:56.000 --> 01:36:59.000
+But what if…
+
+01:36:59.000 --> 01:37:02.000
+After this particular
+
+01:37:02.000 --> 01:37:05.000
+After calling getReleaseNode.
+
+01:37:05.000 --> 01:37:08.000
+I again added a new edge.
+
+01:37:08.000 --> 01:37:11.000
+Where from get release node, I'm going back to get PR node.
+
+01:37:11.000 --> 01:37:16.000
+And then going to end. There will be a cycle, right?
+
+01:37:16.000 --> 01:37:21.000
+Yeah?
+
+01:37:21.000 --> 01:37:24.000
+All right.
+
+01:37:24.000 --> 01:37:27.000
+Okay, so we can do graph.compile.
+
+01:37:27.000 --> 01:37:31.000
+After doing graph.compile, my
+
+01:37:31.000 --> 01:37:35.000
+workflow is ready, I can invoke it, and my release tools will be generated.
+
+01:37:35.000 --> 01:37:39.000
+Okay? This was a simple workflow.
+
+01:37:39.000 --> 01:37:46.000
+Now, using the same principles, we are going to create our agent.
+
+01:37:46.000 --> 01:37:48.000
+Let us go to source.
+
+01:37:48.000 --> 01:37:53.000
+Let us go to agents. And so you all understand, right, how tools can be used.
+
+01:37:53.000 --> 01:38:01.000
+Inside a workflow, how actual like GitHub LangChain tools can be used inside a workflow.
+
+01:38:01.000 --> 01:38:04.000
+Now, if in any of these workflow,
+
+01:38:04.000 --> 01:38:07.000
+If in any of these workflow,
+
+01:38:07.000 --> 01:38:10.000
+I'll tell you one thing. If in any of these workflows.
+
+01:38:10.000 --> 01:38:12.000
+Let's say this collect PR commit.
+
+01:38:12.000 --> 01:38:15.000
+If I make it an agent.
+
+01:38:15.000 --> 01:38:17.000
+If I make it an agent,
+
+01:38:17.000 --> 01:38:20.000
+Wrap it up in a function.
+
+01:38:20.000 --> 01:38:23.000
+Okay? If in this function, instead of calling this tool.
+
+01:38:23.000 --> 01:38:25.000
+I call an agent.
+
+01:38:25.000 --> 01:38:27.000
+that does this get PR?
+
+01:38:27.000 --> 01:38:30.000
+Uh, with me, by invoking.
+
+01:38:30.000 --> 01:38:32.000
+A bunch of tools.
+
+01:38:32.000 --> 01:38:37.000
+And I add this function, this parent function where my agent is running.
+
+01:38:37.000 --> 01:38:39.000
+As a node,
+
+01:38:39.000 --> 01:38:44.000
+What will you call this kind of a workflow?
+
+01:38:44.000 --> 01:38:47.000
+No, not, there is single agent.
+
+01:38:47.000 --> 01:38:50.000
+In this workflow.
+
+01:38:50.000 --> 01:38:55.000
+Yeah, it will be an agentic workflow, ok, it will be an agentic workflow.
+
+01:38:55.000 --> 01:38:57.000
+No subgraph, nothing, no.
+
+01:38:57.000 --> 01:38:59.000
+It will be an agentic workflow for folks.
+
+01:38:59.000 --> 01:39:08.000
+Only one node has an agent that is running, okay? If there is only one node where an agent is running, it is going to be called an agentic workflow.
+
+01:39:08.000 --> 01:39:12.000
+Yeah? Awesome.
+
+01:39:12.000 --> 01:39:19.000
+So, now you know all the building blocks. Do you think, how many of you think that you can confidently build
+
+01:39:19.000 --> 01:39:21.000
+An agentic system now, give me a thumbs up.
+
+01:39:21.000 --> 01:39:23.000
+With some practice, obviously.
+
+01:39:23.000 --> 01:39:26.000
+Now, all the required knowledge is with you.
+
+01:39:26.000 --> 01:39:28.000
+Yeah? Okay.
+
+01:39:28.000 --> 01:39:31.000
+All of you who have given me a thumbs up.
+
+01:39:31.000 --> 01:39:34.000
+Next week, I need to see something that you have built, ok.
+
+01:39:34.000 --> 01:39:36.000
+You need to share it on Discord.
+
+01:39:36.000 --> 01:39:40.000
+I don't know what it is. Build something, come up with an idea.
+
+01:39:40.000 --> 01:39:45.000
+I will give two people the stage to speak about it.
+
+01:39:45.000 --> 01:39:48.000
+Okay, in the end, after the lecture, I'll, I'll
+
+01:39:48.000 --> 01:39:52.000
+Uh, give 2 people the stage to speak about it.
+
+01:39:52.000 --> 01:39:54.000
+Let's see who does it.
+
+01:39:54.000 --> 01:39:57.000
+Okay. Awesome.
+
+01:39:57.000 --> 01:40:00.000
+Now, let's go to agents.
+
+01:40:00.000 --> 01:40:01.000
+And in agents.
+
+01:40:01.000 --> 01:40:05.000
+You can see I have a utils file.
+
+01:40:05.000 --> 01:40:07.000
+And I have a graph.py file.
+
+01:40:07.000 --> 01:40:10.000
+Okay?
+
+01:40:10.000 --> 01:40:16.000
+Let's go through it one by one. In this graph.py file, I'm not really using any
+
+01:40:16.000 --> 01:40:18.000
+Uh, land graph.
+
+01:40:18.000 --> 01:40:21.000
+Lecting.
+
+01:40:21.000 --> 01:40:25.000
+I've used simple approach, but you can use LandGraph here as well.
+
+01:40:25.000 --> 01:40:28.000
+I will leave it up to you. I want you guys to experiment.
+
+01:40:28.000 --> 01:40:32.000
+So let's go through utils.py first.
+
+01:40:32.000 --> 01:40:35.000
+You see that
+
+01:40:35.000 --> 01:40:38.000
+When we get access to the GitHub tools that we have.
+
+01:40:38.000 --> 01:40:41.000
+It is written like this, get issues.
+
+01:40:41.000 --> 01:40:44.000
+Yeah, get issue.
+
+01:40:44.000 --> 01:40:46.000
+Comment on issues.
+
+01:40:46.000 --> 01:40:48.000
+Do you think this is programming friendly?
+
+01:40:48.000 --> 01:40:51.000
+Do you think this is agentic friendly?
+
+01:40:51.000 --> 01:40:54.000
+This is tool friendly for our LLM.
+
+01:40:54.000 --> 01:40:56.000
+This kind of name.
+
+01:40:56.000 --> 01:41:00.000
+No, why? Because our agents are trained.
+
+01:41:00.000 --> 01:41:05.000
+In such a way that they consider tools as some kind of functions.
+
+01:41:05.000 --> 01:41:09.000
+Yeah, so there cannot be a space, there cannot be all of this.
+
+01:41:09.000 --> 01:41:13.000
+They need to look like this, like function names.
+
+01:41:13.000 --> 01:41:18.000
+So, we need to change the name of all of these tools.
+
+01:41:18.000 --> 01:41:20.000
+We need to rename these tools.
+
+01:41:20.000 --> 01:41:23.000
+from something that is human-friendly.
+
+01:41:23.000 --> 01:41:27.000
+To something that is AI friendly.
+
+01:41:27.000 --> 01:41:30.000
+That is why I've written this utils.py.
+
+01:41:30.000 --> 01:41:35.000
+Here, I have written a simple function which is rename tool.
+
+01:41:35.000 --> 01:41:38.000
+And this is just going to
+
+01:41:38.000 --> 01:41:40.000
+Uh, access the tool name.
+
+01:41:40.000 --> 01:41:46.000
+And update it, ok, from the tool name mapping, we created this tool name mapping, remember, ok.
+
+01:41:46.000 --> 01:41:49.000
+So I have done that.
+
+01:41:49.000 --> 01:41:51.000
+This will rename all the tools.
+
+01:41:51.000 --> 01:41:53.000
+With this mapping.
+
+01:41:53.000 --> 01:41:56.000
+With this mapping, ok.
+
+01:41:56.000 --> 01:41:58.000
+So get issues will be renamed to get issues.
+
+01:41:58.000 --> 01:42:02.000
+GetIsue will be renamed to getissue, and so on.
+
+01:42:02.000 --> 01:42:05.000
+This utility function will do that for me.
+
+01:42:05.000 --> 01:42:11.000
+Then, I have written functions to fetch relevant tools based on the task.
+
+01:42:11.000 --> 01:42:13.000
+So…
+
+01:42:13.000 --> 01:42:18.000
+issue triage will come here. So, all the issue tools will come.
+
+01:42:18.000 --> 01:42:21.000
+Will be returned just by calling this function.
+
+01:42:21.000 --> 01:42:25.000
+So, I want to keep my code clean, right? So these are all the utility functions.
+
+01:42:25.000 --> 01:42:27.000
+If I have to perform tool review,
+
+01:42:27.000 --> 01:42:36.000
+I should not think while developing my agent, which tools should I call? So I've created this utility function that will only return me the bunch of tools.
+
+01:42:36.000 --> 01:42:39.000
+that are required for code review.
+
+01:42:39.000 --> 01:42:41.000
+Okay?
+
+01:42:41.000 --> 01:42:46.000
+So, do you need… do you need to use the right right file tool?
+
+01:42:46.000 --> 01:42:48.000
+For code review, give me a thumbs up.
+
+01:42:48.000 --> 01:42:51.000
+If you need, no, right?
+
+01:42:51.000 --> 01:42:54.000
+Yeah, you do not need.
+
+01:42:54.000 --> 01:42:57.000
+Uh, right tool for code review.
+
+01:42:57.000 --> 01:43:02.000
+You only need the read tools, ok, you need search tool, you need read tool, all of these.
+
+01:43:02.000 --> 01:43:05.000
+So I've added only those tools.
+
+01:43:05.000 --> 01:43:08.000
+So, what is the principle I'm following here?
+
+01:43:08.000 --> 01:43:14.000
+Can anybody with a good amount of programming experience can tell me?
+
+01:43:14.000 --> 01:43:18.000
+Which particular principle I'm following here?
+
+01:43:18.000 --> 01:43:20.000
+Exactly, leased access, ok.
+
+01:43:20.000 --> 01:43:24.000
+Principle of least privileges.
+
+01:43:24.000 --> 01:43:28.000
+Remember it, it should not only be for your users.
+
+01:43:28.000 --> 01:43:30.000
+It should also be for your agents.
+
+01:43:30.000 --> 01:43:33.000
+Principle of least privileges.
+
+01:43:33.000 --> 01:43:36.000
+It should be for your agents as well.
+
+01:43:36.000 --> 01:43:40.000
+So, only provide the list of tools that they require.
+
+01:43:40.000 --> 01:43:43.000
+Follow this pattern. This is really useful. I've created.
+
+01:43:43.000 --> 01:43:47.000
+Such kind of helper functions for all of these.
+
+01:43:47.000 --> 01:43:50.000
+And then in my graph.py.
+
+01:43:50.000 --> 01:43:53.000
+Let's see how we are building agent.
+
+01:43:53.000 --> 01:43:56.000
+Everybody with me, give me a thumbs up if you have understood so far.
+
+01:43:56.000 --> 01:44:00.000
+Just give me a thumbs up if you have understood so far. If you're all following up.
+
+01:44:00.000 --> 01:44:02.000
+It's all making sense.
+
+01:44:02.000 --> 01:44:07.000
+Awesome. All right, great.
+
+01:44:07.000 --> 01:44:13.000
+Okay, folks.
+
+01:44:13.000 --> 01:44:17.000
+Uh, Ravindra, can you ask any specific question?
+
+01:44:17.000 --> 01:44:22.000
+Yes, the two names are from GitHub.
+
+01:44:22.000 --> 01:44:28.000
+The tool names are from GitHub. I will tell you how I have defined tools, everything, just give me a second.
+
+01:44:28.000 --> 01:44:30.000
+Okay? That utility function.
+
+01:44:30.000 --> 01:44:34.000
+was able to help us rename tools and fetch all the tools.
+
+01:44:34.000 --> 01:44:37.000
+But it required a list of all the tools, okay?
+
+01:44:37.000 --> 01:44:39.000
+That is something that it always requires.
+
+01:44:39.000 --> 01:44:43.000
+So, let's see. Here as well, we have followed the same steps.
+
+01:44:43.000 --> 01:44:45.000
+I have…
+
+01:44:45.000 --> 01:44:48.000
+Instantiated my LLM.
+
+01:44:48.000 --> 01:44:51.000
+After instantiating my LLM,
+
+01:44:51.000 --> 01:44:54.000
+I've created a GitHub API wrapper.
+
+01:44:54.000 --> 01:44:56.000
+From this GitHub API wrapper.
+
+01:44:56.000 --> 01:44:59.000
+I got this GitHub toolkit.
+
+01:44:59.000 --> 01:45:03.000
+Okay? And this toolkit contains all the tools.
+
+01:45:03.000 --> 01:45:07.000
+If I call this get tool function, I will get those tools.
+
+01:45:07.000 --> 01:45:11.000
+So, I am getting a list of all those tools.
+
+01:45:11.000 --> 01:45:13.000
+I am iterating through the list.
+
+01:45:13.000 --> 01:45:18.000
+And I'm using this renameTool function. Anybody knows, remembers this renameTool function?
+
+01:45:18.000 --> 01:45:23.000
+Here, I'm using this renameTool function to rename
+
+01:45:23.000 --> 01:45:27.000
+The tools from this default name, which is human readable.
+
+01:45:27.000 --> 01:45:29.000
+To this.
+
+01:45:29.000 --> 01:45:35.000
+AI native name, okay.
+
+01:45:35.000 --> 01:45:40.000
+So, after running this, all my tool names will be updated to the mapping that we saw.
+
+01:45:40.000 --> 01:45:42.000
+in utils.py.
+
+01:45:42.000 --> 01:45:45.000
+We can now create our agent.
+
+01:45:45.000 --> 01:45:48.000
+So I'm starting by creating our sub-agents.
+
+01:45:48.000 --> 01:45:53.000
+I have used this convention of using an underscore.
+
+01:45:53.000 --> 01:45:55.000
+Before my sub-agents, ok.
+
+01:45:55.000 --> 01:45:57.000
+This is a popular.
+
+01:45:57.000 --> 01:46:01.000
+Convention for defining subagents.
+
+01:46:01.000 --> 01:46:03.000
+But it is not necessary, ok.
+
+01:46:03.000 --> 01:46:06.000
+It will make no difference if I remove this.
+
+01:46:06.000 --> 01:46:09.000
+It will still be a sub-agent, ok, on its own.
+
+01:46:09.000 --> 01:46:11.000
+So, but it is a good practice.
+
+01:46:11.000 --> 01:46:15.000
+To keep it this way, because it helps.
+
+01:46:15.000 --> 01:46:18.000
+Any, it helps the psychopathic serial killer.
+
+01:46:18.000 --> 01:46:20.000
+programmer who is going to
+
+01:46:20.000 --> 01:46:22.000
+take this over after me.
+
+01:46:22.000 --> 01:46:26.000
+That, this is a sub-agent, okay?
+
+01:46:26.000 --> 01:46:29.000
+So, just keep it in mind, right?
+
+01:46:29.000 --> 01:46:31.000
+Good code.
+
+01:46:31.000 --> 01:46:33.000
+Just make that difference clear, okay?
+
+01:46:33.000 --> 01:46:36.000
+So define it like this.
+
+01:46:36.000 --> 01:46:39.000
+The process of defining a sub-agent is same.
+
+01:46:39.000 --> 01:46:41.000
+Use create agent function.
+
+01:46:41.000 --> 01:46:43.000
+Passing your model.
+
+01:46:43.000 --> 01:46:45.000
+Passing the tools that you have.
+
+01:46:45.000 --> 01:46:49.000
+Name your agent, so I am naming it document agent.
+
+01:46:49.000 --> 01:46:51.000
+And then provide a system prompt.
+
+01:46:51.000 --> 01:46:56.000
+Regarding a very specialized task that it needs to do.
+
+01:46:56.000 --> 01:47:01.000
+Okay. So, this is documentation subagent, you can go through it.
+
+01:47:01.000 --> 01:47:05.000
+We similarly also have release node subagent.
+
+01:47:05.000 --> 01:47:09.000
+Okay? This will have access to all the release node tools.
+
+01:47:09.000 --> 01:47:12.000
+Then we have issue agent.
+
+01:47:12.000 --> 01:47:15.000
+The issue agent will have access to this.
+
+01:47:15.000 --> 01:47:19.000
+Issue tools, so how am I getting access to these tools?
+
+01:47:19.000 --> 01:47:21.000
+I have defined my helper function.
+
+01:47:21.000 --> 01:47:25.000
+So that's why this looks really clean, right? The code looks really clean.
+
+01:47:25.000 --> 01:47:28.000
+You should keep it this way.
+
+01:47:28.000 --> 01:47:30.000
+What am I passing here as tools?
+
+01:47:30.000 --> 01:47:32.000
+The list of all the tools.
+
+01:47:32.000 --> 01:47:34.000
+I'm passing the list of all the tools.
+
+01:47:34.000 --> 01:47:38.000
+Into my helper function. My helper function is picking the tools.
+
+01:47:38.000 --> 01:47:41.000
+And giving least privilege.
+
+01:47:41.000 --> 01:47:47.000
+For whatever task it is supposed to do.
+
+01:47:47.000 --> 01:47:50.000
+So, system prompt.
+
+01:47:50.000 --> 01:47:52.000
+I'll tell you, I'll tell you, Karthik.
+
+01:47:52.000 --> 01:47:57.000
+Karthik is asking, how did I decide the system prompt for each of these?
+
+01:47:57.000 --> 01:48:02.000
+There are a few things that you need to keep in mind while designing a system prompt.
+
+01:48:02.000 --> 01:48:08.000
+You should understand that the purpose of system prompt is to giving your agent a role.
+
+01:48:08.000 --> 01:48:11.000
+So that should be the first thing.
+
+01:48:11.000 --> 01:48:17.000
+You are a code review agent, you are an issue management agent. You are a release note agent.
+
+01:48:17.000 --> 01:48:20.000
+You are a documentation agent.
+
+01:48:20.000 --> 01:48:23.000
+After this, after you have given them a role.
+
+01:48:23.000 --> 01:48:27.000
+You need to give them the task that they are supposed to do, okay?
+
+01:48:27.000 --> 01:48:29.000
+So there is a method, it is called craft.
+
+01:48:29.000 --> 01:48:32.000
+C-R-A-F-T.
+
+01:48:32.000 --> 01:48:37.000
+Oh, I'm typing in my VS Code. Sorry. I was typing it in chat.
+
+01:48:37.000 --> 01:48:39.000
+C-R-A-F-D.
+
+01:48:39.000 --> 01:48:43.000
+You can you can Google what is craft prompt strategy.
+
+01:48:43.000 --> 01:48:46.000
+Okay? C is for context.
+
+01:48:46.000 --> 01:48:49.000
+R is for role, A is for action.
+
+01:48:49.000 --> 01:48:52.000
+F is for format, T is for
+
+01:48:52.000 --> 01:48:54.000
+Um…
+
+01:48:54.000 --> 01:48:56.000
+I think T is for task.
+
+01:48:56.000 --> 01:48:58.000
+T is for task.
+
+01:48:58.000 --> 01:49:03.000
+So just I need to provide them a role.
+
+01:49:03.000 --> 01:49:07.000
+After that, I need to give them some tasks that they need to do.
+
+01:49:07.000 --> 01:49:12.000
+I need to specify what actions they can perform. So here it is the
+
+01:49:12.000 --> 01:49:15.000
+tools that they can… they have access to, ok.
+
+01:49:15.000 --> 01:49:18.000
+That's how you can design a great system prompt.
+
+01:49:18.000 --> 01:49:22.000
+Alright, so all my, I have a few.
+
+01:49:22.000 --> 01:49:25.000
+Agents here.
+
+01:49:25.000 --> 01:49:32.000
+And then I've created a enum for my agent names, ok, I've created an enum for my agent names.
+
+01:49:32.000 --> 01:49:34.000
+I am just…
+
+01:49:34.000 --> 01:49:37.000
+Taking all of these sub-agents.
+
+01:49:37.000 --> 01:49:39.000
+All of these sub-agents.
+
+01:49:39.000 --> 01:49:42.000
+I am…
+
+01:49:42.000 --> 01:49:46.000
+Encapsulating these sub-agents in separate functions.
+
+01:49:46.000 --> 01:49:48.000
+So, these are functions where
+
+01:49:48.000 --> 01:49:51.000
+I'm just going to call this agent, ok.
+
+01:49:51.000 --> 01:49:54.000
+And whatever they return.
+
+01:49:54.000 --> 01:50:00.000
+I am converting them, I'm converting their response into a tool message.
+
+01:50:00.000 --> 01:50:04.000
+Can you guys tell me what have I done here?
+
+01:50:04.000 --> 01:50:08.000
+In this function, I'll explain it, but I want you to guess.
+
+01:50:08.000 --> 01:50:10.000
+Yeah, context, role,
+
+01:50:10.000 --> 01:50:14.000
+Action format and tone.
+
+01:50:14.000 --> 01:50:22.000
+Yes.
+
+01:50:22.000 --> 01:50:28.000
+All right. So folks, anybody would tell me what I've done here.
+
+01:50:28.000 --> 01:50:31.000
+This is a very
+
+01:50:31.000 --> 01:50:34.000
+Like, you have seen this.
+
+01:50:34.000 --> 01:50:37.000
+You have seen this multiple times until now.
+
+01:50:37.000 --> 01:50:44.000
+Exactly, exactly. So I've converted Sunil.
+
+01:50:44.000 --> 01:50:47.000
+Everybody, let's clap for Sunil, ok, he guessed it right.
+
+01:50:47.000 --> 01:50:50.000
+So, what we have done here is,
+
+01:50:50.000 --> 01:50:53.000
+We have wrapped our agent in a function.
+
+01:50:53.000 --> 01:50:57.000
+That we have annotated as a tool.
+
+01:50:57.000 --> 01:51:03.000
+You all can see where this is going, how we are converting, how we are creating a multi-agent system, right?
+
+01:51:03.000 --> 01:51:06.000
+This is a supervisor pattern that we are using.
+
+01:51:06.000 --> 01:51:08.000
+In the supervisor pattern.
+
+01:51:08.000 --> 01:51:12.000
+Each agent acts like a tool.
+
+01:51:12.000 --> 01:51:15.000
+Okay, so.
+
+01:51:15.000 --> 01:51:20.000
+We did this for the documentation agent, we added some descriptions here.
+
+01:51:20.000 --> 01:51:22.000
+We added the name.
+
+01:51:22.000 --> 01:51:24.000
+Okay, by the way, if you are skipping
+
+01:51:24.000 --> 01:51:27.000
+Any docstring, you can add description like this.
+
+01:51:27.000 --> 01:51:29.000
+In this at the rate tool, ok.
+
+01:51:29.000 --> 01:51:35.000
+If I were a good developer, if I had written docstring here, I would not have to do this.
+
+01:51:35.000 --> 01:51:37.000
+So?
+
+01:51:37.000 --> 01:51:42.000
+And remember that multi-agent communication happens through these commands.
+
+01:51:42.000 --> 01:51:46.000
+So, your sub-agent should return this tool message.
+
+01:51:46.000 --> 01:51:53.000
+Okay, so whatever result you want to fetch, you cannot print everything, right? You cannot print everything from the result.
+
+01:51:53.000 --> 01:51:57.000
+Because that, what will, what will happen if I, if I
+
+01:51:57.000 --> 01:51:59.000
+Send the whole result.
+
+01:51:59.000 --> 01:52:06.000
+If I return the whole result here, what will happen?
+
+01:52:06.000 --> 01:52:11.000
+Anyone?
+
+01:52:11.000 --> 01:52:13.000
+Context will blow up, exactly.
+
+01:52:13.000 --> 01:52:23.000
+Your manager does not need to know each and every step that you followed. Your manager only needs to know whether or not the task was completed well or not.
+
+01:52:23.000 --> 01:52:30.000
+Okay? Exactly. So, we are only checking the last message which is always the conclusion message.
+
+01:52:30.000 --> 01:52:34.000
+We are only wrapping it up as a tool message and sending as a command.
+
+01:52:34.000 --> 01:52:41.000
+To the supervisor agent. Okay. In short, so this is context management that we have done.
+
+01:52:41.000 --> 01:52:45.000
+When we teach you context engineering, we'll come back to all of these.
+
+01:52:45.000 --> 01:52:47.000
+Okay, so, so these are the
+
+01:52:47.000 --> 01:52:49.000
+Nitty gritties, these are the
+
+01:52:49.000 --> 01:52:52.000
+Underlying principles that you need to.
+
+01:52:52.000 --> 01:52:55.000
+Understand. So, command is a way through which you can.
+
+01:52:55.000 --> 01:52:58.000
+Do agent-to-agent communication in LangChain.
+
+01:52:58.000 --> 01:53:03.000
+Okay, if you need to send any message to any agent, you can use command.
+
+01:53:03.000 --> 01:53:06.000
+not only agent to agent, but even from a tool,
+
+01:53:06.000 --> 01:53:11.000
+from any middleware, if you want to send it to agent, if you want to send it to anyone.
+
+01:53:11.000 --> 01:53:15.000
+to Langchain or line graphs, you can use this command.
+
+01:53:15.000 --> 01:53:19.000
+We'll talk about it more, ok, we'll talk about this command thing more.
+
+01:53:19.000 --> 01:53:24.000
+If you want, I can share the documentation of this command as well.
+
+01:53:24.000 --> 01:53:26.000
+But this is usually used.
+
+01:53:26.000 --> 01:53:28.000
+I think you must have…
+
+01:53:28.000 --> 01:53:34.000
+seen this already. I think you should yesterday in Human in the loop.
+
+01:53:34.000 --> 01:53:37.000
+You must have used this command.
+
+01:53:37.000 --> 01:53:40.000
+Whenever you want to inject any message.
+
+01:53:40.000 --> 01:53:43.000
+Whenever you want to inject any new message.
+
+01:53:43.000 --> 01:53:46.000
+into an LLM pipeline or
+
+01:53:46.000 --> 01:53:49.000
+an agent, you use this command.
+
+01:53:49.000 --> 01:53:51.000
+In LangChain and LandGraph, ok.
+
+01:53:51.000 --> 01:53:56.000
+So, in this command, I'm passing tool message, the tool that has executed right now.
+
+01:53:56.000 --> 01:53:58.000
+What is the tool? The tool is a
+
+01:53:58.000 --> 01:54:04.000
+Documentation agent.
+
+01:54:04.000 --> 01:54:07.000
+No, response should be a tool message.
+
+01:54:07.000 --> 01:54:11.000
+Because this agent is acting like a tool.
+
+01:54:11.000 --> 01:54:15.000
+For my supervisor agent.
+
+01:54:15.000 --> 01:54:17.000
+Srinivas, you understood?
+
+01:54:17.000 --> 01:54:21.000
+This agent is acting like a tool for my supervisor agent.
+
+01:54:21.000 --> 01:54:26.000
+So whatever I did for documentation agent, I need to do similar things for all my sub-agent.
+
+01:54:26.000 --> 01:54:29.000
+So for my release node agent.
+
+01:54:29.000 --> 01:54:31.000
+For my, uh…
+
+01:54:31.000 --> 01:54:34.000
+Issue tracker agent for my code review agent.
+
+01:54:34.000 --> 01:54:36.000
+For all of these agents.
+
+01:54:36.000 --> 01:54:40.000
+I did the same thing, I wrapped them up in a function.
+
+01:54:40.000 --> 01:54:43.000
+Annotated it with at the rate tool.
+
+01:54:43.000 --> 01:54:48.000
+And then I created my GitHub agent, which is like the main coordinator agent.
+
+01:54:48.000 --> 01:54:52.000
+So, which pattern we have followed here?
+
+01:54:52.000 --> 01:54:56.000
+Anyone which pattern we have followed here?
+
+01:54:56.000 --> 01:54:59.000
+Supervisors. Exactly. Coordinator or supervisor.
+
+01:54:59.000 --> 01:55:01.000
+It is not hierarchical.
+
+01:55:01.000 --> 01:55:06.000
+These agents do not have any sub-agent, right?
+
+01:55:06.000 --> 01:55:10.000
+So, it is not hierarchical, it is supervisor.
+
+01:55:10.000 --> 01:55:14.000
+So, again, use create agent function.
+
+01:55:14.000 --> 01:55:17.000
+LLM tools were
+
+01:55:17.000 --> 01:55:19.000
+Each tool is an LLM.
+
+01:55:19.000 --> 01:55:21.000
+Is an agent.
+
+01:55:21.000 --> 01:55:26.000
+And then I added a main system prompt where I
+
+01:55:26.000 --> 01:55:28.000
+Delegated the task.
+
+01:55:28.000 --> 01:55:30.000
+And then I can simply ask it.
+
+01:55:30.000 --> 01:55:34.000
+To create a documentation and raise a PR for it.
+
+01:55:34.000 --> 01:55:38.000
+So you can see it is doing multiple tasks, ok, it is doing a complex task.
+
+01:55:38.000 --> 01:55:40.000
+It has to create documentation, so…
+
+01:55:40.000 --> 01:55:43.000
+The first thing will go to documentation agent.
+
+01:55:43.000 --> 01:55:46.000
+Once the documentation is generated,
+
+01:55:46.000 --> 01:55:50.000
+It will go to the PR agent to raise a PR.
+
+01:55:50.000 --> 01:55:52.000
+Okay, this is a multi-step process.
+
+01:55:52.000 --> 01:55:56.000
+By the way, folks, to perform tasks like this,
+
+01:55:56.000 --> 01:56:02.000
+You need better models. We are using GPT-OSS, which is a 120B parameter model.
+
+01:56:02.000 --> 01:56:05.000
+Okay, it is a very simple model.
+
+01:56:05.000 --> 01:56:09.000
+So, you may face issues in the first run, second run.
+
+01:56:09.000 --> 01:56:13.000
+But if it fails, try it multiple times, it should work.
+
+01:56:13.000 --> 01:56:23.000
+All of you with me, all of you understood how we implemented a multi-agent system.
+
+01:56:23.000 --> 01:56:26.000
+Anurag, that is what is happening right now.
+
+01:56:26.000 --> 01:56:29.000
+Supervisor is dynamically
+
+01:56:29.000 --> 01:56:32.000
+executing agents.
+
+01:56:32.000 --> 01:56:36.000
+supervisor decides the sequence on the go.
+
+01:56:36.000 --> 01:56:41.000
+That is why it is agentic in nature, right? We have not programmed the sequence.
+
+01:56:41.000 --> 01:56:44.000
+The agent will program its own sequence.
+
+01:56:44.000 --> 01:56:46.000
+Based on the task that it has.
+
+01:56:46.000 --> 01:56:54.000
+It has been assigned.
+
+01:56:54.000 --> 01:56:58.000
+Yes, Gautam, if you have Claude API, you can substitute this model.
+
+01:56:58.000 --> 01:57:03.000
+In fact, I will suggest you use your own model. This is a very basic GitHub agent.
+
+01:57:03.000 --> 01:57:07.000
+build a very complex one.
+
+01:57:07.000 --> 01:57:11.000
+We, we, one of the students from cohort 1.
+
+01:57:11.000 --> 01:57:16.000
+Srini, he built a really complicated GitHub agent. He took this project as a base.
+
+01:57:16.000 --> 01:57:21.000
+He added a bunch of features, added a lot of guardrails and everything, and he built.
+
+01:57:21.000 --> 01:57:24.000
+create agent. So you can also try to do that.
+
+01:57:24.000 --> 01:57:28.000
+We have given tools and tasks, agent decides what to do when.
+
+01:57:28.000 --> 01:57:30.000
+Exactly.
+
+01:57:30.000 --> 01:57:32.000
+Workflow is desired by agent.
+
+01:57:32.000 --> 01:57:36.000
+Should we… yeah, yeah, Ameh, we will run this.
+
+01:57:36.000 --> 01:57:38.000
+Just let me answer a few questions.
+
+01:57:38.000 --> 01:57:43.000
+Here, we have defined the sub-agent supervisor as picking one of them. I mean, even.
+
+01:57:43.000 --> 01:57:48.000
+Creating subagents we done? No, create… it is not creating sub-agents on the fly, Anurag.
+
+01:57:48.000 --> 01:57:53.000
+We have defined it, like we have defined the agents that
+
+01:57:53.000 --> 01:58:01.000
+can be used, it is not creating any agent on the fly.
+
+01:58:01.000 --> 01:58:07.000
+Yes, yes, Sanjeev. So the tool list that we, the mapping that we have done here.
+
+01:58:07.000 --> 01:58:13.000
+So this get release, get releases, these are all real tools with human readable names.
+
+01:58:13.000 --> 01:58:18.000
+We have converted this human-readable names to AI-readable names. That's all we have done here.
+
+01:58:18.000 --> 01:58:22.000
+Because if we keep it like this, this will be…
+
+01:58:22.000 --> 01:58:26.000
+Uh, and really like.
+
+01:58:26.000 --> 01:58:37.000
+not well formatted for the model to call tools.
+
+01:58:37.000 --> 01:58:41.000
+Alright, let's run this. So, to run this.
+
+01:58:41.000 --> 01:58:44.000
+We can…
+
+01:58:44.000 --> 01:58:48.000
+start our virtual environment, which should already be present here.
+
+01:58:48.000 --> 01:58:53.000
+And you can write UV run
+
+01:58:53.000 --> 01:58:58.000
+And wherever this is, so this is in
+
+01:58:58.000 --> 01:59:00.000
+SRC?
+
+01:59:00.000 --> 01:59:03.000
+Agents.
+
+01:59:03.000 --> 01:59:06.000
+Graph.py.
+
+01:59:06.000 --> 01:59:09.000
+All right, you see this command folks.
+
+01:59:09.000 --> 01:59:13.000
+UV run src agentsgraph.py.
+
+01:59:13.000 --> 01:59:17.000
+Click on this, it should run, fingers crossed.
+
+01:59:17.000 --> 01:59:23.000
+Let's see.
+
+01:59:23.000 --> 01:59:27.000
+Uh…
+
+01:59:27.000 --> 01:59:34.000
+Sunset attempted relative import with no parent package.
+
+01:59:34.000 --> 01:59:36.000
+Okay.
+
+01:59:36.000 --> 01:59:38.000
+Let me go to CD.
+
+01:59:38.000 --> 01:59:43.000
+SRC.
+
+01:59:43.000 --> 01:59:54.000
+Then run.
+
+01:59:54.000 --> 02:00:10.000
+Okay.
+
+02:00:10.000 --> 02:00:15.000
+Folks, just give me a minute, I'll fix it and come back.
+
+02:00:15.000 --> 02:00:34.000
+Uh, it should be something in the command itself.
+
+02:00:34.000 --> 02:00:38.000
+Yeah, oh, sorry, yeah.
+
+02:00:38.000 --> 02:00:42.000
+All right, I think it is written in the doc as well.
+
+02:00:42.000 --> 02:00:46.000
+So we can use this UV run python dash m.
+
+02:00:46.000 --> 02:00:51.000
+For some reason, it is throwing this error.
+
+02:00:51.000 --> 02:01:08.000
+All right.
+
+02:01:08.000 --> 02:01:11.000
+Okay, it's running now. So folks,
+
+02:01:11.000 --> 02:01:15.000
+Use this command that people have shared in the chat.
+
+02:01:15.000 --> 02:01:18.000
+UV run python-m src.agents.graph.
+
+02:01:18.000 --> 02:01:21.000
+Okay, use this command to run it.
+
+02:01:21.000 --> 02:01:23.000
+I think I've…
+
+02:01:23.000 --> 02:01:27.000
+The package layers are very deep.
+
+02:01:27.000 --> 02:01:32.000
+For that reason.
+
+02:01:32.000 --> 02:01:34.000
+So, it should take some time.
+
+02:01:34.000 --> 02:01:43.000
+To run. Meanwhile you can go to github and check the package that you added here. So where is this added? It is added in GitHub practice, right?
+
+02:01:43.000 --> 02:01:46.000
+So let me go to this.
+
+02:01:46.000 --> 02:01:50.000
+repository, github practice.
+
+02:01:50.000 --> 02:01:52.000
+O see, updated now.
+
+02:01:52.000 --> 02:01:54.000
+I did not update it.
+
+02:01:54.000 --> 02:01:56.000
+I did not update it.
+
+02:01:56.000 --> 02:02:01.000
+Let's go here.
+
+02:02:01.000 --> 02:02:05.000
+Okay, GitHub practice.
+
+02:02:05.000 --> 02:02:08.000
+Do we have a pull request? No.
+
+02:02:08.000 --> 02:02:12.000
+Let's see, do we have a new branch?
+
+02:02:12.000 --> 02:02:17.000
+Add README, see, now this is, this has been updated now. I'm not doing it.
+
+02:02:17.000 --> 02:02:19.000
+Agent is doing it.
+
+02:02:19.000 --> 02:02:21.000
+You can see.
+
+02:02:21.000 --> 02:02:25.000
+We can see it has added all of this.
+
+02:02:25.000 --> 02:02:29.000
+Let's see, ok, this is executed.
+
+02:02:29.000 --> 02:02:32.000
+So…
+
+02:02:32.000 --> 02:02:35.000
+Let's see. Let's see.
+
+02:02:35.000 --> 02:02:37.000
+8.
+
+02:02:37.000 --> 02:02:43.000
+This has been executed.
+
+02:02:43.000 --> 02:02:46.000
+And…
+
+02:02:46.000 --> 02:02:50.000
+Earlier, there were no… like, it has created this new branch.
+
+02:02:50.000 --> 02:02:54.000
+Feature branch 1 minute ago, add README.
+
+02:02:54.000 --> 02:02:58.000
+It has added it, but it has not created a PR.
+
+02:02:58.000 --> 02:03:02.000
+Don't know why it did not create a PR.
+
+02:03:02.000 --> 02:03:12.000
+Let's try running it again.
+
+02:03:12.000 --> 02:03:15.000
+So, folks, we are using a very basic model. If you use
+
+02:03:15.000 --> 02:03:21.000
+Uh, complex model, you should be able to do this.
+
+02:03:21.000 --> 02:03:51.000
+Pradeep, please add your Grok API key.
+
+02:03:57.000 --> 02:04:02.000
+Okay.
+
+02:04:02.000 --> 02:04:05.000
+It is not able to generate the PR.
+
+02:04:05.000 --> 02:04:08.000
+But it should be able to…
+
+02:04:08.000 --> 02:04:12.000
+It has created a…
+
+02:04:12.000 --> 02:04:19.000
+Another one, add project overview right now. So, see, our agent is able to perform.
+
+02:04:19.000 --> 02:04:22.000
+All these tasks, see here it has created this doc.
+
+02:04:22.000 --> 02:04:28.000
+Okay, folks, share in screenshot if your agent was able to run successfully and
+
+02:04:28.000 --> 02:04:34.000
+It was able to create these things.
+
+02:04:34.000 --> 02:04:36.000
+Sunil, okay?
+
+02:04:36.000 --> 02:04:38.000
+it has added for you.
+
+02:04:38.000 --> 02:04:40.000
+Great.
+
+02:04:40.000 --> 02:04:44.000
+Folks, whoever are, whoever is getting an error.
+
+02:04:44.000 --> 02:04:51.000
+Try to use this command. I'm just copy pasting it.
+
+02:04:51.000 --> 02:04:54.000
+Just run this.
+
+02:04:54.000 --> 02:05:01.000
+Yeah, if your model is good, it should be able to add PR as well.
+
+02:05:01.000 --> 02:05:05.000
+Oh, see, for some people it created PR.
+
+02:05:05.000 --> 02:05:08.000
+Awesome, awesome, folks!
+
+02:05:08.000 --> 02:05:15.000
+So congratulations, you have just built a multi-agent system.
+
+02:05:15.000 --> 02:05:18.000
+If you are facing any issues, any errors,
+
+02:05:18.000 --> 02:05:20.000
+You can check this out, okay?
+
+02:05:20.000 --> 02:05:23.000
+Do this thing. If you are using anti-gravity or clod.
+
+02:05:23.000 --> 02:05:27.000
+Just add this particular.
+
+02:05:27.000 --> 02:05:31.000
+Just take this, ok.
+
+02:05:31.000 --> 02:05:38.000
+Take this file.
+
+02:05:38.000 --> 02:05:43.000
+So…
+
+02:05:43.000 --> 02:05:45.000
+Just take this file.
+
+02:05:45.000 --> 02:05:47.000
+Add it here.
+
+02:05:47.000 --> 02:05:51.000
+Or you can skip adding the file, like you can upload the file itself.
+
+02:05:51.000 --> 02:05:56.000
+And after adding the file, you just…
+
+02:05:56.000 --> 02:05:59.000
+Scroll over whatever error you are getting like this.
+
+02:05:59.000 --> 02:06:06.000
+Click on this chat icon. Okay, click on this chat icon.
+
+02:06:06.000 --> 02:06:08.000
+Click on this chat icon.
+
+02:06:08.000 --> 02:06:13.000
+And here you can write that help me fix this error.
+
+02:06:13.000 --> 02:06:15.000
+Based on this documentation.
+
+02:06:15.000 --> 02:06:18.000
+Just do this.
+
+02:06:18.000 --> 02:06:23.000
+Yeah, it should create a new branch, add code, do all of those things.
+
+02:06:23.000 --> 02:06:26.000
+If you are using a better model, it should be able to create a PR as well.
+
+02:06:26.000 --> 02:06:28.000
+Okay?
+
+02:06:28.000 --> 02:06:35.000
+Let's see, in our documentation tool, we have documentation tool, we have issue tool, we have code review tool.
+
+02:06:35.000 --> 02:06:37.000
+Here we have code review tool.
+
+02:06:37.000 --> 02:06:40.000
+I think in our documentation tool,
+
+02:06:40.000 --> 02:06:42.000
+We should add this.
+
+02:06:42.000 --> 02:06:46.000
+add PR as well.
+
+02:06:46.000 --> 02:06:49.000
+So see, there is no create PR or anything.
+
+02:06:49.000 --> 02:06:59.000
+If we add, let's say, let's, let's add this, let's add.
+
+02:06:59.000 --> 02:07:01.000
+Create pull request.
+
+02:07:01.000 --> 02:07:07.000
+Let's add this tool in our documentation. I think then it should be able to do this.
+
+02:07:07.000 --> 02:07:11.000
+Yeah, let us add it.
+
+02:07:11.000 --> 02:07:13.000
+And let's run our graph again.
+
+02:07:13.000 --> 02:07:31.000
+I think I should get a PR now.
+
+02:07:31.000 --> 02:07:36.000
+Yeah, because see, model is very primitive. The model that we are using is very primitive.
+
+02:07:36.000 --> 02:07:43.000
+Okay. It will need a lot of engineering to enable the model to do this. I think we can
+
+02:07:43.000 --> 02:07:46.000
+Uh, enhance our system prompt as well for the model.
+
+02:07:46.000 --> 02:07:49.000
+Okay, so.
+
+02:07:49.000 --> 02:07:56.000
+We have added code review agent or whatever, we can say that, okay, if you need to create PR, you can use code review agent to
+
+02:07:56.000 --> 02:08:01.000
+And we have named it… we have not named it well. We should have a PR agent, or we should have something like that.
+
+02:08:01.000 --> 02:08:03.000
+So…
+
+02:08:03.000 --> 02:08:06.000
+I can say this this particular
+
+02:08:06.000 --> 02:08:09.000
+Agent that we have built.
+
+02:08:09.000 --> 02:08:11.000
+Can improve by a lot.
+
+02:08:11.000 --> 02:08:14.000
+And I would give you all a homework to improve it.
+
+02:08:14.000 --> 02:08:16.000
+Okay?
+
+02:08:16.000 --> 02:08:18.000
+So…
+
+02:08:18.000 --> 02:08:22.000
+Just find this common things.
+
+02:08:22.000 --> 02:08:26.000
+Let's say, okay, see, after adding that PR function.
+
+02:08:26.000 --> 02:08:28.000
+My pull request is also created.
+
+02:08:28.000 --> 02:08:30.000
+Add README documentation.
+
+02:08:30.000 --> 02:08:33.000
+And 1 minute ago by C.
+
+02:08:33.000 --> 02:08:37.000
+Multi-agent app said it is a bot PR.
+
+02:08:37.000 --> 02:08:39.000
+Alright folks.
+
+02:08:39.000 --> 02:08:43.000
+Congratulations, we have just
+
+02:08:43.000 --> 02:08:47.000
+created a multi-agent system, a class for all of us.
+
+02:08:47.000 --> 02:08:51.000
+I hope you enjoyed building this.
+
+02:08:51.000 --> 02:08:55.000
+Yeah.
+
+02:08:55.000 --> 02:09:00.000
+Alright, so your cohort is complete.
+
+02:09:00.000 --> 02:09:05.000
+Yeah. Code is complete in just eight sessions.
+
+02:09:05.000 --> 02:09:07.000
+We have…
+
+02:09:07.000 --> 02:09:10.000
+I don't know how many more.
+
+02:09:10.000 --> 02:09:14.000
+All right.
+
+02:09:14.000 --> 02:09:16.000
+Okay, folks.
+
+02:09:16.000 --> 02:09:19.000
+I just added this, this function.
+
+02:09:19.000 --> 02:09:21.000
+So in the utils,
+
+02:09:21.000 --> 02:09:25.000
+In the utils, in this get documentation tool.
+
+02:09:25.000 --> 02:09:28.000
+I added this create pull request function.
+
+02:09:28.000 --> 02:09:34.000
+Okay, I just added this function.
+
+02:09:34.000 --> 02:09:41.000
+Awesome, awesome, I see many people creating PRs. Folks, share the screenshot of whatever your agent has.
+
+02:09:41.000 --> 02:09:43.000
+was able to achieve.
+
+02:09:43.000 --> 02:09:47.000
+It's okay if GROK token succeeded.
+
+02:09:47.000 --> 02:09:49.000
+Uh, we can use a better model, but
+
+02:09:49.000 --> 02:09:51.000
+I hope all of you, all of you,
+
+02:09:51.000 --> 02:09:57.000
+Through this session, we're able to understand the fundamental of building a multi-agent system.
+
+02:09:57.000 --> 02:10:01.000
+How to give it access to a real-world tool?
+
+02:10:01.000 --> 02:10:03.000
+And how to let your…
+
+02:10:03.000 --> 02:10:05.000
+agent perform real-world actions.
+
+02:10:05.000 --> 02:10:11.000
+Just give me a thumbs up. If you are able to follow this, if you are able to understand this really well,
+
+02:10:11.000 --> 02:10:15.000
+Awesome, I see all of you are able to do this.
+
+02:10:15.000 --> 02:10:19.000
+Uh, we can do a quick Slido quiz.
+
+02:10:19.000 --> 02:10:22.000
+And after Slido quiz,
+
+02:10:22.000 --> 02:10:25.000
+We can have some Q&A.
+
+02:10:25.000 --> 02:10:30.000
+And I can share a few nuggets regarding building good multi-agent systems.
+
+02:10:30.000 --> 02:10:34.000
+Okay, so these are the two things left.
+
+02:10:34.000 --> 02:10:38.000
+Slido quiz, Q&A, and
+
+02:10:38.000 --> 02:10:40.000
+Bit of, like, little bit of nuggets on.
+
+02:10:40.000 --> 02:10:42.000
+designing multi-agent system.
+
+02:10:42.000 --> 02:10:47.000
+That we gathered from our experience, from experience of
+
+02:10:47.000 --> 02:10:50.000
+Multiple developers, multiple AI agents that we talk.
+
+02:10:50.000 --> 02:10:59.000
+2 from Big Tech.
+
+02:10:59.000 --> 02:11:04.000
+Uh, for many people I see that token is like exceeded.
+
+02:11:04.000 --> 02:11:10.000
+See, there are many errors that you guys can see.
+
+02:11:10.000 --> 02:11:15.000
+Just add the, just open your anti-gravity.
+
+02:11:15.000 --> 02:11:22.000
+Okay? It's very simple. Just open your anti-gravity, open the downloads folder
+
+02:11:22.000 --> 02:11:25.000
+Copy-paste this GitHub agent steps here.
+
+02:11:25.000 --> 02:11:27.000
+The standard, ok.
+
+02:11:27.000 --> 02:11:30.000
+You can add media or something.
+
+02:11:30.000 --> 02:11:35.000
+So, I have my downloads folder. In the downloads folder.
+
+02:11:35.000 --> 02:11:38.000
+Where is it?
+
+02:11:38.000 --> 02:11:42.000
+Okay, I cannot add that media, but you can copy paste the text.
+
+02:11:42.000 --> 02:11:45.000
+So copy paste the text,
+
+02:11:45.000 --> 02:11:48.000
+In anti-gravity, you cannot do it, in Claude, you can.
+
+02:11:48.000 --> 02:11:50.000
+So…
+
+02:11:50.000 --> 02:11:54.000
+From the documentation, there are some common errors and whatever.
+
+02:11:54.000 --> 02:11:56.000
+Copy-paste that thing.
+
+02:11:56.000 --> 02:12:00.000
+Whatever error you are getting, select it.
+
+02:12:00.000 --> 02:12:02.000
+Select it from your terminal right here.
+
+02:12:02.000 --> 02:12:06.000
+Okay, let's say this is the error, select on terminal.
+
+02:12:06.000 --> 02:12:09.000
+You will see this chart icon.
+
+02:12:09.000 --> 02:12:12.000
+You are seeing this chat icon, everybody?
+
+02:12:12.000 --> 02:12:14.000
+Whoever is facing error,
+
+02:12:14.000 --> 02:12:18.000
+Can you just select it, click on the chat icon?
+
+02:12:18.000 --> 02:12:25.000
+You should be able to see something like this.
+
+02:12:25.000 --> 02:12:34.000
+Yasmin, can you check the repository you provided in .env?
+
+02:12:34.000 --> 02:12:39.000
+It would have added it in that particular…
+
+02:12:39.000 --> 02:12:44.000
+The repo itself.
+
+02:12:44.000 --> 02:12:47.000
+Okay, so add it and ask.
+
+02:12:47.000 --> 02:12:51.000
+Help me fix this.
+
+02:12:51.000 --> 02:12:53.000
+Folks, just try this out.
+
+02:12:53.000 --> 02:13:00.000
+Whoever is facing an issue, just try this out.
+
+02:13:00.000 --> 02:13:06.000
+Yeah, and all these errors that you're talking about, we have provided you the remediation in that PDF.
+
+02:13:06.000 --> 02:13:10.000
+You can check the common errors and the reason for that errors.
+
+02:13:10.000 --> 02:13:13.000
+And you will be able to fix it.
+
+02:13:13.000 --> 02:13:18.000
+Just check the documentation that we have shared.
+
+02:13:18.000 --> 02:13:22.000
+Okay?
+
+02:13:22.000 --> 02:13:25.000
+Are folks getting any errors, any issues? Don't worry.
+
+02:13:25.000 --> 02:13:31.000
+We will help you in GitHub, uh, sorry, we will help you in Discord.
+
+02:13:31.000 --> 02:13:34.000
+Is it fine? Is it fine?
+
+02:13:34.000 --> 02:13:37.000
+Can you run it later and get help on Discord?
+
+02:13:37.000 --> 02:13:43.000
+Would it work?
+
+02:13:43.000 --> 02:13:47.000
+Folks, give me a thumbs up if it works. Whoever is facing
+
+02:13:47.000 --> 02:13:51.000
+facing an issue?
+
+02:13:51.000 --> 02:13:53.000
+I see.
+
+02:13:53.000 --> 02:13:57.000
+Yeah, Kotesh, your agent has also worked.
+
+02:13:57.000 --> 02:14:08.000
+Create.
+
+02:14:08.000 --> 02:14:13.000
+Yasmin, can you check the PR? Can you check the branches? Can you check the branches?
+
+02:14:13.000 --> 02:14:18.000
+Can you check if the agent has created any new branch in your GitHub?
+
+02:14:18.000 --> 02:14:28.000
+It must have created a new branch where it would have added some code.
+
+02:14:28.000 --> 02:14:33.000
+In my Github, it looks like this.
+
+02:14:33.000 --> 02:14:35.000
+In my… so this is my GitHub repository.
+
+02:14:35.000 --> 02:14:39.000
+You can see I have a pull request.
+
+02:14:39.000 --> 02:14:44.000
+Okay, and the number of branches I had has increased.
+
+02:14:44.000 --> 02:14:48.000
+From 5, it is…
+
+02:14:48.000 --> 02:14:55.000
+This many and all of these were added right now. So, this was 7 minutes ago, the latest one.
+
+02:14:55.000 --> 02:14:58.000
+And when I go to this branch, you can see I have a new README file.
+
+02:14:58.000 --> 02:15:00.000
+Which has all of these.
+
+02:15:00.000 --> 02:15:01.000
+Documentation.
+
+02:15:01.000 --> 02:15:15.000
+Okay. If I go to my main branch, there is no documentation, no readme file.
+
+02:15:15.000 --> 02:15:17.000
+Okay, I will do a quick recap.
+
+02:15:17.000 --> 02:15:22.000
+I will do a quick recap now.
+
+02:15:22.000 --> 02:15:24.000
+Karthik, yes, there is a way.
+
+02:15:24.000 --> 02:15:28.000
+And that's what we have like many other sessions for.
+
+02:15:28.000 --> 02:15:33.000
+So, you must be feeling right. How many of you feel like we have
+
+02:15:33.000 --> 02:15:35.000
+Learned agentic AI now.
+
+02:15:35.000 --> 02:15:38.000
+I don't know what all these sessions are for.
+
+02:15:38.000 --> 02:15:40.000
+All the next sessions are for. Yeah.
+
+02:15:40.000 --> 02:15:42.000
+I see Santosh field set.
+
+02:15:42.000 --> 02:15:44.000
+Many people feel it, right?
+
+02:15:44.000 --> 02:15:48.000
+We'll show you, like, that this is a very deep subject.
+
+02:15:48.000 --> 02:15:54.000
+You will all know about how to observe these agents while they are running.
+
+02:15:54.000 --> 02:15:57.000
+How to observe these agents, how to evaluate your
+
+02:15:57.000 --> 02:16:01.000
+RAG pipelines, how to evaluate any agentic application that you built.
+
+02:16:01.000 --> 02:16:09.000
+We are going to learn about context engineering, how to manage context efficiently. By the way, I have added all of these little nuggets while
+
+02:16:09.000 --> 02:16:12.000
+Covering all of the topics already.
+
+02:16:12.000 --> 02:16:16.000
+But in those lectures, you will see how all of this comes together.
+
+02:16:16.000 --> 02:16:19.000
+Okay, so…
+
+02:16:19.000 --> 02:16:21.000
+Let's wait, let's wait for it.
+
+02:16:21.000 --> 02:16:27.000
+Today, I just want you all to party and enjoy that your agent was able to create, you know,
+
+02:16:27.000 --> 02:16:32.000
+Take a real-world action.
+
+02:16:32.000 --> 02:16:38.000
+Because Aditya, how did you figure out that you had to add PR to the definition?
+
+02:16:38.000 --> 02:16:41.000
+Because I checked my code,
+
+02:16:41.000 --> 02:16:44.000
+And I found it missing in my documentation agent.
+
+02:16:44.000 --> 02:16:47.000
+Okay, I saw the behavior of my agent.
+
+02:16:47.000 --> 02:16:50.000
+I read, I read this.
+
+02:16:50.000 --> 02:16:55.000
+So, this is the trace of whatever my agent has done, right? I read the trace.
+
+02:16:55.000 --> 02:16:58.000
+And after adding the trace.
+
+02:16:58.000 --> 02:17:01.000
+I could figure out that, ok.
+
+02:17:01.000 --> 02:17:04.000
+It is not getting the tool to perform that action.
+
+02:17:04.000 --> 02:17:10.000
+So I just added it here.
+
+02:17:10.000 --> 02:17:14.000
+So now we can apply for… no, no, hold your horses, sorrow of you.
+
+02:17:14.000 --> 02:17:17.000
+You guys need to learn a lot.
+
+02:17:17.000 --> 02:17:22.000
+And we'll teach you those things.
+
+02:17:22.000 --> 02:17:24.000
+All right.
+
+02:17:24.000 --> 02:17:26.000
+Let's… let's…
+
+02:17:26.000 --> 02:17:29.000
+Recap everything once again.
+
+02:17:29.000 --> 02:17:32.000
+So, we created a GitHub apps.
+
+02:17:32.000 --> 02:17:35.000
+By going onto our developer settings.
+
+02:17:35.000 --> 02:17:40.000
+This GitHub app is a way for us to interact with GitHub programmatically.
+
+02:17:40.000 --> 02:17:43.000
+through the GitHub Developer APIs.
+
+02:17:43.000 --> 02:17:46.000
+We use the LangChain GitHub integration.
+
+02:17:46.000 --> 02:17:52.000
+Which is a LangChain package that uses GitHub Developer APIs internally.
+
+02:17:52.000 --> 02:17:54.000
+to provide us with tools,
+
+02:17:54.000 --> 02:17:57.000
+That can interact with.
+
+02:17:57.000 --> 02:17:59.000
+Uh, GitHub using agents.
+
+02:17:59.000 --> 02:18:03.000
+So, we use that toolkit.
+
+02:18:03.000 --> 02:18:06.000
+And we did a few housekeeping tasks.
+
+02:18:06.000 --> 02:18:09.000
+Like, we just
+
+02:18:09.000 --> 02:18:11.000
+Renamed all the tools.
+
+02:18:11.000 --> 02:18:13.000
+To be more AI readable.
+
+02:18:13.000 --> 02:18:16.000
+After renaming the tools to be more AI readable.
+
+02:18:16.000 --> 02:18:19.000
+We created helper functions.
+
+02:18:19.000 --> 02:18:23.000
+To get only the tools that are relevant for specific tasks.
+
+02:18:23.000 --> 02:18:27.000
+Then we created a graph.py file.
+
+02:18:27.000 --> 02:18:31.000
+Where I…
+
+02:18:31.000 --> 02:18:33.000
+Created.
+
+02:18:33.000 --> 02:18:36.000
+Some sub-agents, okay, we created sub-agents using the create.
+
+02:18:36.000 --> 02:18:38.000
+Agent function from Langchain.
+
+02:18:38.000 --> 02:18:41.000
+Here, we passed in our LLM.
+
+02:18:41.000 --> 02:18:45.000
+We passed in, we called the function utility function.
+
+02:18:45.000 --> 02:18:49.000
+passed all the tools that we have access to by connecting with GitHub.
+
+02:18:49.000 --> 02:18:52.000
+And added our system prompt, our sub-agent was ready.
+
+02:18:52.000 --> 02:18:57.000
+Similarly, we created multiple such subagents.
+
+02:18:57.000 --> 02:18:59.000
+After creating all of these sub-agents.
+
+02:18:59.000 --> 02:19:02.000
+We wrapped these agents.
+
+02:19:02.000 --> 02:19:04.000
+into a function.
+
+02:19:04.000 --> 02:19:09.000
+And annotated that function with tool decorator to convert that function into a
+
+02:19:09.000 --> 02:19:11.000
+Langchain tool.
+
+02:19:11.000 --> 02:19:14.000
+After that,
+
+02:19:14.000 --> 02:19:18.000
+We took all of these tools, which are agents on their own.
+
+02:19:18.000 --> 02:19:25.000
+And added them to a supervisor agent with a supervisor prompt.
+
+02:19:25.000 --> 02:19:27.000
+After doing all of this, our
+
+02:19:27.000 --> 02:19:31.000
+Supervisor agent is ready. Our multi-agent system is ready.
+
+02:19:31.000 --> 02:19:33.000
+And we can…
+
+02:19:33.000 --> 02:19:37.000
+Invoke it like this. This was a supervisor pattern.
+
+02:19:37.000 --> 02:19:44.000
+That we followed. How would you create a sequential agent?
+
+02:19:44.000 --> 02:19:50.000
+Folks, can you tell me? How can we create a sequential agent?
+
+02:19:50.000 --> 02:19:52.000
+Using whatever you have learned.
+
+02:19:52.000 --> 02:19:56.000
+You have learned all the level blocks to do this.
+
+02:19:56.000 --> 02:19:58.000
+I want to add in that, you know.
+
+02:19:58.000 --> 02:20:01.000
+that mindset in you, that you can do.
+
+02:20:01.000 --> 02:20:05.000
+You can rearrange the Lego blocks to achieve the result that you want.
+
+02:20:05.000 --> 02:20:11.000
+Any idea how we can create the sequential one?
+
+02:20:11.000 --> 02:20:14.000
+No, Poojan, yesterday's why finance was
+
+02:20:14.000 --> 02:20:16.000
+A single agent.
+
+02:20:16.000 --> 02:20:20.000
+Exactly. Use LangGraph linear nodes.
+
+02:20:20.000 --> 02:20:24.000
+And each node, each node should be what?
+
+02:20:24.000 --> 02:20:27.000
+Each node should be what?
+
+02:20:27.000 --> 02:20:30.000
+An agent, exactly.
+
+02:20:30.000 --> 02:20:32.000
+Okay, great.
+
+02:20:32.000 --> 02:20:35.000
+How can you create a hierarchical pattern?
+
+02:20:35.000 --> 02:20:37.000
+Using whatever you have learned.
+
+02:20:37.000 --> 02:20:43.000
+How do you create a hierarchical pattern?
+
+02:20:43.000 --> 02:20:47.000
+All of these things should seem very easy to you now.
+
+02:20:47.000 --> 02:20:53.000
+Yeah, folks. Using subgraph one way.
+
+02:20:53.000 --> 02:21:00.000
+Yeah, subgraph is one way. Another way is…
+
+02:21:00.000 --> 02:21:03.000
+Pass in a sub-agent to your sub-agent.
+
+02:21:03.000 --> 02:21:07.000
+Okay, create a sub agent.
+
+02:21:07.000 --> 02:21:11.000
+Add it as a soup, like, provide it to some supervisor.
+
+02:21:11.000 --> 02:21:16.000
+Take that supervisor, create a super supervisor, and provide that supervisor to the super, supervisor.
+
+02:21:16.000 --> 02:21:24.000
+Okay, this will create a hierarchy of multiple agents.
+
+02:21:24.000 --> 02:21:28.000
+Other people got pull requests without adding tool.
+
+02:21:28.000 --> 02:21:34.000
+Because we also have certain agent that has access to tools,
+
+02:21:34.000 --> 02:21:37.000
+Stochastically.
+
+02:21:37.000 --> 02:21:39.000
+They were at an advantage where
+
+02:21:39.000 --> 02:21:42.000
+Their model was able to identify that.
+
+02:21:42.000 --> 02:21:46.000
+If my documentation agent does not have
+
+02:21:46.000 --> 02:21:49.000
+Access to my…
+
+02:21:49.000 --> 02:21:53.000
+PR tool, my code review agent should have access to it.
+
+02:21:53.000 --> 02:21:55.000
+So let me just create it.
+
+02:21:55.000 --> 02:21:58.000
+Okay?
+
+02:21:58.000 --> 02:22:02.000
+That's how they did it.
+
+02:22:02.000 --> 02:22:05.000
+For my use case, it was very simple.
+
+02:22:05.000 --> 02:22:07.000
+I wanted one supervisor agent,
+
+02:22:07.000 --> 02:22:12.000
+that could manage everyone. And I knew that.
+
+02:22:12.000 --> 02:22:14.000
+To perform anything on GitHub.
+
+02:22:14.000 --> 02:22:16.000
+I can use…
+
+02:22:16.000 --> 02:22:20.000
+These specialized… let's say, first, I would
+
+02:22:20.000 --> 02:22:23.000
+Map my business to some workflow.
+
+02:22:23.000 --> 02:22:25.000
+I will see what workflow.
+
+02:22:25.000 --> 02:22:27.000
+That business follows.
+
+02:22:27.000 --> 02:22:32.000
+I saw that for my business, I needed these specialized tasks.
+
+02:22:32.000 --> 02:22:35.000
+Okay, so for each task,
+
+02:22:35.000 --> 02:22:39.000
+I can create an isolated agent that can perform that task.
+
+02:22:39.000 --> 02:22:43.000
+And provide the response to the supervisor.
+
+02:22:43.000 --> 02:22:48.000
+That's how I came up with this idea.
+
+02:22:48.000 --> 02:22:52.000
+Is it always required to convert agent, sub-agents to tools?
+
+02:22:52.000 --> 02:22:55.000
+Can't we give sub-agents to supervisor agent without tool?
+
+02:22:55.000 --> 02:23:00.000
+We can do it, but for that, we would need to use a middleware from
+
+02:23:00.000 --> 02:23:03.000
+Deep Agent Framework.
+
+02:23:03.000 --> 02:23:06.000
+Okay? There are multiple ways to do this.
+
+02:23:06.000 --> 02:23:08.000
+I showed you the simplest way.
+
+02:23:08.000 --> 02:23:29.000
+With whatever we have learned so far.
+
+02:23:29.000 --> 02:23:34.000
+Uh, Karthik, human in the loop, comes in various flavors.
+
+02:23:34.000 --> 02:23:41.000
+The PR itself is human in the loop.
+
+02:23:41.000 --> 02:23:43.000
+You understand what I'm trying to say?
+
+02:23:43.000 --> 02:23:46.000
+Yeah.
+
+02:23:46.000 --> 02:23:53.000
+So basically, tools are just functions with access to models. The whole system can be considered as function calling and framework of
+
+02:23:53.000 --> 02:23:57.000
+The workflow is available with LandGraph, and we use it to domestically.
+
+02:23:57.000 --> 02:24:02.000
+Chaitanya, you have very well understood whatever we have learned so far.
+
+02:24:02.000 --> 02:24:08.000
+Alright folks, how many of you think this is easy now?
+
+02:24:08.000 --> 02:24:10.000
+How many of you think this is easy now?
+
+02:24:10.000 --> 02:24:13.000
+Give me a thumbs up if you think so.
+
+02:24:13.000 --> 02:24:17.000
+Yeah, Sharak things, yeah, many people.
+
+02:24:17.000 --> 02:24:20.000
+Awesome. This makes me really happy.
+
+02:24:20.000 --> 02:24:22.000
+Yeah, that.
+
+02:24:22.000 --> 02:24:29.000
+You not only learn something complicated, now you think it is easy, that's the best thing.
+
+02:24:29.000 --> 02:24:33.000
+Awesome, we can go to Slido.
+
+02:24:33.000 --> 02:24:39.000
+Tony, please edit your wordings, man. It's funny, but it's
+
+02:24:39.000 --> 02:24:46.000
+It's not ideal for classroom.
+
+02:24:46.000 --> 02:24:50.000
+Awesome. I see a few questions here.
+
+02:24:50.000 --> 02:24:54.000
+Just by using the word supervisor, we created the supervisor agent.
+
+02:24:54.000 --> 02:24:59.000
+I do not see any specific way of establishing the relationship among supervisor subagent
+
+02:24:59.000 --> 02:25:02.000
+Karthikeyan, you see?
+
+02:25:02.000 --> 02:25:04.000
+In the supervisor agent.
+
+02:25:04.000 --> 02:25:07.000
+We have added tools.
+
+02:25:07.000 --> 02:25:12.000
+Which are agents in themselves.
+
+02:25:12.000 --> 02:25:15.000
+We established the relationship like this.
+
+02:25:15.000 --> 02:25:17.000
+If you want…
+
+02:25:17.000 --> 02:25:21.000
+A definite way to establish the relationship.
+
+02:25:21.000 --> 02:25:29.000
+I will recommend…
+
+02:25:29.000 --> 02:25:38.000
+DeepAgent.
+
+02:25:38.000 --> 02:25:44.000
+Here you will see that you can create sub-agents by passing in JSON.
+
+02:25:44.000 --> 02:25:50.000
+I did not talk about deep agents here, right? That's why I showed you the simplest method.
+
+02:25:50.000 --> 02:25:58.000
+But you can have sub-agents like this.
+
+02:25:58.000 --> 02:26:02.000
+Okay. You can have like
+
+02:26:02.000 --> 02:26:04.000
+Sub-agents added like this.
+
+02:26:04.000 --> 02:26:06.000
+You can also add them as a JSON file.
+
+02:26:06.000 --> 02:26:11.000
+Uh, I'm not able to find that documentation, but you see, yeah, see.
+
+02:26:11.000 --> 02:26:15.000
+As sub-agents, you can pass in a Python dictionary or JSON file.
+
+02:26:15.000 --> 02:26:20.000
+With the name, system prompt, description, and all of those things.
+
+02:26:20.000 --> 02:26:27.000
+Just have patience in later sessions, we'll discover, like, these complex patterns as well.
+
+02:26:27.000 --> 02:26:40.000
+Okay folks, we can now have Slido quiz. It's time for Slido quiz.
+
+02:26:40.000 --> 02:26:49.000
+I see a few questions, let me answer them.
+
+02:26:49.000 --> 02:26:56.000
+Is it the same on industry level as whatever we have built is just small glimpse of real AI projects?
+
+02:26:56.000 --> 02:26:59.000
+Ashwar, I would say this is
+
+02:26:59.000 --> 02:27:02.000
+Very at par with what is happening in the industry.
+
+02:27:02.000 --> 02:27:09.000
+But there are additional things that you will learn that you can add here to make it.
+
+02:27:09.000 --> 02:27:11.000
+Like, clearly production ready.
+
+02:27:11.000 --> 02:27:14.000
+Okay.
+
+02:27:14.000 --> 02:27:16.000
+So…
+
+02:27:16.000 --> 02:27:22.000
+We are going to release the Swiggy podcast in a while, and you will see that a lot of the things that we
+
+02:27:22.000 --> 02:27:30.000
+Are going to cover here is is how they are also building agents internally in their team.
+
+02:27:30.000 --> 02:27:34.000
+How do, how to decide on when to give.
+
+02:27:34.000 --> 02:27:40.000
+A second instance of LLM to sub-agent, or if agent will get the second instance.
+
+02:27:40.000 --> 02:27:48.000
+Uh, Gautam, I do not understand your question. Can you rephrase it or can you elaborate a bit more on what you're trying to ask?
+
+02:27:48.000 --> 02:27:53.000
+Ventro-defined workflow ourselves and went to allow agent to create workflows dynamically, what's the trade-off?
+
+02:27:53.000 --> 02:28:02.000
+Uh, Sharath, you define workflows yourself when you have a clear idea of what that workflow would look like.
+
+02:28:02.000 --> 02:28:05.000
+If that workflow has a lot of static steps.
+
+02:28:05.000 --> 02:28:09.000
+Then you define it yourself. But if the workflow is very dynamic,
+
+02:28:09.000 --> 02:28:13.000
+Which requires decisions to be made.
+
+02:28:13.000 --> 02:28:15.000
+While the workflow is running.
+
+02:28:15.000 --> 02:28:19.000
+While if the decisions are to be made while the workflow is running.
+
+02:28:19.000 --> 02:28:23.000
+At that time, you will try to make it agentic.
+
+02:28:23.000 --> 02:28:27.000
+So your agent, which has a brain, which is the LLM.
+
+02:28:27.000 --> 02:28:32.000
+Can think and make those decisions on the go.
+
+02:28:32.000 --> 02:28:35.000
+Okay?
+
+02:28:35.000 --> 02:28:39.000
+Worked for me. Awesome, Poojan.
+
+02:28:39.000 --> 02:28:46.000
+First, you can finish off the nuggets. Okay, uh, final, I'll share those things first.
+
+02:28:46.000 --> 02:28:52.000
+Give me a second.
+
+02:28:52.000 --> 02:28:56.000
+So there are a few things.
+
+02:28:56.000 --> 02:29:02.000
+Let me quickly share my screen.
+
+02:29:02.000 --> 02:29:05.000
+Folks, if you have further questions, ask it on Discord.
+
+02:29:05.000 --> 02:29:07.000
+We'll be able to answer there.
+
+02:29:07.000 --> 02:29:12.000
+So how do you ensure reliability in this kind of agents?
+
+02:29:12.000 --> 02:29:16.000
+Because 1 bad output can break the whole system, right?
+
+02:29:16.000 --> 02:29:23.000
+So, if your agent is executing like this and there is your coordinator chose one wrong route.
+
+02:29:23.000 --> 02:29:25.000
+Then, the complete workflow.
+
+02:29:25.000 --> 02:29:32.000
+Like, the whole output will completely change. So your agentic system will not be much reliable.
+
+02:29:32.000 --> 02:29:36.000
+To fix it, you can enforce structured output.
+
+02:29:36.000 --> 02:29:39.000
+So, this is where states come in.
+
+02:29:39.000 --> 02:29:41.000
+And LandGraph provides it to you.
+
+02:29:41.000 --> 02:29:45.000
+So, you can have structured outputs in form of states.
+
+02:29:45.000 --> 02:29:48.000
+You can add validation gates between agents.
+
+02:29:48.000 --> 02:29:52.000
+Okay, so between each agent execution.
+
+02:29:52.000 --> 02:29:55.000
+You can add middlewares into agents, which we are going to learn.
+
+02:29:55.000 --> 02:29:59.000
+In one of the coming lectures.
+
+02:29:59.000 --> 02:30:02.000
+Through those middlewares, you can add validation layers.
+
+02:30:02.000 --> 02:30:07.000
+Now that you know LangChain, well, I will share a harness engineering video from YouTube.
+
+02:30:07.000 --> 02:30:12.000
+Please watch it so you can add those kind of validations.
+
+02:30:12.000 --> 02:30:14.000
+To ensure that the agent has worked well.
+
+02:30:14.000 --> 02:30:18.000
+Rather than believing everything that it says.
+
+02:30:18.000 --> 02:30:21.000
+You can cap the number of retries that the agent makes.
+
+02:30:21.000 --> 02:30:24.000
+And you can also add some kind of a
+
+02:30:24.000 --> 02:30:27.000
+Back off. Back off means that…
+
+02:30:27.000 --> 02:30:31.000
+Uh, you can slow down, you can add timeouts, you can.
+
+02:30:31.000 --> 02:30:35.000
+Push the agent not to execute further from, uh,
+
+02:30:35.000 --> 02:30:38.000
+defined stage.
+
+02:30:38.000 --> 02:30:42.000
+Then state management. How do you ensure that the state
+
+02:30:42.000 --> 02:30:45.000
+That is that a shared state.
+
+02:30:45.000 --> 02:30:47.000
+That multiple agents.
+
+02:30:47.000 --> 02:30:53.000
+will share does not hit a race condition, which means that let's say if agents are parallelly.
+
+02:30:53.000 --> 02:30:56.000
+Writing or reading from the same state.
+
+02:30:56.000 --> 02:30:58.000
+How do you ensure that?
+
+02:30:58.000 --> 02:31:00.000
+It does not hit a race condition.
+
+02:31:00.000 --> 02:31:02.000
+The, the most…
+
+02:31:02.000 --> 02:31:06.000
+Easiest way is to add some kind of a checkpointing.
+
+02:31:06.000 --> 02:31:09.000
+Or some kind of a memory, okay?
+
+02:31:09.000 --> 02:31:12.000
+While it is being accessed by one agent,
+
+02:31:12.000 --> 02:31:16.000
+There should be some kind of a check pointer that saves whatever is happening there.
+
+02:31:16.000 --> 02:31:18.000
+Okay?
+
+02:31:18.000 --> 02:31:22.000
+Treat all the states as immutable.
+
+02:31:22.000 --> 02:31:26.000
+So build your pipeline in such a way that you can treat states as immutable.
+
+02:31:26.000 --> 02:31:28.000
+And design.
+
+02:31:28.000 --> 02:31:30.000
+Each node to be idempotent.
+
+02:31:30.000 --> 02:31:34.000
+You all know what idempotent is, right?
+
+02:31:34.000 --> 02:31:36.000
+Idempotency.
+
+02:31:36.000 --> 02:31:39.000
+I think whenever you write that, uh…
+
+02:31:39.000 --> 02:31:42.000
+set, like, create table if not exist.
+
+02:31:42.000 --> 02:31:45.000
+Right? That's an example of adding potency.
+
+02:31:45.000 --> 02:31:49.000
+So ensure that all nodes are idempotent, which means
+
+02:31:49.000 --> 02:31:53.000
+That you do not without right validation, without write.
+
+02:31:53.000 --> 02:31:58.000
+Like cartels, you do not allow individual nodes to make any updates.
+
+02:31:58.000 --> 02:32:00.000
+to the state.
+
+02:32:00.000 --> 02:32:06.000
+Then human in the loop is something that you need to add in agents through multiple.
+
+02:32:06.000 --> 02:32:15.000
+Ways in our Github agent, we added it through the PR thing. Okay, we always said do not change anything directly without creating a new branch.
+
+02:32:15.000 --> 02:32:19.000
+We did not say anywhere that create a new branch, right? We just said,
+
+02:32:19.000 --> 02:32:23.000
+Add documentation and create a PR. That's what we said.
+
+02:32:23.000 --> 02:32:26.000
+It created new branch on its own, so
+
+02:32:26.000 --> 02:32:29.000
+Ensure that human in the loop access is present.
+
+02:32:29.000 --> 02:32:32.000
+Ensure that, uh, whatever repository.
+
+02:32:32.000 --> 02:32:35.000
+If you're building a voting agent, you are
+
+02:32:35.000 --> 02:32:37.000
+putting it up on some repository, ensure that.
+
+02:32:37.000 --> 02:32:43.000
+Just like you block humans from pushing directly onto main, you block your agents as well.
+
+02:32:43.000 --> 02:32:46.000
+So, follow the principle of least privileges.
+
+02:32:46.000 --> 02:32:49.000
+Ensure that your
+
+02:32:49.000 --> 02:32:51.000
+Human in the loop is at place.
+
+02:32:51.000 --> 02:32:53.000
+Many times, human in the loop
+
+02:32:53.000 --> 02:32:59.000
+Can go stagnant because agent can keep on waiting for human to respond.
+
+02:32:59.000 --> 02:33:02.000
+Human might not respond and it can.
+
+02:33:02.000 --> 02:33:04.000
+So, add timeouts.
+
+02:33:04.000 --> 02:33:07.000
+Add some kind of a
+
+02:33:07.000 --> 02:33:09.000
+SLA?
+
+02:33:09.000 --> 02:33:13.000
+Either like ping the human, right?
+
+02:33:13.000 --> 02:33:15.000
+Send them an email, whatever.
+
+02:33:15.000 --> 02:33:19.000
+Uh, on the pending task that they have to review, any agents work.
+
+02:33:19.000 --> 02:33:24.000
+And define, like, define all of these timeout behaviors upfront.
+
+02:33:24.000 --> 02:33:27.000
+Do not keep an agent hanging on for human approval.
+
+02:33:27.000 --> 02:33:30.000
+Okay, this is human in the loop done right.
+
+02:33:30.000 --> 02:33:36.000
+Add timeout, add auto reject, add escalate, all of these things.
+
+02:33:36.000 --> 02:33:40.000
+Then security. Security is something very important.
+
+02:33:40.000 --> 02:33:43.000
+Give your agent boundaries, that is what we did today.
+
+02:33:43.000 --> 02:33:48.000
+If you see, each agent could only execute certain.
+
+02:33:48.000 --> 02:33:51.000
+Number of, like, certain number of tools.
+
+02:33:51.000 --> 02:33:55.000
+Multiple agent could not access, like, all the tools.
+
+02:33:55.000 --> 02:33:57.000
+That we had. So.
+
+02:33:57.000 --> 02:34:00.000
+follow the principle of least privilege.
+
+02:34:00.000 --> 02:34:04.000
+Scope tool permissions rather than giving it to all the agents.
+
+02:34:04.000 --> 02:34:06.000
+Scope those permissions.
+
+02:34:06.000 --> 02:34:09.000
+Uh, always treat like
+
+02:34:09.000 --> 02:34:12.000
+Output from sub-agent as untrusted input.
+
+02:34:12.000 --> 02:34:18.000
+Okay, add a validation layer. We will see how to do guardrails validation, all of those things using middleware.
+
+02:34:18.000 --> 02:34:20.000
+This one?
+
+02:34:20.000 --> 02:34:24.000
+And rather than passing in all the context,
+
+02:34:24.000 --> 02:34:28.000
+Add some kind of a summarization. You all saw how we added summarization, right?
+
+02:34:28.000 --> 02:34:34.000
+We use the command method. We passed only the last message from the sub-agent.
+
+02:34:34.000 --> 02:34:38.000
+Okay, so this is how you add security.
+
+02:34:38.000 --> 02:34:42.000
+Evaluate your agent. Do not just trust everything.
+
+02:34:42.000 --> 02:34:46.000
+Add an eval layer, we will learn about evaluation in the coming sessions.
+
+02:34:46.000 --> 02:34:51.000
+Okay, so combine LLM as a judge and also add heuristic evals.
+
+02:34:51.000 --> 02:34:56.000
+We are going to learn about both in our evaluation session.
+
+02:34:56.000 --> 02:35:00.000
+Uh, these are all the nuggets that I had.
+
+02:35:00.000 --> 02:35:05.000
+I hope, like, most of your questions are also answered through these nuggets.
+
+02:35:05.000 --> 02:35:07.000
+We can now start the Slido quiz.
+
+02:35:07.000 --> 02:35:12.000
+Alright, so folks, all of these things, just revisit the session.
+
+02:35:12.000 --> 02:35:16.000
+Keep this in mind while you are building a production AI system.
+
+02:35:16.000 --> 02:35:19.000
+I see both my team members are not here.
+
+02:35:19.000 --> 02:35:24.000
+Are they here?" Ashish Vaikrishna, can any of you take
+
+02:35:24.000 --> 02:35:25.000
+I'm here.
+
+02:35:25.000 --> 02:35:28.000
+Yeah. Rakapan, was it too fast?
+
+02:35:28.000 --> 02:35:34.000
+Folks, do you think today's session was too fast?
+
+02:35:34.000 --> 02:35:37.000
+No, yeah, no.
+
+02:35:37.000 --> 02:35:42.000
+It's okay, Rakapan. We do not all have like same pace.
+
+02:35:42.000 --> 02:35:50.000
+You can revisit the lectures and ask any doubt that you have in Slido.
+
+02:35:50.000 --> 02:35:56.000
+Augusto, can you take it from… so, Augusto, what I'll do is, I'll ask Ashish Bhai to add these points in
+
+02:35:56.000 --> 02:35:58.000
+In the resources.
+
+02:35:58.000 --> 02:36:04.000
+So, he will add these points in the resources as well. So you will have it with you.
+
+02:36:04.000 --> 02:36:08.000
+Okay.
+
+02:36:08.000 --> 02:36:14.000
+This was perfect. Setup took time. Best to revisit lectures.
+
+02:36:14.000 --> 02:36:20.000
+Awesome.
+
+02:36:20.000 --> 02:36:22.000
+We'll use anti-gravity.
+
+02:36:22.000 --> 02:36:26.000
+Do not refrain from using AI tools.
+
+02:36:26.000 --> 02:36:33.000
+Krishna, you can start the quiz.
+
+02:36:33.000 --> 02:36:34.000
+Yeah.
+
+02:36:34.000 --> 02:36:37.000
+Gautam, let's revisit this question.
+
+02:36:37.000 --> 02:36:41.000
+When we talk about routing and all, let's… I think we talked about routing.
+
+02:36:41.000 --> 02:36:43.000
+Let's revisit this question.
+
+02:36:43.000 --> 02:36:53.000
+In context engineering, I think.
+
+02:36:53.000 --> 02:36:56.000
+How does anti-gravity compare to cursor?
+
+02:36:56.000 --> 02:36:58.000
+I use anti-gravity and Claude Code.
+
+02:36:58.000 --> 02:37:05.000
+I have not used cursor, Tony, but anybody else who has an opinion can share.
+
+02:37:05.000 --> 02:37:10.000
+All right, ready for Slido? Folks, do mention in the chat how you liked.
+
+02:37:10.000 --> 02:37:13.000
+the session today.
+
+02:37:13.000 --> 02:37:20.000
+Any feedback that you have, whatever.
+
+02:37:20.000 --> 02:37:50.000
+Alright guys, you can either scan the QR code, or go to slido.com and type out this code. It will take you to the place.
+
+02:38:47.000 --> 02:38:50.000
+We have Roger Federer in the chat, guys.
+
+02:38:50.000 --> 02:38:54.000
+Tennis players are also learning AI now.
+
+02:38:54.000 --> 02:38:58.000
+Oh, CM Vijay.
+
+02:38:58.000 --> 02:39:03.000
+CR7, we have Ronaldo.
+
+02:39:03.000 --> 02:39:05.000
+And Dr. Doom also.
+
+02:39:05.000 --> 02:39:12.000
+Oh, Doctor Loom, singularity.
+
+02:39:12.000 --> 02:39:16.000
+Yesterday, I met a cohort learner.
+
+02:39:16.000 --> 02:39:20.000
+He used to name himself Cute.
+
+02:39:20.000 --> 02:39:23.000
+So QT, okay.
+
+02:39:23.000 --> 02:39:25.000
+He used to name himself QT.
+
+02:39:25.000 --> 02:39:30.000
+And yesterday we met, we had a conversation, and he said that, do you know
+
+02:39:30.000 --> 02:39:35.000
+I was QT in the chat.
+
+02:39:35.000 --> 02:39:41.000
+A great guy. He built a cool product, so he built a co-pilot that allows you to create agents.
+
+02:39:41.000 --> 02:39:43.000
+For your company.
+
+02:39:43.000 --> 02:39:48.000
+So you just pass in documents, you just pass in all of these things, and it will create agents for you.
+
+02:39:48.000 --> 02:39:56.000
+Great capstone project.
+
+02:39:56.000 --> 02:40:01.000
+Right, 87 people have joined.
+
+02:40:01.000 --> 02:40:04.000
+We have 110 people, folks, join fast.
+
+02:40:04.000 --> 02:40:08.000
+Don't… I think most people are wondering cool names.
+
+02:40:08.000 --> 02:40:10.000
+To join.
+
+02:40:10.000 --> 02:40:31.000
+Yeah?
+
+02:40:31.000 --> 02:40:35.000
+AI Day was great, Srinivas, uh
+
+02:40:35.000 --> 02:40:38.000
+Release note, I will share the YouTube video link.
+
+02:40:38.000 --> 02:40:41.000
+You guys can watch it, it was awesome.
+
+02:40:41.000 --> 02:40:43.000
+We had a great time.
+
+02:40:43.000 --> 02:40:45.000
+We met so many.
+
+02:40:45.000 --> 02:40:56.000
+People.
+
+02:40:56.000 --> 02:40:58.000
+It was live streamed, by the way.
+
+02:40:58.000 --> 02:41:02.000
+So, you could see…
+
+02:41:02.000 --> 02:41:05.000
+I'm sharing the link.
+
+02:41:05.000 --> 02:41:08.000
+All right, yeah, we can start. Krishna, we can start.
+
+02:41:08.000 --> 02:41:11.000
+Okay, I'll go to the next question.
+
+02:41:11.000 --> 02:41:19.000
+Which architecture uses multiple AI agents working together to solve complex problems?
+
+02:41:19.000 --> 02:41:23.000
+Multi-aging system
+
+02:41:23.000 --> 02:41:25.000
+Multi languages.
+
+02:41:25.000 --> 02:41:32.000
+Who all remember Naga Arjuna when they see Mas?
+
+02:41:32.000 --> 02:41:41.000
+So…
+
+02:41:41.000 --> 02:41:44.000
+Oh.
+
+02:41:44.000 --> 02:41:49.000
+Yeah, the correct answer is multi-agent system.
+
+02:41:49.000 --> 02:41:55.000
+We have Syed, Ms. Bogdan, Matta Spider
+
+02:41:55.000 --> 02:41:58.000
+The lion and Saishira
+
+02:41:58.000 --> 02:42:01.000
+Let's move on to the next question.
+
+02:42:01.000 --> 02:42:31.000
+When should the team consider using a multi-agent system?
+
+02:42:32.000 --> 02:42:40.000
+Let's… yeah, so when the problem can be decomposed into multiple specialized tasks
+
+02:42:40.000 --> 02:42:42.000
+See?
+
+02:42:42.000 --> 02:42:50.000
+Now, the Saishira, the lion, and Krishna
+
+02:42:50.000 --> 02:43:20.000
+Which multi-agent architecture processes tasks in a fixed step-by-step order
+
+02:43:20.000 --> 02:43:26.000
+The correct answer is sequential pattern
+
+02:43:26.000 --> 02:43:33.000
+We have Syed, Buddha, Saishira, Mikhpartil, and Dexter
+
+02:43:33.000 --> 02:43:34.000
+Thank you
+
+02:43:34.000 --> 02:43:35.000
+Dexter.
+
+02:43:35.000 --> 02:43:36.000
+What is the…
+
+02:43:36.000 --> 02:43:39.000
+We have Dexter in the chat, guys, be careful.
+
+02:43:39.000 --> 02:44:05.000
+What is the primary role of a coordinator agent?
+
+02:44:05.000 --> 02:44:11.000
+To dynamically route work to the appropriate subagents
+
+02:44:11.000 --> 02:44:13.000
+We have
+
+02:44:13.000 --> 02:44:18.000
+Syed Gupta Saishira, Amit Pattelaamakrishna
+
+02:44:18.000 --> 02:44:20.000
+Let's see…
+
+02:44:20.000 --> 02:44:34.000
+In Hydar task decomposition, what happens to a large task?
+
+02:44:34.000 --> 02:44:51.000
+I think that Jeff answers the question itself.
+
+02:44:51.000 --> 02:44:59.000
+Yeah, so it is broken into smaller subtasks handled by sub-agents.
+
+02:44:59.000 --> 02:45:04.000
+We have Syed Mota Saishira, Amit Bhattan Krishna
+
+02:45:04.000 --> 02:45:07.000
+Okay, last question guys
+
+02:45:07.000 --> 02:45:37.000
+Which statement best describes the trade-off of multi-agent systems
+
+02:45:38.000 --> 02:45:44.000
+The answer is the improve accuracy for complex tasks often at a higher capacity
+
+02:45:44.000 --> 02:45:45.000
+Let's see
+
+02:45:45.000 --> 02:46:12.000
+Oh, congratulations, Syed. Sai Muktar, Dexter, and Amit Pathil nextor came out of nowhere.
+
+02:46:12.000 --> 02:46:42.000
+So I recently exchanged answers, like, maybe.
+
+02:46:46.000 --> 02:46:49.000
+All right, awesome. Thank you, everyone.
+
+02:46:49.000 --> 02:46:54.000
+Ask me if you have any questions, if you have any thoughts, just share it.
+
+02:46:54.000 --> 02:46:57.000
+Is there a mental model to decide
+
+02:46:57.000 --> 02:47:00.000
+How to scope agents in multi-agent setup?
+
+02:47:00.000 --> 02:47:04.000
+I'm drawing parallels to microservice architecture DDD.
+
+02:47:04.000 --> 02:47:06.000
+Uh…
+
+02:47:06.000 --> 02:47:10.000
+Again, I think I already discussed this.
+
+02:47:10.000 --> 02:47:12.000
+You take a business problem, you see.
+
+02:47:12.000 --> 02:47:14.000
+What?
+
+02:47:14.000 --> 02:47:20.000
+What isolated pieces of, or what specialized tasks you can have.
+
+02:47:20.000 --> 02:47:25.000
+You usually, like, distinguish agents based on their specialization.
+
+02:47:25.000 --> 02:47:30.000
+Just like in an orc, where do you decide that, okay, this is the limit.
+
+02:47:30.000 --> 02:47:34.000
+of the job of a product manager, this is the limit of the job of a
+
+02:47:34.000 --> 02:47:40.000
+Programmer, this is the limit of the job of an architect.
+
+02:47:40.000 --> 02:47:50.000
+Whoever have got the job from CodeBasics, did they ever share how did learning things help them get a job as well as worked on real projects that they face any difficulty?
+
+02:47:50.000 --> 02:47:54.000
+You know what I'm thinking? I'm thinking to bring in people.
+
+02:47:54.000 --> 02:47:56.000
+from past cohort.
+
+02:47:56.000 --> 02:48:02.000
+Who got a job in one of the sessions that we may have.
+
+02:48:02.000 --> 02:48:08.000
+So maybe we can coordinate it. I think that could be useful.
+
+02:48:08.000 --> 02:48:10.000
+To you?
+
+02:48:10.000 --> 02:48:14.000
+But I can't promise this, but let me try, let me try.
+
+02:48:14.000 --> 02:48:20.000
+Doing this, okay? Because it relies on so many factors. Let me try doing this.
+
+02:48:20.000 --> 02:48:23.000
+I think that would help you all a lot.
+
+02:48:23.000 --> 02:48:28.000
+So I'll give it a shot.
+
+02:48:28.000 --> 02:48:35.000
+Yes, Yasmin, you are welcome to stay, but if you have to leave somewhere, it's okay, we are just going to chat now, I think.
+
+02:48:35.000 --> 02:48:43.000
+It's done.
+
+02:48:43.000 --> 02:48:46.000
+Uh, Gautam, we, we.
+
+02:48:46.000 --> 02:48:52.000
+We realized that we could not adjust the time, but we could conduct office hour sessions.
+
+02:48:52.000 --> 02:48:57.000
+For folks who are at SF, like, who are in SF, who are in…
+
+02:48:57.000 --> 02:48:59.000
+on the other side of the world.
+
+02:48:59.000 --> 02:49:05.000
+For whomever it is really early, we can come up with a
+
+02:49:05.000 --> 02:49:10.000
+Uh, with a time where we can schedule an office hour session.
+
+02:49:10.000 --> 02:49:14.000
+And in that session, even if you miss something and if you have some doubts.
+
+02:49:14.000 --> 02:49:17.000
+We will try to cover it, ok, it can be on weekdays.
+
+02:49:17.000 --> 02:49:19.000
+Some weekday?
+
+02:49:19.000 --> 02:49:23.000
+Ashish Vai, can you please share a poll?
+
+02:49:23.000 --> 02:49:26.000
+In Discord to identify the
+
+02:49:26.000 --> 02:49:28.000
+Time for office hour sessions?
+
+02:49:28.000 --> 02:49:43.000
+It should align with the CEST time or PSG time.
+
+02:49:43.000 --> 02:49:47.000
+Shimesh, I cannot promise that.
+
+02:49:47.000 --> 02:49:49.000
+But Discord is always open.
+
+02:49:49.000 --> 02:50:02.000
+You can get anything.
+
+02:50:02.000 --> 02:50:07.000
+Bharat, it's okay to be overwhelmed. You have the whole week.
+
+02:50:07.000 --> 02:50:09.000
+I, I can promise you that.
+
+02:50:09.000 --> 02:50:12.000
+If you revise it a few times,
+
+02:50:12.000 --> 02:50:14.000
+It will be, it will seem super easy to you.
+
+02:50:14.000 --> 02:50:17.000
+Okay, just…
+
+02:50:17.000 --> 02:50:19.000
+All you need is revision in practice.
+
+02:50:19.000 --> 02:50:27.000
+Trust me.
+
+02:50:27.000 --> 02:50:39.000
+Thank you, Ringanathan.
+
+02:50:39.000 --> 02:50:49.000
+Thanks, Vinay. Thanks, Santosh.
+
+02:50:49.000 --> 02:50:52.000
+Uh, by the way, after…
+
+02:50:52.000 --> 02:50:55.000
+After I'm telling you…
+
+02:50:55.000 --> 02:51:01.000
+After completing the whole cohort, you will be added into alumni
+
+02:51:01.000 --> 02:51:04.000
+Yeah, alumni chat.
+
+02:51:04.000 --> 02:51:07.000
+Where you will find all the people where earlier.
+
+02:51:07.000 --> 02:51:11.000
+Oh, congratulations, Raishma.
+
+02:51:11.000 --> 02:51:16.000
+All right, I think we can.
+
+02:51:16.000 --> 02:51:19.000
+Ringanathan, yeah, that we will, I'm telling you.
+
+02:51:19.000 --> 02:51:24.000
+Okay, let's discuss this.
+
+02:51:24.000 --> 02:51:39.000
+I'm going to the website, I'm going to show you the schedule.
+
+02:51:39.000 --> 02:51:42.000
+This is the whole curriculum, right?
+
+02:51:42.000 --> 02:51:44.000
+When we talk about capstone project,
+
+02:51:44.000 --> 02:51:47.000
+This week, week 8.
+
+02:51:47.000 --> 02:51:51.000
+We will give you break after week 8.
+
+02:51:51.000 --> 02:51:56.000
+Do you know why? Because it will buy you enough time to work on Capstone as well.
+
+02:51:56.000 --> 02:51:58.000
+Okay, it will give you.
+
+02:51:58.000 --> 02:52:01.000
+day to work on Capstone as well.
+
+02:52:01.000 --> 02:52:03.000
+So after, like,
+
+02:52:03.000 --> 02:52:05.000
+Session 15 and 16.
+
+02:52:05.000 --> 02:52:09.000
+After week 8, we can think of a break.
+
+02:52:09.000 --> 02:52:12.000
+Awesome.
+
+02:52:12.000 --> 02:52:18.000
+Alright, thank you everyone.
+
+02:52:18.000 --> 02:52:22.000
+Thank you for joining. I think that's it for today.
+
+02:52:22.000 --> 02:52:26.000
+Uh, we can…
+
+02:52:26.000 --> 02:52:31.000
+Conclude this now.
+
+02:52:31.000 --> 02:52:35.000
+Alright, see you next week. Build your agents. Remember, I want to see
+
+02:52:35.000 --> 02:52:52.000
+Some demos next week, okay? Bring me some demos next week.
+
